@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI ROI Analysis — Eastway Homes — MakeMeAI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080F1E;
+    --blue: #0F2552;
+    --accent: #1D57D8;
+    --white: #FFFFFF;
+    --green: #059669;
+    --green-bg: #D1FAE5;
+    --amber: #D97706;
+    --amber-bg: #FEF3C7;
+    --red: #DC2626;
+    --red-bg: #FEE2E2;
+    --grey-50: #F8FAFC;
+    --grey-100: #F1F5F9;
+    --grey-200: #E2E8F0;
+    --grey-600: #475569;
+    --grey-800: #1E293B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--grey-50); color: var(--grey-800); line-height: 1.6; }
+
+  /* HEADER */
+  .header { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1a3a6b 100%); color: var(--white); padding: 52px 48px 40px; }
+  .header-inner { max-width: 960px; margin: 0 auto; }
+  .brand { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #60A5FA; margin-bottom: 24px; }
+  .header h1 { font-family: 'Poppins', sans-serif; font-size: 38px; font-weight: 800; line-height: 1.15; margin-bottom: 10px; }
+  .header h1 span { color: #60A5FA; }
+  .header-sub { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 32px; }
+  .header-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .meta-item { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .meta-item strong { display: block; font-size: 15px; color: var(--white); font-weight: 600; }
+
+  /* IMPACT BANNER */
+  .impact-banner { background: var(--accent); padding: 0; }
+  .impact-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .impact-item { padding: 28px 24px; text-align: center; border-right: 1px solid rgba(255,255,255,0.15); color: var(--white); }
+  .impact-item:last-child { border-right: none; }
+  .impact-num { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 800; line-height: 1; }
+  .impact-label { font-size: 12px; opacity: 0.75; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* MAIN */
+  .main { max-width: 960px; margin: 0 auto; padding: 48px; }
+
+  /* EXECUTIVE SUMMARY */
+  .exec-summary { background: var(--white); border: 1px solid var(--grey-200); border-radius: 16px; padding: 36px; margin-bottom: 48px; }
+  .exec-summary h2 { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+  .exec-summary p { font-size: 15px; color: var(--grey-600); line-height: 1.8; margin-bottom: 16px; }
+  .exec-summary p:last-child { margin-bottom: 0; }
+  .exec-summary strong { color: var(--grey-800); }
+
+  /* SECTION HEADING */
+  .section-heading { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 8px; margin-top: 0; }
+  .section-sub { font-size: 14px; color: var(--grey-600); margin-bottom: 28px; }
+
+  /* OPPORTUNITY CARD */
+  .opp-card { background: var(--white); border: 1px solid var(--grey-200); border-radius: 16px; margin-bottom: 28px; overflow: hidden; }
+  .opp-header { background: var(--navy); padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .opp-header h3 { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); }
+  .opp-meta { display: flex; gap: 10px; align-items: center; }
+  .opp-dept { font-size: 12px; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); padding: 4px 12px; border-radius: 20px; font-weight: 600; }
+  .opp-model { font-size: 12px; background: #3B6FE8; color: var(--white); padding: 4px 12px; border-radius: 20px; font-weight: 700; letter-spacing: 0.5px; }
+  .opp-desc { padding: 20px 28px 0; font-size: 14px; color: var(--grey-600); font-style: italic; border-bottom: 1px solid var(--grey-100); padding-bottom: 20px; }
+
+  /* SECTIONS A / B / C */
+  .sections-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--grey-200); }
+  .section-block { background: var(--white); padding: 24px 28px; }
+  .section-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-label.a { color: var(--accent); }
+  .section-label.b { color: var(--red); }
+  .section-label.c { color: var(--green); }
+  .section-label .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .section-label.a .dot { background: var(--accent); }
+  .section-label.b .dot { background: var(--red); }
+  .section-label.c .dot { background: var(--green); }
+  .section-title-text { font-size: 13px; font-weight: 700; color: var(--grey-800); margin-bottom: 12px; }
+  .calc-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid var(--grey-100); }
+  .calc-row:last-of-type { border-bottom: none; }
+  .calc-label { color: var(--grey-600); }
+  .calc-value { font-weight: 600; color: var(--grey-800); }
+  .calc-total { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 2px solid var(--grey-200); }
+  .calc-total .label { font-size: 13px; font-weight: 700; color: var(--grey-800); }
+  .calc-total .value { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 800; }
+  .calc-total .value.a { color: var(--accent); }
+  .calc-total .value.b { color: var(--red); }
+  .calc-total .value.c { color: var(--green); }
+  .source-note { font-size: 11px; color: var(--grey-600); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--grey-200); font-style: italic; }
+
+  /* OPP FOOTER */
+  .opp-footer { padding: 20px 28px; background: var(--grey-50); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--grey-200); }
+  .opp-costs { display: flex; gap: 24px; font-size: 13px; color: var(--grey-600); }
+  .opp-costs span strong { color: var(--grey-800); }
+  .opp-total { text-align: right; }
+  .opp-total .label { font-size: 12px; color: var(--grey-600); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .opp-total .value { font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 800; color: var(--navy); }
+
+  /* SUMMARY TABLE */
+  .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; }
+  .summary-table th { background: var(--navy); color: var(--white); padding: 14px 20px; text-align: left; font-size: 13px; font-weight: 600; }
+  .summary-table th:first-child { border-radius: 8px 0 0 0; }
+  .summary-table th:last-child { border-radius: 0 8px 0 0; text-align: right; }
+  .summary-table td { padding: 14px 20px; border-bottom: 1px solid var(--grey-200); font-size: 14px; vertical-align: top; }
+  .summary-table td:last-child { text-align: right; font-weight: 700; font-size: 15px; color: var(--navy); }
+  .summary-table tr:nth-child(even) td { background: var(--grey-50); }
+  .summary-table tr.total-row td { background: var(--navy); color: var(--white); font-weight: 700; font-size: 16px; border-bottom: none; }
+  .summary-table tr.total-row td:last-child { font-family: 'Poppins', sans-serif; font-size: 22px; color: #60A5FA; }
+  .model-pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; background: var(--grey-100); color: var(--grey-600); margin-left: 6px; }
+
+  /* ROI BOX */
+  .roi-box { background: linear-gradient(135deg, var(--navy) 0%, #1a2d5a 100%); border-radius: 16px; padding: 40px; text-align: center; margin-bottom: 48px; color: var(--white); }
+  .roi-box h3 { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 32px; }
+  .roi-item .num { font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 800; color: var(--white); line-height: 1; }
+  .roi-item .num.green { color: #34D399; }
+  .roi-item .label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+  .roi-item .sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .roi-divider { width: 60px; height: 3px; background: var(--accent); border-radius: 2px; margin: 24px auto; }
+
+  /* NEXT STEPS */
+  .next-steps { background: var(--white); border: 1px solid var(--grey-200); border-radius: 16px; padding: 36px; margin-bottom: 48px; }
+  .next-steps h2 { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
+  .steps-list { display: flex; flex-direction: column; gap: 16px; }
+  .step { display: flex; gap: 16px; align-items: flex-start; }
+  .step-num { width: 32px; height: 32px; background: var(--accent); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; font-family: 'Poppins', sans-serif; }
+  .step-text h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .step-text p { font-size: 13px; color: var(--grey-600); }
+
+  /* FOOTER */
+  .footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 28px 48px; font-size: 13px; }
+  .footer strong { color: var(--white); }
+
+  @media (max-width: 640px) {
+    .header { padding: 32px 24px; }
+    .header h1 { font-size: 26px; }
+    .impact-inner { grid-template-columns: repeat(2, 1fr); }
+    .main { padding: 24px; }
+    .roi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="brand">MakeMeAI Consulting Ltd — Confidential</div>
+    <h1>AI ROI Analysis<br><span>Eastway Homes Properties</span></h1>
+    <p class="header-sub">What automation is worth to your business — in pounds, per year.</p>
+    <div class="header-meta">
+      <div class="meta-item"><strong>Eastway Homes Ltd</strong>Client</div>
+      <div class="meta-item"><strong>www.eastwayhomes.co.uk</strong>Website</div>
+      <div class="meta-item"><strong>Property Development</strong>Sector</div>
+      <div class="meta-item"><strong>April 2026</strong>Prepared</div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT BANNER -->
+<div class="impact-banner">
+  <div class="impact-inner">
+    <div class="impact-item">
+      <div class="impact-num">£371,000</div>
+      <div class="impact-label">Annual value identified</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">5</div>
+      <div class="impact-label">AI opportunities</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">£16,400</div>
+      <div class="impact-label">Total year 1 investment</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">21.6x</div>
+      <div class="impact-label">Return on investment</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="exec-summary">
+    <h2>Executive Summary</h2>
+    <p>Eastway Homes is a trusted Essex property developer with 30 years of trading history and a strong local reputation. The problem is not the product. The problem is the pipeline. Enquiries are being missed after hours. Viewings are being lost to slow scheduling. Leads that showed interest six months ago have never been followed up. There are almost no online reviews, no consistent social presence, and no automated way to capture or convert digital interest. This analysis puts a conservative annual cost on those gaps: <strong>£371,000 every year the current approach continues.</strong></p>
+    <p>The top opportunity is after-hours lead capture. Property buyers browse evenings and weekends. Without a 24/7 response system, those enquiries go cold before anyone picks up on Monday morning. Based on conservative estimates of 15 monthly enquiries, 35% landing out of hours, and recovering just one sale per year, that single gap represents <strong>£167,300 in annual value</strong>. The second largest opportunity is automated viewing scheduling: friction in the booking process costs Eastway an estimated £83,650 per year in dropped viewings and delayed sales cycles.</p>
+    <p>Across all five opportunities, the total year-one investment to fix these problems is <strong>£16,400</strong>, split between build costs and annual tool licences. The net return in year one is <strong>£354,600</strong>. Every figure in this report has been calculated conservatively, using the low end of industry benchmarks. The intangibles are not counted: faster response times, reduced staff burnout, a consistent brand presence, and the ability to scale without hiring.</p>
+  </div>
+
+  <!-- OPPORTUNITIES -->
+  <h2 class="section-heading">The Five Opportunities</h2>
+  <p class="section-sub">Each calculation shows the cost of inefficiency (Section A), revenue being lost today (Section B), and new revenue unlocked by freeing up capacity (Section C).</p>
+
+  <!-- OPP 1 -->
+  <div class="opp-card">
+    <div class="opp-header">
+      <h3>1. After-Hours AI Lead Capture</h3>
+      <div class="opp-meta">
+        <span class="opp-dept">Sales</span>
+        <span class="opp-model">A + B</span>
+      </div>
+    </div>
+    <p class="opp-desc">An AI chatbot on the website handles enquiries 24/7. It qualifies buyers, books callbacks, and captures contact details when the office is closed. Buyers browsing on Sunday evening get an immediate response, not a voicemail.</p>
+    <div class="sections-grid">
+      <div class="section-block">
+        <div class="section-label a"><span class="dot"></span>SECTION A — Cost of Inefficiency</div>
+        <div class="section-title-text">Manual enquiry handling and follow-up</div>
+        <div class="calc-row"><span class="calc-label">Hours per person per day</span><span class="calc-value">1.5 hrs</span></div>
+        <div class="calc-row"><span class="calc-label">Number of staff</span><span class="calc-value">2</span></div>
+        <div class="calc-row"><span class="calc-label">Working days per year</span><span class="calc-value">260</span></div>
+        <div class="calc-row"><span class="calc-label">Loaded hourly cost</span><span class="calc-value">£35/hr</span></div>
+        <div class="calc-row"><span class="calc-label">Formula</span><span class="calc-value">1.5 × 2 × 260 × £35</span></div>
+        <div class="calc-total"><span class="label">Section A Total</span><span class="value a">£27,300</span></div>
+        <p class="source-note">Source: Industry benchmark for property sales specialist loaded cost. Rationale: time includes logging, responding, and manual follow-up across phone, email, and website.</p>
+      </div>
+      <div class="section-block">
+        <div class="section-label b"><span class="dot"></span>SECTION B — Lost Revenue Today</div>
+        <div class="section-title-text">Enquiries going cold out of hours</div>
+        <div class="calc-row"><span class="calc-label">Monthly enquiries (est.)</span><span class="calc-value">15</span></div>
+        <div class="calc-row"><span class="calc-label">Received out of hours</span><span class="calc-value">35% = 5.25/month</span></div>
+        <div class="calc-row"><span class="calc-label">Go cold without response</span><span class="calc-value">50% = 2.6/month</span></div>
+        <div class="calc-row"><span class="calc-label">Sales recovered per year</span><span class="calc-value">1 (very conservative)</span></div>
+        <div class="calc-row"><span class="calc-label">Avg. developer margin per unit</span><span class="calc-value">£140,000</span></div>
+        <div class="calc-total"><span class="label">Section B Total</span><span class="value b">£140,000</span></div>
+        <p class="source-note">Source: Avg. property £700K × 20% developer margin. Rationale: 1 recovered sale per year is the floor — studies show 5x higher conversion when enquiries are answered within 5 minutes.</p>
+      </div>
+    </div>
+    <div class="opp-footer">
+      <div class="opp-costs">
+        <span>Build cost: <strong>£4,000</strong></span>
+        <span>Annual tools: <strong>£1,200/yr</strong></span>
+      </div>
+      <div class="opp-total">
+        <div class="label">Annual Value</div>
+        <div class="value">£167,300</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPP 2 -->
+  <div class="opp-card">
+    <div class="opp-header">
+      <h3>2. Automated Viewing Scheduler</h3>
+      <div class="opp-meta">
+        <span class="opp-dept">Sales</span>
+        <span class="opp-model">A + B</span>
+      </div>
+    </div>
+    <p class="opp-desc">A booking system lets buyers schedule viewings directly from the website at any time, without email back-and-forth. Auto-confirmations and reminders reduce no-shows. Staff time goes back to closing, not coordinating.</p>
+    <div class="sections-grid">
+      <div class="section-block">
+        <div class="section-label a"><span class="dot"></span>SECTION A — Cost of Inefficiency</div>
+        <div class="section-title-text">Manual viewing coordination and calendar management</div>
+        <div class="calc-row"><span class="calc-label">Hours per person per day</span><span class="calc-value">0.75 hrs</span></div>
+        <div class="calc-row"><span class="calc-label">Number of staff</span><span class="calc-value">2</span></div>
+        <div class="calc-row"><span class="calc-label">Working days per year</span><span class="calc-value">260</span></div>
+        <div class="calc-row"><span class="calc-label">Loaded hourly cost</span><span class="calc-value">£35/hr</span></div>
+        <div class="calc-row"><span class="calc-label">Formula</span><span class="calc-value">0.75 × 2 × 260 × £35</span></div>
+        <div class="calc-total"><span class="label">Section A Total</span><span class="value a">£13,650</span></div>
+        <p class="source-note">Source: Industry estimate. Rationale: 45 min per booking covers initial contact, confirmation, calendar block, and reminder sending.</p>
+      </div>
+      <div class="section-block">
+        <div class="section-label b"><span class="dot"></span>SECTION B — Lost Revenue Today</div>
+        <div class="section-title-text">Viewing drop-off due to scheduling friction</div>
+        <div class="calc-row"><span class="calc-label">Monthly viewing requests (est.)</span><span class="calc-value">10</span></div>
+        <div class="calc-row"><span class="calc-label">Drop-off rate from friction</span><span class="calc-value">15% = 1.5/month</span></div>
+        <div class="calc-row"><span class="calc-label">Dropped viewings per year</span><span class="calc-value">18</span></div>
+        <div class="calc-row"><span class="calc-label">Viewing-to-sale conversion</span><span class="calc-value">8%</span></div>
+        <div class="calc-row"><span class="calc-label">Sales recovered (conservative)</span><span class="calc-value">0.5 sale</span></div>
+        <div class="calc-row"><span class="calc-label">Avg. developer margin per unit</span><span class="calc-value">£140,000</span></div>
+        <div class="calc-total"><span class="label">Section B Total</span><span class="value b">£70,000</span></div>
+        <p class="source-note">Source: Conversion benchmarks for UK residential property. Rationale: 0.5 sales/year is floor estimate — does not account for carrying cost reduction from faster sales cycle.</p>
+      </div>
+    </div>
+    <div class="opp-footer">
+      <div class="opp-costs">
+        <span>Build cost: <strong>£2,500</strong></span>
+        <span>Annual tools: <strong>£600/yr</strong></span>
+      </div>
+      <div class="opp-total">
+        <div class="label">Annual Value</div>
+        <div class="value">£83,650</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPP 3 -->
+  <div class="opp-card">
+    <div class="opp-header">
+      <h3>3. Lead Nurture Automation</h3>
+      <div class="opp-meta">
+        <span class="opp-dept">Sales</span>
+        <span class="opp-model">A + C</span>
+      </div>
+    </div>
+    <p class="opp-desc">Automated follow-up sequences for every enquiry — immediate response, 3-day follow-up, 2-week check-in, monthly newsletter. No lead gets forgotten. Staff freed from chasing cold contacts can spend time converting warm ones.</p>
+    <div class="sections-grid">
+      <div class="section-block">
+        <div class="section-label a"><span class="dot"></span>SECTION A — Cost of Inefficiency</div>
+        <div class="section-title-text">Manual lead follow-up and CRM administration</div>
+        <div class="calc-row"><span class="calc-label">Hours per person per day</span><span class="calc-value">1.5 hrs</span></div>
+        <div class="calc-row"><span class="calc-label">Number of staff</span><span class="calc-value">2</span></div>
+        <div class="calc-row"><span class="calc-label">Working days per year</span><span class="calc-value">260</span></div>
+        <div class="calc-row"><span class="calc-label">Loaded hourly cost</span><span class="calc-value">£35/hr</span></div>
+        <div class="calc-row"><span class="calc-label">Formula</span><span class="calc-value">1.5 × 2 × 260 × £35</span></div>
+        <div class="calc-total"><span class="label">Section A Total</span><span class="value a">£27,300</span></div>
+        <p class="source-note">Source: Estimate for manual CRM/follow-up workload. Rationale: includes logging contacts, writing follow-up emails, and tracking responses manually.</p>
+      </div>
+      <div class="section-block">
+        <div class="section-label c"><span class="dot"></span>SECTION C — Freed Capacity Revenue</div>
+        <div class="section-title-text">Saved time reinvested in high-value buyer conversations</div>
+        <div class="calc-row"><span class="calc-label">Extra quality follow-up calls/week</span><span class="calc-value">3</span></div>
+        <div class="calc-row"><span class="calc-label">Total calls per year</span><span class="calc-value">156</span></div>
+        <div class="calc-row"><span class="calc-label">Call-to-viewing conversion</span><span class="calc-value">12%</span></div>
+        <div class="calc-row"><span class="calc-label">Viewing-to-sale conversion</span><span class="calc-value">15%</span></div>
+        <div class="calc-row"><span class="calc-label">Additional sales (conservative: 0.3)</span><span class="calc-value">0.3 × £140,000</span></div>
+        <div class="calc-total"><span class="label">Section C Total</span><span class="value c">£42,000</span></div>
+        <p class="source-note">Source: Industry call-to-viewing conversion for property. Rationale: 0.3 additional sales per year is a floor — does not account for improved speed-to-lead from automation.</p>
+      </div>
+    </div>
+    <div class="opp-footer">
+      <div class="opp-costs">
+        <span>Build cost: <strong>£3,000</strong></span>
+        <span>Annual tools: <strong>£800/yr</strong></span>
+      </div>
+      <div class="opp-total">
+        <div class="label">Annual Value</div>
+        <div class="value">£69,300</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPP 4 -->
+  <div class="opp-card">
+    <div class="opp-header">
+      <h3>4. Social Content Pipeline</h3>
+      <div class="opp-meta">
+        <span class="opp-dept">Marketing</span>
+        <span class="opp-model">A + C</span>
+      </div>
+    </div>
+    <p class="opp-desc">AI generates a month of branded content each week — property spotlights, build progress, buyer stories, market commentary. Consistent posting builds trust and drives organic enquiries without requiring hours of writing time.</p>
+    <div class="sections-grid">
+      <div class="section-block">
+        <div class="section-label a"><span class="dot"></span>SECTION A — Cost of Inefficiency</div>
+        <div class="section-title-text">Time lost to ad-hoc, inconsistent content creation</div>
+        <div class="calc-row"><span class="calc-label">Hours per week on social content</span><span class="calc-value">4 hrs</span></div>
+        <div class="calc-row"><span class="calc-label">Working weeks per year</span><span class="calc-value">50</span></div>
+        <div class="calc-row"><span class="calc-label">Loaded hourly cost</span><span class="calc-value">£35/hr</span></div>
+        <div class="calc-row"><span class="calc-label">Formula</span><span class="calc-value">4 × 50 × £35</span></div>
+        <div class="calc-total"><span class="label">Section A Total</span><span class="value a">£7,000</span></div>
+        <p class="source-note">Source: Estimate for SME social media time. Rationale: conservative — many small developers spend zero structured time on social, meaning the cost is lost opportunity rather than direct hours.</p>
+      </div>
+      <div class="section-block">
+        <div class="section-label c"><span class="dot"></span>SECTION C — Freed Capacity Revenue</div>
+        <div class="section-title-text">Consistent social presence driving inbound enquiries</div>
+        <div class="calc-row"><span class="calc-label">Additional enquiries per month</span><span class="calc-value">2 (conservative)</span></div>
+        <div class="calc-row"><span class="calc-label">Annual additional enquiries</span><span class="calc-value">24</span></div>
+        <div class="calc-row"><span class="calc-label">Enquiry-to-sale conversion</span><span class="calc-value">8%</span></div>
+        <div class="calc-row"><span class="calc-label">Additional sales (conservative: 0.2)</span><span class="calc-value">0.2 × £140,000</span></div>
+        <div class="calc-total"><span class="label">Section C Total</span><span class="value c">£28,000</span></div>
+        <p class="source-note">Source: Conservative estimate based on 2 incremental enquiries/month from consistent posting. Rationale: Eastway currently has near-zero social activity — any consistent presence represents upside.</p>
+      </div>
+    </div>
+    <div class="opp-footer">
+      <div class="opp-costs">
+        <span>Build cost: <strong>£2,000</strong></span>
+        <span>Annual tools: <strong>£500/yr</strong></span>
+      </div>
+      <div class="opp-total">
+        <div class="label">Annual Value</div>
+        <div class="value">£35,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPP 5 -->
+  <div class="opp-card">
+    <div class="opp-header">
+      <h3>5. Review Generation Engine</h3>
+      <div class="opp-meta">
+        <span class="opp-dept">Marketing</span>
+        <span class="opp-model">A + C</span>
+      </div>
+    </div>
+    <p class="opp-desc">Automated post-completion emails request Google reviews from buyers, with a simple one-click flow. Within 6 months, Eastway builds a visible track record that matches its 30-year reputation and converts more website visitors into enquiries.</p>
+    <div class="sections-grid">
+      <div class="section-block">
+        <div class="section-label a"><span class="dot"></span>SECTION A — Cost of Inefficiency</div>
+        <div class="section-title-text">Manual review chasing and reputation management</div>
+        <div class="calc-row"><span class="calc-label">Hours per week on review requests</span><span class="calc-value">1 hr</span></div>
+        <div class="calc-row"><span class="calc-label">Working weeks per year</span><span class="calc-value">50</span></div>
+        <div class="calc-row"><span class="calc-label">Loaded hourly cost</span><span class="calc-value">£35/hr</span></div>
+        <div class="calc-row"><span class="calc-label">Formula</span><span class="calc-value">1 × 50 × £35</span></div>
+        <div class="calc-total"><span class="label">Section A Total</span><span class="value a">£1,750</span></div>
+        <p class="source-note">Source: Conservative time estimate. Rationale: many businesses don't chase reviews at all — the A cost here is low but the C upside is significant given current near-zero review count.</p>
+      </div>
+      <div class="section-block">
+        <div class="section-label c"><span class="dot"></span>SECTION C — Freed Capacity Revenue</div>
+        <div class="section-title-text">Improved trust score converting more website visitors</div>
+        <div class="calc-row"><span class="calc-label">Est. monthly website visitors</span><span class="calc-value">100</span></div>
+        <div class="calc-row"><span class="calc-label">Conversion uplift from reviews</span><span class="calc-value">+0.5%</span></div>
+        <div class="calc-row"><span class="calc-label">Additional enquiries per year</span><span class="calc-value">6</span></div>
+        <div class="calc-row"><span class="calc-label">Enquiry-to-sale conversion</span><span class="calc-value">8%</span></div>
+        <div class="calc-row"><span class="calc-label">Additional sales (conservative: 0.1)</span><span class="calc-value">0.1 × £140,000</span></div>
+        <div class="calc-total"><span class="label">Section C Total</span><span class="value c">£14,000</span></div>
+        <p class="source-note">Source: Conversion rate benchmarks for trust signals in property. Rationale: 0.5% website conversion uplift from 0 to 20+ reviews is a proven effect. 0.1 sales is a very conservative interpretation.</p>
+      </div>
+    </div>
+    <div class="opp-footer">
+      <div class="opp-costs">
+        <span>Build cost: <strong>£1,500</strong></span>
+        <span>Annual tools: <strong>£300/yr</strong></span>
+      </div>
+      <div class="opp-total">
+        <div class="label">Annual Value</div>
+        <div class="value">£15,750</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <h2 class="section-heading" style="margin-top: 48px;">Summary of All Opportunities</h2>
+  <p class="section-sub">Total value stacked across all five initiatives, with full investment breakdown.</p>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Opportunity</th>
+        <th>Department</th>
+        <th>Model</th>
+        <th>Section A</th>
+        <th>B / C Value</th>
+        <th>Annual Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>After-Hours Lead Capture</strong></td>
+        <td>Sales</td>
+        <td>A + B</td>
+        <td>£27,300</td>
+        <td>£140,000</td>
+        <td>£167,300</td>
+      </tr>
+      <tr>
+        <td><strong>Automated Viewing Scheduler</strong></td>
+        <td>Sales</td>
+        <td>A + B</td>
+        <td>£13,650</td>
+        <td>£70,000</td>
+        <td>£83,650</td>
+      </tr>
+      <tr>
+        <td><strong>Lead Nurture Automation</strong></td>
+        <td>Sales</td>
+        <td>A + C</td>
+        <td>£27,300</td>
+        <td>£42,000</td>
+        <td>£69,300</td>
+      </tr>
+      <tr>
+        <td><strong>Social Content Pipeline</strong></td>
+        <td>Marketing</td>
+        <td>A + C</td>
+        <td>£7,000</td>
+        <td>£28,000</td>
+        <td>£35,000</td>
+      </tr>
+      <tr>
+        <td><strong>Review Generation Engine</strong></td>
+        <td>Marketing</td>
+        <td>A + C</td>
+        <td>£1,750</td>
+        <td>£14,000</td>
+        <td>£15,750</td>
+      </tr>
+      <tr class="total-row">
+        <td colspan="3"><strong>TOTAL ANNUAL VALUE</strong></td>
+        <td><strong>£77,000</strong></td>
+        <td><strong>£294,000</strong></td>
+        <td><strong>£371,000</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ROI BOX -->
+  <div class="roi-box">
+    <h3>Return on Investment — Year 1</h3>
+    <div class="roi-divider"></div>
+    <div class="roi-grid">
+      <div class="roi-item">
+        <div class="num">£371,000</div>
+        <div class="label">Total Annual Value</div>
+        <div class="sub">Conservative estimates throughout</div>
+      </div>
+      <div class="roi-item">
+        <div class="num">£16,400</div>
+        <div class="label">Total Year 1 Investment</div>
+        <div class="sub">Build + first year tools</div>
+      </div>
+      <div class="roi-item">
+        <div class="num green">21.6x</div>
+        <div class="label">Return on Investment</div>
+        <div class="sub">Net Year 1: £354,600</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="next-steps">
+    <h2>Recommended Next Steps</h2>
+    <div class="steps-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h4>Free AI Audit (1 hour, no commitment)</h4>
+          <p>Sit down together and validate these numbers against Eastway's actual data. With internal access to enquiry volumes, staff time, and sales figures, the real ROI is likely higher than what is shown here.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h4>Start with the highest-impact opportunity</h4>
+          <p>The After-Hours Lead Capture delivers the largest single return at £167,300/year and can be built and live within 2 weeks. This is the right starting point.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h4>Retainer partnership — MakeMeAI builds, maintains, and improves</h4>
+          <p>Rather than a one-off build, a monthly retainer ensures everything keeps working, improves over time, and adds new capabilities as the business grows. Pricing starts at £2,500/month.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>MakeMeAI Consulting Ltd</strong> — team@makemeai.tech — www.makemeai.tech<br>
+  Prepared for Eastway Homes Ltd, April 2026. All figures are conservative estimates based on publicly available industry benchmarks. Actual results subject to internal data validation during the free audit.
+</div>
+
+</body>
+</html>

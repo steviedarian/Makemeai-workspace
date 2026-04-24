@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Audit Questionnaires — MakeMeAI Consulting Ltd</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080F1E;
+    --blue: #0F2552;
+    --accent: #1D57D8;
+    --white: #FFFFFF;
+    --green: #059669;
+    --grey-50: #F8FAFC;
+    --grey-100: #F1F5F9;
+    --grey-200: #E2E8F0;
+    --grey-400: #94A3B8;
+    --grey-600: #475569;
+    --grey-800: #1E293B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--grey-50); color: var(--grey-800); }
+
+  /* PAGE BREAK for PDF */
+  .page-break { page-break-before: always; }
+
+  /* COVER */
+  .cover {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 55%, #1a3a6b 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px 72px;
+    color: var(--white);
+  }
+  .cover-brand { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #60A5FA; }
+  .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 80px 0 40px; }
+  .cover-tag { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+  .cover h1 { font-family: 'Poppins', sans-serif; font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+  .cover h1 span { color: #60A5FA; }
+  .cover p { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 560px; }
+  .cover-sectors { margin-top: 56px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .cover-sector { padding: 8px 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 24px; font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
+  .cover-footer { font-size: 13px; color: rgba(255,255,255,0.4); display: flex; justify-content: space-between; }
+  .cover-footer strong { color: rgba(255,255,255,0.7); }
+
+  /* SECTION PAGE */
+  .section-page { background: var(--white); padding: 64px 72px; min-height: 100vh; display: flex; flex-direction: column; }
+  .section-page.grey { background: var(--grey-50); }
+
+  /* SECTION HEADER */
+  .section-header { margin-bottom: 48px; }
+  .section-eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 10px; }
+  .section-title { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+  .section-desc { font-size: 15px; color: var(--grey-600); line-height: 1.7; max-width: 620px; }
+
+  /* INDUSTRY BADGE */
+  .industry-badge { display: inline-flex; align-items: center; gap: 10px; background: var(--navy); color: var(--white); padding: 10px 20px; border-radius: 8px; margin-bottom: 36px; }
+  .industry-badge .icon { font-size: 20px; }
+  .industry-badge .name { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; }
+  .industry-badge .sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 1px; }
+
+  /* QUESTION CARD */
+  .question-card { margin-bottom: 32px; }
+  .question-num-row { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+  .q-num { width: 36px; height: 36px; background: var(--accent); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+  .q-num.universal { background: var(--navy); }
+  .q-text { font-size: 16px; font-weight: 600; color: var(--navy); line-height: 1.5; }
+  .q-hint { font-size: 13px; color: var(--grey-600); margin-left: 52px; margin-bottom: 16px; line-height: 1.6; font-style: italic; }
+  .answer-lines { margin-left: 52px; }
+  .answer-line { height: 1px; background: var(--grey-200); margin-bottom: 20px; }
+  .answer-line:last-child { margin-bottom: 0; }
+
+  /* DIVIDER */
+  .section-divider { height: 1px; background: var(--grey-200); margin: 40px 0; }
+
+  /* CLIENT DETAILS BOX */
+  .client-box { background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: 12px; padding: 28px; margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .client-field label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--grey-600); margin-bottom: 8px; }
+  .client-field .field-line { height: 1px; background: var(--grey-400); width: 100%; }
+  .client-field.full { grid-column: 1 / -1; }
+
+  /* INSTRUCTION BOX */
+  .instruction-box { background: linear-gradient(135deg, #EFF6FF, #DBEAFE); border: 1px solid #BFDBFE; border-radius: 12px; padding: 24px 28px; margin-bottom: 40px; }
+  .instruction-box h4 { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .instruction-box p { font-size: 13px; color: var(--blue); line-height: 1.7; }
+
+  /* TOC */
+  .toc-list { list-style: none; }
+  .toc-item { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--grey-200); }
+  .toc-item:first-child { border-top: 1px solid var(--grey-200); }
+  .toc-icon { font-size: 22px; width: 40px; text-align: center; flex-shrink: 0; }
+  .toc-text h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .toc-text p { font-size: 13px; color: var(--grey-600); }
+  .toc-tag { margin-left: auto; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .toc-tag.universal { background: #EDE9FE; color: #5B21B6; }
+  .toc-tag.industry { background: var(--grey-100); color: var(--grey-600); }
+
+  /* FOOTER STRIP */
+  .page-footer { margin-top: auto; padding-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--grey-400); border-top: 1px solid var(--grey-200); }
+  .page-footer strong { color: var(--grey-600); }
+
+  @media print {
+    .cover { min-height: auto; }
+    .section-page { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ COVER ═══ -->
+<div class="cover">
+  <div class="cover-brand">MakeMeAI Consulting Ltd</div>
+  <div class="cover-main">
+    <div class="cover-tag">AI Business Audit</div>
+    <h1>The Client<br><span>Discovery Pack</span></h1>
+    <p>Five universal questions every business answers. Plus tailored questionnaires for five of the highest-opportunity sectors in the UK. The starting point for every audit, every conversation, every proposal.</p>
+    <div class="cover-sectors">
+      <span class="cover-sector">🏗 Property Developer</span>
+      <span class="cover-sector">🏥 GP Surgery</span>
+      <span class="cover-sector">💼 High-Net-Worth Entrepreneur</span>
+      <span class="cover-sector">🦷 Dental Practice</span>
+      <span class="cover-sector">✈ Travel Agency</span>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span><strong>Confidential</strong> — for internal use by MakeMeAI Consulting Ltd</span>
+    <span>April 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ CONTENTS ═══ -->
+<div class="section-page grey page-break">
+  <div class="section-header">
+    <div class="section-eyebrow">Inside this pack</div>
+    <div class="section-title">Contents</div>
+    <p class="section-desc">One universal questionnaire used at every audit, followed by five industry-specific versions. Use the universal questions first, then switch to the industry sheet for the second half of the conversation.</p>
+  </div>
+
+  <ul class="toc-list">
+    <li class="toc-item">
+      <span class="toc-icon">🔑</span>
+      <div class="toc-text">
+        <h4>Universal Discovery Questions</h4>
+        <p>5 questions used at every audit, regardless of industry</p>
+      </div>
+      <span class="toc-tag universal">All industries</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-icon">🏗</span>
+      <div class="toc-text">
+        <h4>Property Developer</h4>
+        <p>5 targeted questions for developers, builders, and estate agents</p>
+      </div>
+      <span class="toc-tag industry">Industry</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-icon">🏥</span>
+      <div class="toc-text">
+        <h4>GP Surgery</h4>
+        <p>5 targeted questions for GPs, clinics, and primary care practices</p>
+      </div>
+      <span class="toc-tag industry">Industry</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-icon">💼</span>
+      <div class="toc-text">
+        <h4>High-Net-Worth Entrepreneur</h4>
+        <p>5 targeted questions for founders, investors, and multi-business owners</p>
+      </div>
+      <span class="toc-tag industry">Industry</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-icon">🦷</span>
+      <div class="toc-text">
+        <h4>Dental Practice</h4>
+        <p>5 targeted questions for dental practices, clinics, and orthodontists</p>
+      </div>
+      <span class="toc-tag industry">Industry</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-icon">✈</span>
+      <div class="toc-text">
+        <h4>Travel Agency</h4>
+        <p>5 targeted questions for travel agents, tour operators, and booking services</p>
+      </div>
+      <span class="toc-tag industry">Industry</span>
+    </li>
+  </ul>
+
+  <div class="instruction-box" style="margin-top: 40px; margin-bottom: 0;">
+    <h4>How to use this pack</h4>
+    <p>Start every audit with the Universal questions. They open the conversation and surface problems the client has not put into words yet. Then move to the industry sheet. These questions go deeper into the specific pain points and revenue gaps that AI fixes best. Listen for the numbers. The client who says "we probably miss five calls a day" has just told you the opening line of your proposal.</p>
+  </div>
+
+  <div class="page-footer">
+    <strong>MakeMeAI Consulting Ltd</strong>
+    <span>team@makemeai.tech</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ UNIVERSAL ═══ -->
+<div class="section-page page-break">
+  <div class="section-header">
+    <div class="section-eyebrow">Part 1 — Used at every audit</div>
+    <div class="section-title">Universal Discovery Questions</div>
+    <p class="section-desc">These five questions work for any business in any sector. They open the conversation, surface the real problems, and give you the language you need to write a proposal that lands.</p>
+  </div>
+
+  <div class="client-box">
+    <div class="client-field"><label>Business Name</label><div class="field-line"></div></div>
+    <div class="client-field"><label>Date of Audit</label><div class="field-line"></div></div>
+    <div class="client-field"><label>Contact Name</label><div class="field-line"></div></div>
+    <div class="client-field"><label>Industry / Sector</label><div class="field-line"></div></div>
+    <div class="client-field full"><label>Website</label><div class="field-line"></div></div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num universal">1</div>
+      <div class="q-text">What are the most repetitive or time-consuming tasks your team does every single day?</div>
+    </div>
+    <p class="q-hint">Listen for: data entry, chasing people, copy-pasting between systems, writing the same emails, manually booking things. These are your automation targets.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num universal">2</div>
+      <div class="q-text">Where do you feel you are losing money or clients that you cannot quite explain?</div>
+    </div>
+    <p class="q-hint">Listen for: leads going quiet, slow follow-up, no-shows, enquiries that never converted, clients who stopped coming back. These are your revenue leak targets.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num universal">3</div>
+      <div class="q-text">How do new customers currently find you, and what happens in the first 24 hours after they make contact?</div>
+    </div>
+    <p class="q-hint">Listen for: response time, who handles it, what system (if any) they use, what happens after hours. Slow or inconsistent first response is almost always a major gap.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num universal">4</div>
+      <div class="q-text">What tools and software does your business currently use day to day?</div>
+    </div>
+    <p class="q-hint">Listen for: spreadsheets being used where software should be, multiple disconnected tools, things done manually because the team never got trained on the system they bought.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num universal">5</div>
+      <div class="q-text">If you could remove one bottleneck from your business tomorrow, what would it be?</div>
+    </div>
+    <p class="q-hint">This question reveals what keeps them up at night. Whatever they say is your headline opportunity. Build your proposal around fixing this first.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <strong>MakeMeAI Consulting Ltd</strong>
+    <span>Universal Discovery — use at every audit</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ PROPERTY ═══ -->
+<div class="section-page grey page-break">
+  <div class="section-header">
+    <div class="section-eyebrow">Part 2 — Industry Questionnaire</div>
+    <div class="section-title">Property Developer</div>
+  </div>
+
+  <div class="industry-badge">
+    <span class="icon">🏗</span>
+    <div>
+      <div class="name">Property Developer</div>
+      <div class="sub">Developers, builders, estate agents, new-build specialists</div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">1</div>
+      <div class="q-text">How do you currently manage new buyer enquiries, and what is your typical response time from first contact to first reply?</div>
+    </div>
+    <p class="q-hint">Listen for: manual inbox checking, slow replies, no system for out-of-hours messages. A response gap over 2 hours is a significant revenue leak in property.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">2</div>
+      <div class="q-text">What happens to enquiries that come in outside of business hours, on evenings and weekends?</div>
+    </div>
+    <p class="q-hint">Listen for: voicemail, no response until Monday, or a generic auto-reply with no follow-through. 35% of property searches happen outside of office hours.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">3</div>
+      <div class="q-text">How do you currently schedule and coordinate property viewings, and how much back-and-forth does that typically involve?</div>
+    </div>
+    <p class="q-hint">Listen for: email chains, phone tag, manually managed calendars. Every extra step in the booking process increases drop-off rate.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">4</div>
+      <div class="q-text">What is your process for keeping potential buyers engaged between their initial enquiry and a completed sale, particularly for longer sales cycles?</div>
+    </div>
+    <p class="q-hint">Listen for: no structured follow-up, reliance on buyers coming back by themselves, leads going cold after the first viewing.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">5</div>
+      <div class="q-text">How would you describe your current online presence, and how many Google reviews does your business have?</div>
+    </div>
+    <p class="q-hint">Listen for: outdated website, near-zero reviews, no social media activity. A 30-year business with 3 Google reviews has a trust gap that AI can close within 3 months.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <strong>MakeMeAI Consulting Ltd</strong>
+    <span>Property Developer — Industry Questionnaire</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ GP ═══ -->
+<div class="section-page page-break">
+  <div class="section-header">
+    <div class="section-eyebrow">Part 2 — Industry Questionnaire</div>
+    <div class="section-title">GP Surgery</div>
+  </div>
+
+  <div class="industry-badge">
+    <span class="icon">🏥</span>
+    <div>
+      <div class="name">GP Surgery</div>
+      <div class="sub">GP practices, primary care, walk-in clinics, private medical</div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">1</div>
+      <div class="q-text">How many patient calls does your reception team handle per day, and roughly how many go unanswered or reach voicemail during busy periods?</div>
+    </div>
+    <p class="q-hint">Listen for: a specific number. Even "maybe 20 a day" is enough to calculate ROI. Missed calls in a GP practice carry both financial and clinical risk.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">2</div>
+      <div class="q-text">What percentage of your appointment slots are lost each month to late cancellations and no-shows, and what is your current process for filling them quickly?</div>
+    </div>
+    <p class="q-hint">Listen for: no automated fill system, slots going empty, staff manually calling a waiting list. NHS data shows 15 million GP appointments per year are missed in England alone.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">3</div>
+      <div class="q-text">How much of your reception team's time is spent on repeat prescription requests, referral letters, and routine administrative documentation?</div>
+    </div>
+    <p class="q-hint">Listen for: "most of their day" or a specific hour estimate. This is almost always the largest time sink in a GP practice and the clearest automation target.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">4</div>
+      <div class="q-text">Can patients currently book appointments online, and if so, what percentage actually use that route versus calling reception?</div>
+    </div>
+    <p class="q-hint">Listen for: phone still dominates, online booking exists but is underused, or no online booking at all. Digital-first booking cuts reception workload significantly.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">5</div>
+      <div class="q-text">What does your current patient follow-up process look like after appointments, particularly for chronic conditions requiring regular review?</div>
+    </div>
+    <p class="q-hint">Listen for: manual recall process, patients being responsible for booking their own follow-ups, or a staff member spending hours on recall letters each month.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <strong>MakeMeAI Consulting Ltd</strong>
+    <span>GP Surgery — Industry Questionnaire</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ ENTREPRENEUR ═══ -->
+<div class="section-page grey page-break">
+  <div class="section-header">
+    <div class="section-eyebrow">Part 2 — Industry Questionnaire</div>
+    <div class="section-title">High-Net-Worth Entrepreneur</div>
+  </div>
+
+  <div class="industry-badge">
+    <span class="icon">💼</span>
+    <div>
+      <div class="name">High-Net-Worth Entrepreneur</div>
+      <div class="sub">Serial founders, investors, multi-business owners, executives</div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">1</div>
+      <div class="q-text">How do you currently manage your time across multiple business interests, and where does your diary most frequently become a bottleneck?</div>
+    </div>
+    <p class="q-hint">Listen for: meetings that could be replaced by briefings, decisions routed through them unnecessarily, time spent on things no one else can do but them.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">2</div>
+      <div class="q-text">What decisions are you still making personally that you believe could be delegated, either to a team member or to an automated system?</div>
+    </div>
+    <p class="q-hint">Listen for: approvals on small spending, answering questions the team should know the answers to, being the only one who knows how to do something critical.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">3</div>
+      <div class="q-text">How do you stay across the performance of multiple businesses or investments without spending your day reading reports?</div>
+    </div>
+    <p class="q-hint">Listen for: no consolidated view, different dashboards for each business, relying on people to tell them when something goes wrong rather than seeing it themselves.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">4</div>
+      <div class="q-text">Where in your businesses is speed the most critical factor, and where is slowness currently costing you money or competitive advantage?</div>
+    </div>
+    <p class="q-hint">Listen for: slow proposal turnaround, slow hiring decisions, slow customer response. Speed is almost always an AI opportunity and an easy ROI conversation.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">5</div>
+      <div class="q-text">If your business had to run for two weeks without you, what would break first, and why?</div>
+    </div>
+    <p class="q-hint">This question reveals every manual dependency and bottleneck that sits with them personally. Whatever they name first is your highest-value AI opportunity.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <strong>MakeMeAI Consulting Ltd</strong>
+    <span>High-Net-Worth Entrepreneur — Industry Questionnaire</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ DENTAL ═══ -->
+<div class="section-page page-break">
+  <div class="section-header">
+    <div class="section-eyebrow">Part 2 — Industry Questionnaire</div>
+    <div class="section-title">Dental Practice</div>
+  </div>
+
+  <div class="industry-badge">
+    <span class="icon">🦷</span>
+    <div>
+      <div class="name">Dental Practice</div>
+      <div class="sub">Dental surgeries, orthodontists, cosmetic dental clinics</div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">1</div>
+      <div class="q-text">How many new patient enquiry calls does your reception team miss per day, including calls during busy periods, lunch, and after hours?</div>
+    </div>
+    <p class="q-hint">Listen for: any number above zero. UK dental data shows practices miss 50 to 100 new patient calls per month. That is £60,000 to £120,000 in lost annual revenue at average treatment values.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">2</div>
+      <div class="q-text">What percentage of your appointment slots are lost each month to late cancellations and no-shows, and what does your current process for filling them quickly look like?</div>
+    </div>
+    <p class="q-hint">Listen for: slots going empty, manual waitlist calls, no automated reminder system. A 10% no-show rate on 200 monthly appointments is 20 empty slots every month.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">3</div>
+      <div class="q-text">How do you currently request Google reviews from patients after treatment, and how consistent is that process across your team?</div>
+    </div>
+    <p class="q-hint">Listen for: it depends on who remembers to ask, no system at all, or a paper card that rarely gets used. Online reviews are the number one trust signal for new dental patients.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">4</div>
+      <div class="q-text">How do you manage recall appointments for patients who need to come back in 6 or 12 months, and how many of those patients actually return?</div>
+    </div>
+    <p class="q-hint">Listen for: manual letters, hoping patients remember, or a recall rate significantly below 70%. Each lapsed recall patient represents a predictable annual revenue loss.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">5</div>
+      <div class="q-text">How much of your reception team's day is spent on tasks that feel administrative rather than patient-facing, and what takes up most of that time?</div>
+    </div>
+    <p class="q-hint">Listen for: confirming appointments by phone, chasing outstanding treatment plans, insurance paperwork, writing the same correspondence repeatedly.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <strong>MakeMeAI Consulting Ltd</strong>
+    <span>Dental Practice — Industry Questionnaire</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ TRAVEL ═══ -->
+<div class="section-page grey page-break">
+  <div class="section-header">
+    <div class="section-eyebrow">Part 2 — Industry Questionnaire</div>
+    <div class="section-title">Travel Agency</div>
+  </div>
+
+  <div class="industry-badge">
+    <span class="icon">✈</span>
+    <div>
+      <div class="name">Travel Agency</div>
+      <div class="sub">Travel agents, tour operators, luxury travel consultants, booking services</div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">1</div>
+      <div class="q-text">How do you currently handle new enquiries that come in outside of business hours, including website contact forms, social media messages, and phone calls on evenings and weekends?</div>
+    </div>
+    <p class="q-hint">Listen for: nothing until Monday, an auto-reply with no follow-up plan, or a consultant personally checking their phone. Travel enquiries are highly time-sensitive, especially for time-specific deals.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">2</div>
+      <div class="q-text">What does your current process look like for creating and sending a travel proposal to a client, from the moment they enquire to the moment they receive a quote?</div>
+    </div>
+    <p class="q-hint">Listen for: hours of manual research, copy-pasting between platforms, formatting PDFs by hand. A quote that takes 3 hours to produce could be reduced to 20 minutes with the right AI tools.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">3</div>
+      <div class="q-text">How do you keep past clients engaged and encourage repeat bookings, whether through newsletters, personalised offers, or direct follow-up?</div>
+    </div>
+    <p class="q-hint">Listen for: no structured re-engagement, the occasional email blast, or relying entirely on clients coming back by themselves. Repeat clients in travel are 5x cheaper to convert than new ones.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">4</div>
+      <div class="q-text">What is your biggest administrative bottleneck right now: supplier communication, booking admin, client documentation, or something else entirely?</div>
+    </div>
+    <p class="q-hint">Listen for: a specific task that takes disproportionate time. In travel agencies, supplier confirmation chasing and itinerary building are consistently the top two time sinks.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num-row">
+      <div class="q-num">5</div>
+      <div class="q-text">If you could clone yourself or your best consultant and have that person working 24 hours a day, what would you have them doing first?</div>
+    </div>
+    <p class="q-hint">This surfaces the highest-value task that is currently constrained by human availability. Whatever they say is almost certainly something AI can replicate or support.</p>
+    <div class="answer-lines">
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <strong>MakeMeAI Consulting Ltd</strong>
+    <span>Travel Agency — Industry Questionnaire</span>
+  </div>
+</div>
+
+</body>
+</html>
