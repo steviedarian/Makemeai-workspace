@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:eastwayhomes.co.uk)",
+      "Bash(py --version)",
+      "Bash(py -3 --version)",
+      "Bash(py -3 scripts/_run_scanner.py)",
+      "Bash(start \"\" \"C:\\\\Users\\\\forex\\\\Downloads\\\\MakemeAi-starter-kit\\\\MakemeAi-starter-kit\\\\outputs\\\\demos\\\\2026-04-22-scanner-eastway-homes.html\")",
+      "Bash(.venv/Scripts/python scripts/db.py)",
+      "Bash(.venv/Scripts/python -m pip install google-api-python-client google-auth --quiet)",
+      "Bash(.venv/Scripts/python -c ' *)",
+      "Bash(.venv/Scripts/python scripts/collect_youtube.py)",
+      "Bash(.venv/Scripts/python scripts/collect.py --sources youtube)",
+      "Bash(.venv/Scripts/python scripts/generate_metrics.py)",
+      "Bash(schtasks /Create /TN \"MakeMeAI_DataOS_Collect\" /TR \"\\\\\"C:\\\\\\\\Users\\\\\\\\forex\\\\\\\\Downloads\\\\\\\\MakemeAi-starter-kit\\\\\\\\MakemeAi-starter-kit\\\\\\\\.venv\\\\\\\\Scripts\\\\\\\\python.exe\\\\\" \\\\\"C:\\\\\\\\Users\\\\\\\\forex\\\\\\\\Downloads\\\\\\\\MakemeAi-starter-kit\\\\\\\\MakemeAi-starter-kit\\\\\\\\scripts\\\\\\\\collect.py\\\\\"\" /SC DAILY /ST 07:00 /F)",
+      "Bash(powershell.exe -Command \"schtasks /Create /TN 'MakeMeAI_DataOS_Collect' /TR 'C:\\\\\\\\Users\\\\\\\\forex\\\\\\\\Downloads\\\\\\\\MakemeAi-starter-kit\\\\\\\\MakemeAi-starter-kit\\\\\\\\.venv\\\\\\\\Scripts\\\\\\\\python.exe C:\\\\\\\\Users\\\\\\\\forex\\\\\\\\Downloads\\\\\\\\MakemeAi-starter-kit\\\\\\\\MakemeAi-starter-kit\\\\\\\\scripts\\\\\\\\collect.py' /SC DAILY /ST 07:00 /F\")",
+      "Bash(powershell.exe -Command \"schtasks /Query /TN 'MakeMeAI_DataOS_Collect' /FO LIST\")",
+      "Bash(.venv/Scripts/python scripts/collect.py)",
+      "Bash(powershell.exe -Command ' *)",
+      "Bash(powershell.exe -Command '$env:PATH = '\\\\''C:\\\\Program Files\\\\nodejs;'\\\\'' + $env:PATH; & \"$env:APPDATA\\\\npm\\\\claude.cmd\" --version 2>&1')",
+      "Bash(py -3 -c ' *)"
+    ]
+  }
+}

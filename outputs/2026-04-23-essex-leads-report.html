@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essex Lead Report — MakeMeAI Consulting Ltd</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080F1E;
+    --blue: #0F2552;
+    --accent: #1D57D8;
+    --accent-light: #3B6FE8;
+    --white: #FFFFFF;
+    --green: #059669;
+    --green-light: #D1FAE5;
+    --amber: #D97706;
+    --amber-light: #FEF3C7;
+    --grey-50: #F8FAFC;
+    --grey-100: #F1F5F9;
+    --grey-200: #E2E8F0;
+    --grey-600: #475569;
+    --grey-800: #1E293B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--grey-50);
+    color: var(--grey-800);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: var(--white);
+    padding: 48px 40px;
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .brand span { color: #60A5FA; }
+
+  .header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin-top: 16px;
+    line-height: 1.2;
+  }
+
+  .header p {
+    margin-top: 8px;
+    color: rgba(255,255,255,0.75);
+    font-size: 15px;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+  }
+
+  .header-meta strong {
+    display: block;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--accent);
+    padding: 20px 40px;
+  }
+
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stat-item {
+    color: var(--white);
+  }
+
+  .stat-item .num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .stat-item .label {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 40px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title .icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    color: var(--grey-600);
+    margin-bottom: 20px;
+    padding-left: 42px;
+  }
+
+  /* LEAD CARDS */
+  .leads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+  }
+
+  .lead-card {
+    background: var(--white);
+    border: 1px solid var(--grey-200);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  .lead-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  .lead-card .priority {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .priority-hot { background: #FEE2E2; color: #991B1B; }
+  .priority-warm { background: var(--amber-light); color: #92400E; }
+  .priority-cold { background: var(--grey-100); color: var(--grey-600); }
+
+  .lead-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+    padding-right: 60px;
+  }
+
+  .lead-location {
+    font-size: 13px;
+    color: var(--grey-600);
+    margin-bottom: 12px;
+  }
+
+  .lead-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .lead-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .lead-detail .dl {
+    color: var(--grey-600);
+    min-width: 64px;
+    font-weight: 500;
+  }
+
+  .lead-detail .dv {
+    color: var(--grey-800);
+    word-break: break-word;
+  }
+
+  .lead-detail a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .lead-detail a:hover { text-decoration: underline; }
+
+  .lead-hook {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: var(--grey-50);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    color: var(--grey-600);
+    font-style: italic;
+  }
+
+  /* INSIGHT BOX */
+  .insight-box {
+    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+    border: 1px solid #BFDBFE;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+
+  .insight-box h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .insight-box p {
+    font-size: 14px;
+    color: var(--blue);
+    line-height: 1.6;
+  }
+
+  /* LINKEDIN POSTS */
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .post-card {
+    background: var(--white);
+    border: 1px solid var(--grey-200);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .post-header {
+    background: var(--navy);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .post-header h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .post-tag {
+    font-size: 11px;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .post-body {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--grey-800);
+    white-space: pre-line;
+  }
+
+  .post-tip {
+    padding: 12px 20px;
+    background: var(--grey-50);
+    border-top: 1px solid var(--grey-200);
+    font-size: 12px;
+    color: var(--grey-600);
+  }
+
+  .post-tip strong { color: var(--navy); }
+
+  /* ACTION TABLE */
+  .action-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .action-table th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .action-table th:first-child { border-radius: 8px 0 0 0; }
+  .action-table th:last-child { border-radius: 0 8px 0 0; }
+
+  .action-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--grey-200);
+    vertical-align: top;
+  }
+
+  .action-table tr:last-child td { border-bottom: none; }
+  .action-table tr:nth-child(even) td { background: var(--grey-50); }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .pill-green { background: var(--green-light); color: #065F46; }
+  .pill-amber { background: var(--amber-light); color: #92400E; }
+  .pill-blue { background: #DBEAFE; color: #1D4ED8; }
+
+  /* REMINDER BOX */
+  .reminder-box {
+    background: var(--white);
+    border: 2px dashed var(--accent);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .reminder-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .reminder-text h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .reminder-text p {
+    font-size: 14px;
+    color: var(--grey-600);
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px 40px;
+    font-size: 13px;
+  }
+
+  .footer strong { color: var(--white); }
+
+  @media (max-width: 600px) {
+    .header { padding: 32px 20px; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .main { padding: 24px 20px; }
+    .leads-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <div class="brand">Make<span>Me</span>AI Consulting Ltd</div>
+      <h1>Essex Lead Research Report</h1>
+      <p>Property developers, dental practices, LinkedIn content, and outreach strategy</p>
+    </div>
+    <div class="header-meta">
+      <strong>Prepared for Olusegun Dare</strong>
+      23 April 2026<br>
+      Confidential
+    </div>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="num">12</div>
+      <div class="label">Leads Identified</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">2</div>
+      <div class="label">Sectors Covered</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">3</div>
+      <div class="label">LinkedIn Posts Ready</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SECTION 1: PROPERTY DEVELOPERS -->
+  <div class="section">
+    <div class="section-title">
+      <span class="icon">🏗</span>
+      Property Developers in Essex
+    </div>
+    <p class="section-sub">8 developers identified. Lead with your Eastway Homes demo as proof of concept when reaching out to this sector.</p>
+
+    <div class="leads-grid">
+
+      <div class="lead-card">
+        <span class="priority priority-hot">Hot</span>
+        <div class="lead-name">Biminster Homes</div>
+        <div class="lead-location">Billericay, Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Phone</span><span class="dv">01277 632948</span></div>
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="https://www.biminsterhomes.co.uk" target="_blank">biminsterhomes.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Luxury bespoke homes, similar profile to Eastway</span></div>
+        </div>
+        <div class="lead-hook">Strong prospect. Luxury segment with likely weak digital presence. Run /demo scanner before calling.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-hot">Hot</span>
+        <div class="lead-name">Archco</div>
+        <div class="lead-location">Ilford / Essex border</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="https://www.archco.co.uk/contact-us/" target="_blank">archco.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Land acquisitions, residential development</span></div>
+        </div>
+        <div class="lead-hook">Active acquirer. Fast-moving business, likely needs automated investor updates and lead nurture.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-warm">Warm</span>
+        <div class="lead-name">DDW Developments</div>
+        <div class="lead-location">Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="https://ddwdevelopments.com" target="_blank">ddwdevelopments.com</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Residential property developer</span></div>
+        </div>
+        <div class="lead-hook">Smaller developer. Good candidate for chatbot and viewing scheduler tools.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-warm">Warm</span>
+        <div class="lead-name">Edward Charles Design and Build</div>
+        <div class="lead-location">Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="https://ecdesignandbuild.co.uk" target="_blank">ecdesignandbuild.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Design and build, residential</span></div>
+        </div>
+        <div class="lead-hook">Design-focused firm, likely values brand and presentation. Position around client communication tools.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-warm">Warm</span>
+        <div class="lead-name">Aquila Holdings</div>
+        <div class="lead-location">Chelmsford, Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Phone</span><span class="dv">01245 292150</span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Property holding and development</span></div>
+        </div>
+        <div class="lead-hook">Established Chelmsford firm. Cold call is viable given direct phone number.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-warm">Warm</span>
+        <div class="lead-name">Church Gate Group</div>
+        <div class="lead-location">Wickford, Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Phone</span><span class="dv">01702 232863</span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Property development, Wickford area</span></div>
+        </div>
+        <div class="lead-hook">Local Wickford developer. Warm intro through local business network could work well here.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-warm">Warm</span>
+        <div class="lead-name">TGE Property</div>
+        <div class="lead-location">Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">LinkedIn</span><span class="dv"><a href="https://www.linkedin.com/in/david-gibbon/" target="_blank">David Gibbon (founder)</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Property development, new website 2026</span></div>
+        </div>
+        <div class="lead-hook">Just launched a new website in 2026. Perfect timing. Connect with David on LinkedIn first.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-cold">Note</span>
+        <div class="lead-name">Eastway Homes</div>
+        <div class="lead-location">Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="https://eastwayhomes.co.uk" target="_blank">eastwayhomes.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Status</span><span class="dv">Demo already built. AI score 32/100. Report ready.</span></div>
+        </div>
+        <div class="lead-hook">You already have a full branded report for these. Send it to re-engage the contact who went quiet.</div>
+      </div>
+
+    </div>
+
+    <div class="insight-box">
+      <h4>Outreach Strategy for Property Developers</h4>
+      <p>The strongest opening line for this sector: "I ran a quick AI readiness scan on your business and spotted some gaps worth a 5-minute conversation." Run /demo scanner on each target first. You walk in with evidence, not a pitch.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: DENTAL PRACTICES -->
+  <div class="section">
+    <div class="section-title">
+      <span class="icon">🦷</span>
+      Dental Practices in Essex
+    </div>
+    <p class="section-sub">4 practices found with direct contact details. Dental is one of the highest-ROI sectors for AI because the pain points are well-defined and the numbers are large.</p>
+
+    <div class="leads-grid">
+
+      <div class="lead-card">
+        <span class="priority priority-hot">Hot</span>
+        <div class="lead-name">Mid Essex Dental Care</div>
+        <div class="lead-location">Kelvedon, Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Phone</span><span class="dv">01376 573 777</span></div>
+          <div class="lead-detail"><span class="dl">Email</span><span class="dv"><a href="mailto:kelvedon@dentistryforyou.co.uk">kelvedon@dentistryforyou.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">NHS and private, High Street location</span></div>
+        </div>
+        <div class="lead-hook">Direct email available. Lead with: missed calls cost you 50 new patients a month. AI receptionist fixes that.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-hot">Hot</span>
+        <div class="lead-name">Sharrow Dental</div>
+        <div class="lead-location">Chelmsford, Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Phone</span><span class="dv">01245 354046</span></div>
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="https://www.sharrowdental.co.uk" target="_blank">sharrowdental.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Patient-focused private practice</span></div>
+        </div>
+        <div class="lead-hook">Private practice with a patient experience focus. Frame AI around patient satisfaction, not just cost savings.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-warm">Warm</span>
+        <div class="lead-name">Thames Dental Surgery</div>
+        <div class="lead-location">Leigh-on-Sea, Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Phone</span><span class="dv">01702 478494</span></div>
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="http://www.thamesdentalsurgery.co.uk" target="_blank">thamesdentalsurgery.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Mixed NHS / private practice</span></div>
+        </div>
+        <div class="lead-hook">Mixed NHS/private means complex scheduling. Automation ROI is high. Good target for a quick scan demo.</div>
+      </div>
+
+      <div class="lead-card">
+        <span class="priority priority-warm">Warm</span>
+        <div class="lead-name">Essex Dental Clinic</div>
+        <div class="lead-location">Earls Colne, Essex</div>
+        <div class="lead-details">
+          <div class="lead-detail"><span class="dl">Website</span><span class="dv"><a href="https://www.essexdentalclinic.co.uk/contact/" target="_blank">essexdentalclinic.co.uk</a></span></div>
+          <div class="lead-detail"><span class="dl">Type</span><span class="dv">Family dentist, NHS and private</span></div>
+        </div>
+        <div class="lead-hook">Family practice at a business park location. Good for chatbot, appointment reminders, and review generation tools.</div>
+      </div>
+
+    </div>
+
+    <div class="insight-box">
+      <h4>The Dental Sector Opportunity</h4>
+      <p>UK research shows dental practices miss 50 to 100 new patient calls per month. At an average NHS/private blended value, that is £60,000 to £120,000 in annual lost revenue. An AI receptionist that answers 24/7 and books directly into their system is an easy sale. You already have a GP surgery lead in your pipeline. A dental pitch is essentially the same conversation.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: LINKEDIN POSTS -->
+  <div class="section">
+    <div class="section-title">
+      <span class="icon">💼</span>
+      LinkedIn Posts Ready to Use
+    </div>
+    <p class="section-sub">Three posts for three different moments. Post one per week for maximum reach without spamming your feed.</p>
+
+    <div class="posts-list">
+
+      <div class="post-card">
+        <div class="post-header">
+          <h4>Post 1 — The Pain Point Hook</h4>
+          <span class="post-tag">Best for cold audience</span>
+        </div>
+        <div class="post-body">Most Essex businesses are losing money they don't even know about.
+
+Not from bad products. Not from bad staff.
+
+From the calls they miss at 7pm. The enquiries that go unanswered on Saturday morning. The follow-ups that never get sent.
+
+That's not a people problem. That's an automation gap.
+
+I go into businesses, find those gaps, and close them with AI. Not complex systems. Not months of training. Simple tools that run quietly in the background while you focus on the work you actually want to do.
+
+If you run a business in Essex and you're curious what's slipping through the cracks, message me. I'll tell you for free.
+
+#MakeMeAI #AIConsultant #Essex #BusinessAutomation #SmallBusiness</div>
+        <div class="post-tip"><strong>Why this works:</strong> Opens with curiosity, speaks to a universal pain, ends with a low-commitment CTA. No hard sell.</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <h4>Post 2 — The Result (social proof)</h4>
+          <span class="post-tag">Best for building credibility</span>
+        </div>
+        <div class="post-body">I ran an AI readiness scan on a property developer here in Essex.
+
+30 years in business. Great reputation. Nearly invisible online.
+
+No chatbot. No automated follow-up. No way for a buyer to book a viewing at 9pm on their phone.
+
+The scan showed over £96,000 in recoverable annual value. Just from fixing what already exists.
+
+That number is sitting in most local businesses right now. They just don't have a way to see it yet.
+
+That's what I do. I make it visible. Then I help you get it back.
+
+#PropertyDevelopment #AIBusiness #EssexBusiness #Automation #MakeMeAI</div>
+        <div class="post-tip"><strong>Why this works:</strong> Real numbers from your Eastway Homes research. Feels like a case study even before you have a paying client. Post this one once you send the Eastway report.</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <h4>Post 3 — The Educator</h4>
+          <span class="post-tag">Best for long-term authority</span>
+        </div>
+        <div class="post-body">3 things AI can do for your business this week. No tech skills needed.
+
+1. Answer enquiries 24/7 with a chatbot trained on your services (2 days to set up)
+
+2. Send automatic follow-up messages to leads who went quiet (stops revenue walking out the door)
+
+3. Create a month of social media content from one voice note on your phone (30 minutes of your time, 30 days of content)
+
+None of this requires you to understand how it works. Only what it does for you.
+
+That's the whole point of what I do at MakeMeAI.
+
+Which of these would save you the most time? Drop it in the comments.
+
+#AI #BusinessOwner #EssexBusiness #Automation #AIConsultant</div>
+        <div class="post-tip"><strong>Why this works:</strong> Asks a question to drive comments. Comments boost LinkedIn reach significantly. Post this one early to build engagement signals on your profile.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: NEXT ACTIONS -->
+  <div class="section">
+    <div class="section-title">
+      <span class="icon">🎯</span>
+      Recommended Next Actions
+    </div>
+    <p class="section-sub">Priority order. Do the top three this week.</p>
+
+    <table class="action-table">
+      <thead>
+        <tr>
+          <th>Priority</th>
+          <th>Action</th>
+          <th>Who</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td>Send Eastway Homes report to re-engage property developer lead</td>
+          <td>Olusegun</td>
+          <td><span class="pill pill-amber">This week</span></td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td>Run /demo scanner on Biminster Homes and Sharrow Dental</td>
+          <td>Claude Code</td>
+          <td><span class="pill pill-blue">Ready now</span></td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td>Post LinkedIn Post 3 (educator) to build early engagement</td>
+          <td>Olusegun</td>
+          <td><span class="pill pill-blue">Ready now</span></td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td>Email Mid Essex Dental Care (direct email available)</td>
+          <td>Olusegun</td>
+          <td><span class="pill pill-amber">This week</span></td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td>Connect with David Gibbon (TGE Property) on LinkedIn</td>
+          <td>Olusegun</td>
+          <td><span class="pill pill-amber">This week</span></td>
+        </tr>
+        <tr>
+          <td><strong>6</strong></td>
+          <td>Website audit of makemeai.tech</td>
+          <td>Claude Code</td>
+          <td><span class="pill pill-green">Queued</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 5: REMINDER -->
+  <div class="section">
+    <div class="section-title">
+      <span class="icon">📌</span>
+      Reminder Logged
+    </div>
+
+    <div class="reminder-box">
+      <div class="reminder-icon">🌐</div>
+      <div class="reminder-text">
+        <h4>Website Audit — makemeai.tech</h4>
+        <p>When you're ready, say "review my website" and a full audit will be run covering: first impression, messaging clarity, calls to action, mobile experience, and SEO basics. The report will be written from a client's perspective — what they see, feel, and decide in the first 10 seconds on your site.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>MakeMeAI Consulting Ltd</strong> — team@makemeai.tech — www.makemeai.tech<br>
+  Generated 23 April 2026. All contact data sourced from publicly available information.
+</div>
+
+</body>
+</html>

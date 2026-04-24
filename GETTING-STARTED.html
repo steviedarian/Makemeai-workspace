@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started with Your AIOS</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #FFFFFF;
+    color: #1A1A1A;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 50px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #D4A843;
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #D4A843;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    font-size: 14px;
+    color: #6A6A6A;
+    font-weight: 300;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #D4A843;
+    margin: 36px 0 14px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #E8E6E1;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin: 20px 0 10px 0;
+  }
+
+  p {
+    margin-bottom: 12px;
+    color: #3A3A3A;
+  }
+
+  .intro-box {
+    background: #F9F8F5;
+    border: 1px solid #E8E6E1;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 20px 0 30px 0;
+  }
+
+  .intro-box p { margin-bottom: 8px; color: #3A3A3A; font-size: 13px; }
+  .intro-box p:last-child { margin-bottom: 0; }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 16px 0;
+  }
+
+  .checklist li {
+    font-size: 13px;
+    color: #3A3A3A;
+    padding: 5px 0 5px 28px;
+    position: relative;
+  }
+
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 7px;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid #D4A843;
+    border-radius: 3px;
+  }
+
+  .celebrate {
+    color: #B8922E;
+    font-weight: 500;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px 0;
+    font-size: 12.5px;
+  }
+
+  th {
+    background: #F9F8F5;
+    color: #1A1A1A;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid #D4A843;
+  }
+
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #E8E6E1;
+    color: #3A3A3A;
+  }
+
+  tr:hover td { background: #FDFCF8; }
+
+  .folder-tree {
+    background: #1A1A1A;
+    color: #E8E6E1;
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 12px 0 20px 0;
+    overflow-x: auto;
+  }
+
+  .folder-tree .comment { color: #6A6A6A; }
+  .folder-tree .folder { color: #D4A843; }
+  .folder-tree .file { color: #E8E6E1; }
+
+  .command-table td:first-child {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    font-size: 12px;
+    color: #B8922E;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .layers {
+    list-style: none;
+    padding: 0;
+    counter-reset: layer;
+  }
+
+  .layers li {
+    counter-increment: layer;
+    padding: 12px 16px 12px 56px;
+    position: relative;
+    margin: 6px 0;
+    background: #FAFAF9;
+    border: 1px solid #E8E6E1;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #3A3A3A;
+  }
+
+  .layers li::before {
+    content: counter(layer);
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    background: #D4A843;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .layers li strong { color: #1A1A1A; }
+
+  .rules {
+    list-style: none;
+    padding: 0;
+  }
+
+  .rules li {
+    padding: 14px 18px;
+    margin: 8px 0;
+    background: #F9F8F5;
+    border-left: 3px solid #D4A843;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: #3A3A3A;
+  }
+
+  .rules li strong { color: #B8922E; }
+
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 24px;
+    border-top: 1px solid #E8E6E1;
+  }
+
+  .footer p { font-size: 11px; color: #999; margin-bottom: 4px; }
+  .footer .strapline { font-size: 12px; color: #B8922E; font-style: italic; margin-top: 12px; }
+
+  @media print {
+    .page { padding: 30px; }
+    body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>Getting Started with Your AIOS</h1>
+    <div class="subtitle">ForeShiloh Starter Kit</div>
+  </div>
+
+  <div class="intro-box">
+    <p>Welcome to the ForeShiloh Starter Kit. This is your AI Operating System foundation.</p>
+    <p>Give this folder to Claude Code and say: <strong>"Read GETTING-STARTED.md and help me set up."</strong></p>
+    <p>Everything here is designed so you never need to write code. You speak to Claude in plain English and it builds.</p>
+  </div>
+
+  <h2>First 7 Days Checklist</h2>
+
+  <h3>Day 1: Context Layer (your first session)</h3>
+  <ul class="checklist">
+    <li>Open this folder in Claude Code</li>
+    <li>Run <code>/install module-installs/context-os</code> and answer the interview questions</li>
+    <li>Claude will create your context files (business-info, personal-info, strategy)</li>
+    <li>Run <code>/prime</code> and verify Claude knows your business</li>
+    <li class="celebrate">Celebrate. Your AI now understands you.</li>
+  </ul>
+
+  <h3>Day 2-3: Explore and Customise</h3>
+  <ul class="checklist">
+    <li>Read through your context files and add more detail (the more context, the better Claude performs)</li>
+    <li>Run <code>/brainstorm</code> to discover automation opportunities in your business</li>
+    <li>Run <code>/task-audit</code> to map all your recurring tasks and score them</li>
+  </ul>
+
+  <h3>Day 4-5: Data Layer</h3>
+  <ul class="checklist">
+    <li>Run <code>/install module-installs/data-os</code> to connect your first data source</li>
+    <li>Set up your .env file with API keys (see the API Key Guide below)</li>
+    <li>Run <code>/install module-installs/daily-brief</code> for your AI morning intelligence report</li>
+  </ul>
+
+  <h3>Day 6: Mobile Access</h3>
+  <ul class="checklist">
+    <li>Run <code>/install module-installs/command-os</code> to set up your Telegram bot</li>
+    <li>Test sending a message to your bot from your phone</li>
+  </ul>
+
+  <h3>Day 7: Client Tools</h3>
+  <ul class="checklist">
+    <li>Try <code>/demo scanner</code> on a business you know (this is your lead generation weapon)</li>
+    <li>Try <code>/demo content</code> on a website to generate social media posts</li>
+    <li>Review your task audit and pick your first automation to build</li>
+  </ul>
+
+  <h2>API Key Guide</h2>
+  <p>These are the keys you will need. Most have free tiers. You do NOT need all of these on day one. Start with just ANTHROPIC_API_KEY. Add others as you install modules.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Where to Get It</th>
+        <th>Free Tier</th>
+        <th>What It Powers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ANTHROPIC_API_KEY</td>
+        <td>console.anthropic.com</td>
+        <td>Pay as you go</td>
+        <td>Claude (your AI brain)</td>
+      </tr>
+      <tr>
+        <td>TELEGRAM_BOT_TOKEN</td>
+        <td>@BotFather on Telegram</td>
+        <td>Free</td>
+        <td>Your mobile bot</td>
+      </tr>
+      <tr>
+        <td>GEMINI_API_KEY</td>
+        <td>aistudio.google.com</td>
+        <td>1,500 req/day free</td>
+        <td>Image gen, video analysis, cheap summarisation</td>
+      </tr>
+      <tr>
+        <td>ALPHA_VANTAGE_API_KEY</td>
+        <td>alphavantage.co/support</td>
+        <td>25 req/day free</td>
+        <td>News sentiment (optional)</td>
+      </tr>
+      <tr>
+        <td>APOLLO_API_KEY</td>
+        <td>app.apollo.io</td>
+        <td>60 enrichments/month</td>
+        <td>Lead enrichment (optional)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Folder Structure</h2>
+
+  <div class="folder-tree">
+    <span class="file">.</span><br>
+    <span class="file">+-- CLAUDE.md</span> <span class="comment"># The brain. Claude reads this every session.</span><br>
+    <span class="file">+-- GETTING-STARTED.md</span> <span class="comment"># You are here</span><br>
+    <span class="file">+-- HISTORY.md</span> <span class="comment"># Changelog. Updated by /commit.</span><br>
+    <span class="file">+-- .env</span> <span class="comment"># Your API keys go here (never share this file)</span><br>
+    <span class="folder">+-- .claude/commands/</span> <span class="comment"># Slash commands (type / to see them all)</span><br>
+    <span class="folder">+-- context/</span> <span class="comment"># Your business context (Claude's knowledge of YOU)</span><br>
+    <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;+-- business-info.md, personal-info.md, strategy.md, task-audit.md, funnel.md</span><br>
+    <span class="folder">+-- data/</span> <span class="comment"># Your database lives here</span><br>
+    <span class="folder">+-- scripts/</span> <span class="comment"># Automation scripts (added by modules)</span><br>
+    <span class="folder">+-- outputs/</span> <span class="comment"># Everything Claude produces for you</span><br>
+    <span class="folder">+-- plans/</span> <span class="comment"># Implementation plans</span><br>
+    <span class="folder">+-- reference/</span> <span class="comment"># Templates, scripts, and guides</span><br>
+    <span class="folder">+-- module-installs/</span> <span class="comment"># AIOS modules (install with /install)</span><br>
+    <span class="folder">+-- docs/</span> <span class="comment"># System documentation (auto-maintained)</span><br>
+  </div>
+
+  <h2>Commands Available</h2>
+  <p>These are ready to use from day one:</p>
+
+  <table class="command-table">
+    <thead>
+      <tr><th>Command</th><th>What It Does</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>/prime</td><td>Start every session with this. Claude reads your context and is ready to work.</td></tr>
+      <tr><td>/install</td><td>Install an AIOS module from module-installs/</td></tr>
+      <tr><td>/create-plan</td><td>Plan before you build. Creates a detailed plan in plans/</td></tr>
+      <tr><td>/implement</td><td>Execute a plan step by step</td></tr>
+      <tr><td>/commit</td><td>Save your work, update docs, and add to changelog</td></tr>
+      <tr><td>/brainstorm</td><td>Scan your business for automation opportunities</td></tr>
+      <tr><td>/task-audit</td><td>Map all recurring tasks and score them for automation</td></tr>
+      <tr><td>/demo scanner</td><td>Scan any business website and generate an AI Readiness Report</td></tr>
+      <tr><td>/demo content</td><td>Generate a week of brand-matched social media content</td></tr>
+      <tr><td>/demo leads</td><td>Find 10 real prospects in any industry and location</td></tr>
+      <tr><td>/demo competitor</td><td>Full competitive analysis with SWOT and gap analysis</td></tr>
+      <tr><td>/outreach</td><td>Complete prospect research, report, and email sequence</td></tr>
+      <tr><td>/roi-calc</td><td>Calculate ROI for client proposals</td></tr>
+      <tr><td>/client-setup</td><td>Scaffold a new client workspace</td></tr>
+      <tr><td>/explore</td><td>Shape an idea into a scoped feature</td></tr>
+      <tr><td>/share</td><td>Package a system for sharing</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The Five Layers</h2>
+  <p>Your AIOS builds one layer at a time. Each layer is independently valuable.</p>
+
+  <ol class="layers">
+    <li><strong>Context</strong> -- Your AI understands your business (Day 1)</li>
+    <li><strong>Data</strong> -- Your AI sees your numbers in real-time (Day 4-5)</li>
+    <li><strong>Intelligence</strong> -- Your AI watches everything and synthesises a daily brief (Day 5)</li>
+    <li><strong>Automate</strong> -- Audit every task, automate them one by one (Week 2+)</li>
+    <li><strong>Build</strong> -- Use freed bandwidth for growth (Ongoing)</li>
+  </ol>
+
+  <h2>Three Rules</h2>
+  <ul class="rules">
+    <li><strong>Just Ask.</strong> If you can describe it in plain English, Claude can build it. Do not self-censor.</li>
+    <li><strong>Talk, Don't Type.</strong> Use voice input. Hold FN, speak for 60 seconds, let Claude format it.</li>
+    <li><strong>Layers, Not Leaps.</strong> One layer at a time. Each independently valuable. Do not skip ahead.</li>
+  </ul>
+
+  <div class="footer">
+    <p>This kit was built by ForeShiloh (Daniel Kiing, Sheffield, UK)</p>
+    <p>foreshiloh.com</p>
+    <p class="strapline">You dream, we build. AI powers them both.</p>
+  </div>
+
+</div>
+</body>
+</html>

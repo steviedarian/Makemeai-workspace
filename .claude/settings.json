@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"module-installs/command-os/AIOS Command OS/scripts/apps/command/\"*.py apps/command/)",
+      "Bash(cp \"module-installs/command-os/AIOS Command OS/scripts/apps/command/templates/\"* apps/command/templates/)",
+      "Bash(.venv/Scripts/python -m pip install weasyprint --quiet)",
+      "Bash(.venv/Scripts/python -c ' *)",
+      "Bash(.venv/Scripts/python -c \"from weasyprint import HTML; print\\('weasyprint OK'\\)\")",
+      "Bash(.venv/Scripts/python -c \"from apps.command.config import load_config; from apps.command.cost_tracker import CostTracker; print\\('Imports OK'\\)\")",
+      "Bash(.venv/Scripts/python -m apps.command.main)",
+      "Bash(jobs -l)",
+      "Bash(cat data/command/bot.log)",
+      "Bash(powershell.exe -Command \"Start-Process 'outputs\\\\demos\\\\2026-04-22-scanner-eastway-homes-branded.html'\")",
+      "Bash(powershell.exe -Command ' *)",
+      "Bash(powershell.exe -Command \"\\(Get-Item 'outputs\\\\demos\\\\2026-04-22-scanner-eastway-homes-branded.pdf'\\).Length / 1KB\")",
+      "Bash(git --version)",
+      "Bash(git config *)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)"
+    ]
+  }
+}

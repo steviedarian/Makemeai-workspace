@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Business Report | Eastway Homes | MakeMeAI Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:      #080F1E;
+  --blue:      #0F2552;
+  --accent:    #1D57D8;
+  --accent-lt: #EEF4FF;
+  --sky:       #3B82F6;
+  --white:     #FFFFFF;
+  --off:       #F7F9FF;
+  --text:      #0F172A;
+  --mid:       #475569;
+  --lt:        #94A3B8;
+  --border:    #E2E8F0;
+  --green:     #059669;
+  --green-lt:  #ECFDF5;
+  --red:       #DC2626;
+  --red-lt:    #FEF2F2;
+  --amber:     #D97706;
+  --amber-lt:  #FFFBEB;
+  --gold:      #F5C518;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--off); color:var(--text); line-height:1.6; }
+
+/* ─── HEADER ─── */
+.masthead {
+  background: linear-gradient(140deg, var(--navy) 0%, #0D2660 60%, #1542A0 100%);
+  position: relative;
+  overflow: hidden;
+}
+.masthead::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(29,87,216,0.25) 0%, transparent 65%);
+  pointer-events:none;
+}
+.masthead-top {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:22px 52px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  position:relative;
+}
+.logo { display:flex; align-items:center; gap:12px; }
+.logo-mark {
+  width:44px; height:44px; border-radius:10px;
+  background:var(--accent); display:flex; align-items:center; justify-content:center;
+  font-family:'Poppins',sans-serif; font-weight:900; font-size:20px; color:#fff;
+  box-shadow:0 4px 14px rgba(29,87,216,0.5);
+}
+.logo-name { font-family:'Poppins',sans-serif; font-weight:700; font-size:17px; color:#fff; }
+.logo-name span { color:#7EB8FF; }
+.logo-sub { font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:1px; margin-top:1px; }
+.doc-meta { text-align:right; font-size:11px; color:rgba(255,255,255,0.4); line-height:1.9; }
+
+.masthead-body {
+  padding:52px 52px 60px;
+  position:relative;
+  display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+}
+.masthead-left { flex:1; }
+.report-chip {
+  display:inline-flex; align-items:center; gap:7px;
+  background:rgba(29,87,216,0.35); border:1px solid rgba(123,184,255,0.3);
+  color:#7EB8FF; font-size:11px; font-weight:600; letter-spacing:1.5px;
+  text-transform:uppercase; padding:5px 14px; border-radius:30px; margin-bottom:20px;
+}
+.report-chip::before { content:''; width:6px; height:6px; background:#7EB8FF; border-radius:50%; }
+.masthead-body h1 {
+  font-family:'Poppins',sans-serif; font-size:44px; font-weight:800; line-height:1.1;
+  color:#fff; margin-bottom:14px; letter-spacing:-0.5px;
+}
+.masthead-body h1 span { color:#7EB8FF; }
+.masthead-body p { font-size:15px; color:rgba(255,255,255,0.55); }
+.masthead-body a { color:#7EB8FF; text-decoration:none; }
+
+.masthead-score-box {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px; padding:28px 36px; text-align:center;
+  flex-shrink:0; min-width:190px; backdrop-filter:blur(4px);
+}
+.score-big {
+  font-family:'Poppins',sans-serif; font-size:64px; font-weight:900;
+  line-height:1; color:#EF4444; display:block;
+}
+.score-denom { font-size:18px; color:rgba(255,255,255,0.35); font-weight:400; }
+.score-label { font-size:11px; color:rgba(255,255,255,0.45); letter-spacing:2px; text-transform:uppercase; margin-top:6px; }
+.score-verdict {
+  margin-top:12px; padding:6px 14px;
+  background:rgba(239,68,68,0.2); border:1px solid rgba(239,68,68,0.35);
+  border-radius:20px; font-size:11px; color:#FCA5A5; font-weight:600;
+}
+
+/* ─── IMPACT STRIP ─── */
+.impact-strip {
+  background:var(--accent);
+  padding:36px 52px;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px;
+}
+.impact-strip-inner {
+  display:contents;
+}
+.impact-item {
+  padding:0 28px; text-align:center;
+  border-right:1px solid rgba(255,255,255,0.2);
+}
+.impact-item:last-child { border-right:none; }
+.impact-num {
+  font-family:'Poppins',sans-serif; font-size:38px; font-weight:800;
+  color:#fff; line-height:1; margin-bottom:6px; display:block;
+}
+.impact-num sup { font-size:20px; vertical-align:super; }
+.impact-label { font-size:12px; color:rgba(255,255,255,0.7); font-weight:500; line-height:1.4; }
+
+/* ─── SECTION WRAPPER ─── */
+.wrap { max-width:1040px; margin:0 auto; padding:48px 52px; }
+.wrap + .wrap { padding-top:0; }
+
+.sec-title {
+  font-family:'Poppins',sans-serif; font-size:13px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; color:var(--accent);
+  margin-bottom:8px;
+}
+.sec-heading {
+  font-family:'Poppins',sans-serif; font-size:26px; font-weight:800;
+  color:var(--navy); margin-bottom:20px; line-height:1.2;
+}
+.sec-heading span { color:var(--accent); }
+
+/* ─── ROI CARDS ─── */
+.roi-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+.roi-card {
+  border-radius:14px; padding:28px; position:relative; overflow:hidden;
+}
+.roi-card.time-card {
+  background:linear-gradient(135deg,#0F2552,#1D57D8);
+  color:#fff;
+}
+.roi-card.money-card {
+  background:linear-gradient(135deg,#064E3B,#059669);
+  color:#fff;
+}
+.roi-card-icon {
+  font-size:28px; margin-bottom:14px; display:block;
+}
+.roi-card h3 {
+  font-family:'Poppins',sans-serif; font-size:14px; font-weight:700;
+  opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;
+}
+.roi-big {
+  font-family:'Poppins',sans-serif; font-size:52px; font-weight:900;
+  line-height:1; margin-bottom:6px; display:block;
+}
+.roi-sub { font-size:13px; opacity:0.7; margin-bottom:20px; display:block; }
+.roi-rows {}
+.roi-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:9px 0; border-top:1px solid rgba(255,255,255,0.12);
+  font-size:13px;
+}
+.roi-row-label { opacity:0.8; }
+.roi-row-val { font-weight:700; }
+
+/* ─── TOOLS GRID ─── */
+.tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+
+.tool-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:14px; padding:24px;
+  transition:box-shadow 0.2s, transform 0.2s;
+}
+.tool-card:hover { box-shadow:0 8px 32px rgba(29,87,216,0.12); transform:translateY(-2px); }
+.tool-tag {
+  display:inline-block; background:var(--accent-lt); color:var(--accent);
+  font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  padding:3px 10px; border-radius:20px; margin-bottom:14px;
+}
+.tool-icon {
+  font-size:28px; margin-bottom:10px; display:block;
+}
+.tool-card h4 {
+  font-family:'Poppins',sans-serif; font-size:15px; font-weight:700;
+  color:var(--navy); margin-bottom:8px;
+}
+.tool-card p { font-size:13px; color:var(--mid); line-height:1.6; }
+.tool-impact {
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--border);
+  font-size:12px; color:var(--green); font-weight:600;
+  display:flex; align-items:center; gap:6px;
+}
+.tool-impact::before { content:'↑'; }
+
+/* ─── GAPS + OPPS ─── */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+.list-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:14px; overflow:hidden;
+}
+.list-card-head {
+  padding:18px 24px; display:flex; align-items:center; gap:10px;
+}
+.list-card-head.red   { background:var(--red-lt);   border-bottom:1px solid #FEE2E2; }
+.list-card-head.green { background:var(--green-lt); border-bottom:1px solid #D1FAE5; }
+.list-card-head h3 {
+  font-family:'Poppins',sans-serif; font-size:15px; font-weight:700;
+}
+.list-card-head.red   h3 { color:var(--red); }
+.list-card-head.green h3 { color:var(--green); }
+.list-body { padding:8px 0; }
+.list-item {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:11px 24px; border-bottom:1px solid var(--border);
+  font-size:13.5px; color:var(--mid); line-height:1.5;
+}
+.list-item:last-child { border-bottom:none; }
+.dot {
+  width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; margin-top:1px;
+}
+.dot.red   { background:var(--red-lt);   color:var(--red); }
+.dot.green { background:var(--green-lt); color:var(--green); }
+
+/* ─── AUDIT TABLE ─── */
+.audit-wrap {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:14px; overflow:hidden;
+}
+.audit-head {
+  background:var(--navy); padding:22px 28px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.audit-head h3 {
+  font-family:'Poppins',sans-serif; font-size:16px; font-weight:700; color:#fff;
+}
+.audit-head p { font-size:12px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.audit-score-pill {
+  background:rgba(239,68,68,0.2); border:1px solid rgba(239,68,68,0.4);
+  color:#FCA5A5; font-size:12px; font-weight:700;
+  padding:6px 16px; border-radius:20px;
+}
+table { width:100%; border-collapse:collapse; font-size:13px; }
+thead th {
+  background:#0F1F3D; color:rgba(255,255,255,0.6);
+  font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px;
+  padding:12px 16px; text-align:left;
+}
+tbody tr:nth-child(even) { background:var(--off); }
+tbody td { padding:12px 16px; border-bottom:1px solid var(--border); color:var(--mid); vertical-align:top; line-height:1.5; }
+tbody td:first-child { font-weight:600; color:var(--text); }
+tbody tr:last-child td { border-bottom:none; }
+.pill {
+  display:inline-block; padding:3px 10px; border-radius:20px;
+  font-size:11px; font-weight:600; white-space:nowrap;
+}
+.pill-miss    { background:var(--red-lt);   color:var(--red); }
+.pill-partial { background:var(--amber-lt); color:var(--amber); }
+.pill-good    { background:var(--green-lt); color:var(--green); }
+
+/* ─── PARTNERSHIP ─── */
+.partner-section {
+  background:linear-gradient(140deg, var(--navy) 0%, #0D2660 100%);
+  border-radius:16px; overflow:hidden; color:#fff;
+}
+.partner-top {
+  padding:44px 48px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.partner-top .sec-title { color:#7EB8FF; }
+.partner-top .sec-heading { color:#fff; margin-bottom:16px; }
+.partner-top p { font-size:14.5px; color:rgba(255,255,255,0.65); line-height:1.8; max-width:680px; }
+
+.partner-grid {
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.partner-col {
+  padding:32px 36px;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.partner-col:last-child { border-right:none; }
+.partner-col h4 {
+  font-family:'Poppins',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase; color:#7EB8FF; margin-bottom:16px;
+}
+.partner-col ul { list-style:none; }
+.partner-col ul li {
+  font-size:13.5px; color:rgba(255,255,255,0.65);
+  padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex; align-items:flex-start; gap:8px; line-height:1.5;
+}
+.partner-col ul li:last-child { border-bottom:none; }
+.partner-col ul li::before {
+  content:'→'; color:var(--sky); flex-shrink:0; font-weight:700; margin-top:1px;
+}
+
+/* ─── PRICING ─── */
+.pricing-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+}
+.price-card {
+  background:var(--white); border:2px solid var(--border);
+  border-radius:16px; padding:28px; position:relative; overflow:hidden;
+  transition:border-color 0.2s, box-shadow 0.2s;
+}
+.price-card.featured {
+  border-color:var(--accent);
+  box-shadow:0 8px 40px rgba(29,87,216,0.18);
+}
+.featured-badge {
+  position:absolute; top:0; right:0;
+  background:var(--accent); color:#fff;
+  font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+  padding:6px 16px; border-bottom-left-radius:12px;
+}
+.price-tier {
+  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--lt); margin-bottom:12px;
+}
+.price-name {
+  font-family:'Poppins',sans-serif; font-size:17px; font-weight:700;
+  color:var(--navy); margin-bottom:18px;
+}
+.price-amount {
+  display:flex; align-items:flex-end; gap:4px; margin-bottom:6px;
+}
+.price-sym { font-size:20px; font-weight:700; color:var(--accent); margin-bottom:8px; }
+.price-num {
+  font-family:'Poppins',sans-serif; font-size:44px; font-weight:800;
+  color:var(--accent); line-height:1;
+}
+.price-period { font-size:13px; color:var(--lt); margin-bottom:18px; }
+.price-desc { font-size:13px; color:var(--mid); line-height:1.6; margin-bottom:20px; }
+.price-features { list-style:none; margin-bottom:24px; }
+.price-features li {
+  font-size:13px; color:var(--mid);
+  padding:7px 0; border-bottom:1px solid var(--border);
+  display:flex; gap:8px; align-items:flex-start; line-height:1.5;
+}
+.price-features li:last-child { border-bottom:none; }
+.price-features li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+.price-lock {
+  background:var(--off); border:1px solid var(--border);
+  border-radius:8px; padding:10px 14px;
+  font-size:12px; color:var(--mid); line-height:1.5;
+  display:flex; gap:8px;
+}
+.price-lock::before { content:'🔒'; flex-shrink:0; }
+
+/* ─── FREE AUDIT CTA ─── */
+.cta-wrap {
+  background:linear-gradient(140deg, var(--accent) 0%, #0F52C8 100%);
+  border-radius:16px; padding:52px 48px; text-align:center;
+  position:relative; overflow:hidden;
+}
+.cta-wrap::after {
+  content:'';
+  position:absolute; bottom:-60px; right:-60px;
+  width:240px; height:240px; border-radius:50%;
+  background:rgba(255,255,255,0.05); pointer-events:none;
+}
+.cta-chip {
+  display:inline-block; background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25); color:#fff;
+  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  padding:5px 16px; border-radius:30px; margin-bottom:20px;
+}
+.cta-wrap h2 {
+  font-family:'Poppins',sans-serif; font-size:36px; font-weight:800;
+  color:#fff; line-height:1.15; margin-bottom:14px; letter-spacing:-0.3px;
+}
+.cta-wrap > p {
+  font-size:15px; color:rgba(255,255,255,0.75);
+  max-width:580px; margin:0 auto 32px; line-height:1.75;
+}
+.cta-features {
+  display:flex; justify-content:center; gap:28px;
+  margin-bottom:36px; flex-wrap:wrap;
+}
+.cta-feat {
+  display:flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.18);
+  padding:10px 18px; border-radius:30px; font-size:13px; color:#fff;
+}
+.cta-feat::before { content:'✓'; font-weight:700; color:#86EFAC; }
+.cta-btn {
+  display:inline-block; background:#fff; color:var(--accent);
+  font-family:'Poppins',sans-serif; font-weight:800; font-size:16px;
+  padding:18px 52px; border-radius:12px; text-decoration:none;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2); letter-spacing:0.2px;
+  transition:transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(0,0,0,0.25); }
+.cta-note { margin-top:16px; font-size:12px; color:rgba(255,255,255,0.5); }
+
+/* ─── DIVIDER ─── */
+.divider { height:1px; background:var(--border); margin:0 52px; }
+
+/* ─── FOOTER ─── */
+footer {
+  background:var(--navy); color:rgba(255,255,255,0.35);
+  text-align:center; padding:32px 52px;
+  font-size:12px; line-height:2;
+}
+footer .ft-logo {
+  font-family:'Poppins',sans-serif; font-size:16px; font-weight:700;
+  color:rgba(255,255,255,0.8); margin-bottom:4px;
+}
+footer .ft-logo span { color:#7EB8FF; }
+
+@media (max-width:800px) {
+  .masthead-top,.masthead-body,.wrap { padding-left:20px; padding-right:20px; }
+  .masthead-body { flex-direction:column; align-items:flex-start; }
+  .impact-strip,.roi-grid,.tools-grid,.two-col,.partner-grid,.pricing-grid { grid-template-columns:1fr; }
+  .impact-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.15); padding:16px 0; }
+  .partner-col { border-right:none; border-bottom:1px solid rgba(255,255,255,0.06); }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── MASTHEAD ─── -->
+<div class="masthead">
+  <div class="masthead-top">
+    <div class="logo">
+      <div class="logo-mark">M</div>
+      <div>
+        <div class="logo-name">MakeMe<span>AI</span> Consulting Ltd</div>
+        <div class="logo-sub">Your Personal AI Architect</div>
+      </div>
+    </div>
+    <div class="doc-meta">
+      Prepared exclusively for Eastway Homes<br>
+      22 April 2026 &nbsp;·&nbsp; Confidential
+    </div>
+  </div>
+
+  <div class="masthead-body">
+    <div class="masthead-left">
+      <div class="report-chip">AI Business Intelligence Report</div>
+      <h1>30 Years of Quality.<br><span>One Week of AI.</span></h1>
+      <p>
+        <a href="https://www.eastwayhomes.co.uk" target="_blank">www.eastwayhomes.co.uk</a>
+        &nbsp;·&nbsp; Property Development, Essex &nbsp;·&nbsp; Est. 1990
+      </p>
+    </div>
+    <div class="masthead-score-box">
+      <span class="score-big">32</span>
+      <span class="score-denom">/ 100</span>
+      <div class="score-label">AI Readiness</div>
+      <div class="score-verdict">High Opportunity</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── IMPACT STRIP ─── -->
+<div class="impact-strip">
+  <div class="impact-item">
+    <span class="impact-num"><sup>£</sup>96K<sup>+</sup></span>
+    <div class="impact-label">Estimated annual value<br>identified from this scan</div>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">60<sup>hrs</sup></span>
+    <div class="impact-label">Hours saved per month<br>through AI automation</div>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">8</span>
+    <div class="impact-label">Automation tools<br>ready to deploy</div>
+  </div>
+</div>
+
+<!-- ─── TIME + MONEY ROI ─── -->
+<div class="wrap">
+  <div class="sec-title">Return on Investment</div>
+  <div class="sec-heading">Here is what AI delivers for <span>Eastway Homes</span></div>
+  <div class="roi-grid">
+
+    <div class="roi-card time-card">
+      <span class="roi-card-icon">⏱</span>
+      <h3>Time Saved Per Month</h3>
+      <span class="roi-big">60hrs</span>
+      <span class="roi-sub">Freed from manual, repeatable tasks</span>
+      <div class="roi-rows">
+        <div class="roi-row"><span class="roi-row-label">Enquiry handling & callbacks</span><span class="roi-row-val">24 hrs</span></div>
+        <div class="roi-row"><span class="roi-row-label">Social media creation & posting</span><span class="roi-row-val">16 hrs</span></div>
+        <div class="roi-row"><span class="roi-row-label">Lead follow-up & chasing</span><span class="roi-row-val">10 hrs</span></div>
+        <div class="roi-row"><span class="roi-row-label">Investor pack preparation</span><span class="roi-row-val">6 hrs</span></div>
+        <div class="roi-row"><span class="roi-row-label">Review requests & management</span><span class="roi-row-val">4 hrs</span></div>
+      </div>
+    </div>
+
+    <div class="roi-card money-card">
+      <span class="roi-card-icon">💷</span>
+      <h3>Annual Value Identified</h3>
+      <span class="roi-big">£96K+</span>
+      <span class="roi-sub">Conservative estimate based on public data only</span>
+      <div class="roi-rows">
+        <div class="roi-row"><span class="roi-row-label">Owner time reclaimed (60 hrs/mo × £50)</span><span class="roi-row-val">£36,000</span></div>
+        <div class="roi-row"><span class="roi-row-label">Leads captured from AI chatbot</span><span class="roi-row-val">£24,000</span></div>
+        <div class="roi-row"><span class="roi-row-label">Additional sales from review growth</span><span class="roi-row-val">£20,000</span></div>
+        <div class="roi-row"><span class="roi-row-label">Investor pipeline automation</span><span class="roi-row-val">£10,000</span></div>
+        <div class="roi-row"><span class="roi-row-label">Social media lead generation</span><span class="roi-row-val">£6,000</span></div>
+      </div>
+    </div>
+
+  </div>
+  <p style="font-size:12px;color:var(--lt);margin-top:14px;text-align:right;">
+    ※ Estimates based on publicly available business data only. Full audit will produce precise figures.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── TOOLS ─── -->
+<div class="wrap">
+  <div class="sec-title">What We Build For You</div>
+  <div class="sec-heading">8 AI tools, built and running <span>inside 30 days</span></div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tool-tag">24/7 Automation</div>
+      <span class="tool-icon">🤖</span>
+      <h4>AI Sales Chatbot</h4>
+      <p>Lives on your website. Answers buyer questions, qualifies serious enquiries, and books viewings automatically. Day and night, without you lifting a finger.</p>
+      <div class="tool-impact">Saves 24 hrs/month in call-backs</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Lead Capture</div>
+      <span class="tool-icon">📅</span>
+      <h4>Smart Viewing Scheduler</h4>
+      <p>Buyers pick their own viewing slot from your live calendar. No phone tag. No back-and-forth. Automatic reminders sent to both parties.</p>
+      <div class="tool-impact">Converts cold enquiries to viewings</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Reputation</div>
+      <span class="tool-icon">⭐</span>
+      <h4>Review Generation Engine</h4>
+      <p>After every completion, an automated sequence goes out to the buyer requesting a Google review. 30 years of happy clients = a goldmine waiting to be activated.</p>
+      <div class="tool-impact">50+ Google reviews within 6 months</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Marketing</div>
+      <span class="tool-icon">📱</span>
+      <h4>Social Media Pipeline</h4>
+      <p>Weekly content built from your site photography and development updates, written in your voice, formatted for LinkedIn and Instagram, and scheduled automatically.</p>
+      <div class="tool-impact">Saves 16 hrs/month on content</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Sales Automation</div>
+      <span class="tool-icon">✉️</span>
+      <h4>Lead Nurture Sequences</h4>
+      <p>Every enquiry enters an automated email journey, taking them from first contact to viewing and from viewing to reservation. No lead goes cold. No follow-up forgotten.</p>
+      <div class="tool-impact">Increases viewing-to-reservation rate</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Investors</div>
+      <span class="tool-icon">📊</span>
+      <h4>Investor Pack Automation</h4>
+      <p>When an investor fills in your form, a branded investment pack fires to their inbox within 60 seconds. No manual preparation. No delay. Professional every time.</p>
+      <div class="tool-impact">Opens a scalable B2B revenue stream</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Intelligence</div>
+      <span class="tool-icon">📈</span>
+      <h4>Weekly Business Dashboard</h4>
+      <p>Every Monday morning, a clear summary of the week's enquiries, viewings, conversions, and social performance lands in your inbox. Know the numbers without chasing them.</p>
+      <div class="tool-impact">Full visibility with zero manual effort</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Land & Site</div>
+      <span class="tool-icon">🏗️</span>
+      <h4>Site Valuation Assistant</h4>
+      <p>An AI tool that generates a preliminary site valuation and development brief when a land owner or agent makes contact, giving you a professional response in minutes rather than days.</p>
+      <div class="tool-impact">Speeds up land acquisition pipeline</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">After Sales</div>
+      <span class="tool-icon">🤝</span>
+      <h4>Buyer Relationship Programme</h4>
+      <p>A post-completion communication sequence that keeps buyers warm, asks for referrals at the right moment, and turns satisfied clients into your best sales channel.</p>
+      <div class="tool-impact">Turns every buyer into a referrer</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── GAPS + OPPS ─── -->
+<div class="wrap">
+  <div class="sec-title">Audit Summary</div>
+  <div class="sec-heading">What this scan found</div>
+  <div class="two-col">
+
+    <div class="list-card">
+      <div class="list-card-head red">
+        <span style="font-size:18px;">⚠️</span>
+        <h3>8 Gaps Identified</h3>
+      </div>
+      <div class="list-body">
+        <div class="list-item"><span class="dot red">!</span>No social media presence. LinkedIn, Instagram and Facebook are all missing.</div>
+        <div class="list-item"><span class="dot red">!</span>Only 4 testimonials on-site, with no Google reviews and no Trustpilot profile.</div>
+        <div class="list-item"><span class="dot red">!</span>No online viewing booking. Buyers must wait for a manual callback.</div>
+        <div class="list-item"><span class="dot red">!</span>No chatbot. Enquiries sit in an inbox with no instant response.</div>
+        <div class="list-item"><span class="dot red">!</span>No content marketing. Nothing to attract buyers before they start searching.</div>
+        <div class="list-item"><span class="dot red">!</span>No pricing shown, which creates unnecessary friction for serious buyers.</div>
+        <div class="list-item"><span class="dot red">!</span>No CRM or lead nurture. Warm enquiries are falling through the cracks.</div>
+        <div class="list-item"><span class="dot red">!</span>No live availability. Buyers cannot see what is on the market today.</div>
+      </div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card-head green">
+        <span style="font-size:18px;">✅</span>
+        <h3>7 Opportunities Ready to Fix</h3>
+      </div>
+      <div class="list-body">
+        <div class="list-item"><span class="dot green">✓</span>AI chatbot for 24/7 buyer qualification and automated viewing booking</div>
+        <div class="list-item"><span class="dot green">✓</span>Review engine to convert 30 years of happy clients into Google stars</div>
+        <div class="list-item"><span class="dot green">✓</span>Social media pipeline with weekly content built and posted automatically</div>
+        <div class="list-item"><span class="dot green">✓</span>Lead nurture sequence, an automated journey from enquiry to reservation</div>
+        <div class="list-item"><span class="dot green">✓</span>Viewing scheduler so prospects self-book with no phone tag required</div>
+        <div class="list-item"><span class="dot green">✓</span>LinkedIn investor channel, a completely untapped B2B revenue stream</div>
+        <div class="list-item"><span class="dot green">✓</span>Investor pack automation with instant branded delivery on every enquiry</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── FULL AUDIT TABLE ─── -->
+<div class="wrap">
+  <div class="sec-title">Full Audit</div>
+  <div class="sec-heading">16-Point Business <span>Digital Audit</span></div>
+  <div class="audit-wrap">
+    <div class="audit-head">
+      <div>
+        <h3>Digital Presence Audit for Eastway Homes</h3>
+        <p>Based on publicly available data only. A full audit with system access will go much deeper.</p>
+      </div>
+      <div class="audit-score-pill">Score: 32 / 100</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">Area</th>
+          <th style="width:11%">Status</th>
+          <th style="width:34%">What We Found</th>
+          <th>Recommended Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Website</td><td><span class="pill pill-partial">Partial</span></td><td>Clear CTAs, downloadable portfolio, professional design. No pricing, no live stock page.</td><td>Add live development availability. Add "prices from" guide. Improves buyer self-qualification.</td></tr>
+        <tr><td>Mobile Experience</td><td><span class="pill pill-partial">Partial</span></td><td>Site appears responsive. No speed data available without access.</td><td>Run Google PageSpeed audit. Target under 3 seconds on mobile. Compress site images.</td></tr>
+        <tr><td>Enquiry Form</td><td><span class="pill pill-partial">Partial</span></td><td>Basic contact form present. No auto-responder or confirmation.</td><td>Add instant auto-reply. Connect to CRM. Never let an enquiry go unacknowledged.</td></tr>
+        <tr><td>Online Booking</td><td><span class="pill pill-miss">Missing</span></td><td>No viewing scheduler found. Buyers must call or wait.</td><td>Integrate smart booking tool. Let buyers self-schedule viewings 24/7.</td></tr>
+        <tr><td>AI Chatbot</td><td><span class="pill pill-miss">Missing</span></td><td>No chatbot present. All enquiries handled manually.</td><td>Deploy AI chatbot to qualify buyers, book viewings, and answer FAQs around the clock.</td></tr>
+        <tr><td>Google Business Profile</td><td><span class="pill pill-miss">Missing</span></td><td>No Google Business listing with reviews found.</td><td>Create and verify Google Business Profile immediately. Single highest-impact quick win.</td></tr>
+        <tr><td>Customer Reviews</td><td><span class="pill pill-partial">Partial</span></td><td>4 on-site testimonials. No third-party reviews on Google or Trustpilot.</td><td>Automate post-completion review requests. Target 50+ Google reviews in 6 months.</td></tr>
+        <tr><td>LinkedIn</td><td><span class="pill pill-miss">Missing</span></td><td>No company LinkedIn page identified.</td><td>Create LinkedIn page. Share development updates and investment opportunities. High-value B2B channel.</td></tr>
+        <tr><td>Instagram / Facebook</td><td><span class="pill pill-miss">Missing</span></td><td>No profiles found on either platform.</td><td>Launch Instagram with site photography. Builds buyer desire before they actively search.</td></tr>
+        <tr><td>Content Marketing</td><td><span class="pill pill-miss">Missing</span></td><td>No blog, newsletter, or video content found.</td><td>Run AI-generated blog for SEO. Monthly newsletter to buyers and warm leads.</td></tr>
+        <tr><td>CRM / Email Marketing</td><td><span class="pill pill-miss">Missing</span></td><td>No CRM or email marketing system visible.</td><td>Implement CRM. Build automated nurture sequences for every lead stage.</td></tr>
+        <tr><td>SEO</td><td><span class="pill pill-partial">Partial</span></td><td>Site appears indexed. No blog content to drive organic traffic volume.</td><td>Publish AI-assisted blog targeting buyer and investor search terms in Essex and South East.</td></tr>
+        <tr><td>Lead Nurture</td><td><span class="pill pill-miss">Missing</span></td><td>No automated follow-up sequences identified.</td><td>Build sequences: enquiry → viewing → reservation → completion. Fully automated.</td></tr>
+        <tr><td>Investor Pipeline</td><td><span class="pill pill-partial">Partial</span></td><td>Investment section exists with PDF download. Manual delivery process.</td><td>Automate investor pack delivery on form submit. Add LinkedIn outreach to land sellers.</td></tr>
+        <tr><td>Pricing Transparency</td><td><span class="pill pill-miss">Missing</span></td><td>No pricing information shown anywhere on the site.</td><td>Add "starting from" price guide. Reduces wasted enquiries and builds buyer trust.</td></tr>
+        <tr><td>After-Sales</td><td><span class="pill pill-good">Present</span></td><td>Founder personally contactable post-completion. NHBC 10-year warranty included.</td><td>Formalise into a post-completion programme. Turn satisfied buyers into active referrers.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── PARTNERSHIP ─── -->
+<div class="wrap">
+  <div class="sec-title">The Partnership</div>
+  <div class="sec-heading">Your Personal <span>AI Architect</span></div>
+  <div class="partner-section">
+    <div class="partner-top">
+      <div class="sec-title">Why This Is Different</div>
+      <div class="sec-heading" style="color:#fff;">This is not a project. It is a <span style="color:#7EB8FF;">relationship.</span></div>
+      <p>
+        I am not here to sell you a piece of software and disappear. I become your dedicated AI architect, the person who understands your business from the inside, builds your systems, trains your team, and keeps pushing you forward as AI evolves. You focus on building great homes. I make sure your business runs at the speed of technology. Most businesses only get access to this level of AI thinking when they hire an in-house team. As your retainer partner, you get it for a fraction of that cost, and I am personally committed to your results.
+      </p>
+    </div>
+    <div class="partner-grid">
+      <div class="partner-col">
+        <h4>What I Do Every Month</h4>
+        <ul>
+          <li>Review and optimise all running automations</li>
+          <li>Build new tools as the business evolves</li>
+          <li>Monitor performance and report clearly</li>
+          <li>Train your team on any new systems</li>
+          <li>Keep you updated as AI moves forward</li>
+          <li>Be available when you need strategic input</li>
+        </ul>
+      </div>
+      <div class="partner-col">
+        <h4>What You Get</h4>
+        <ul>
+          <li>A fully automated enquiry and booking system</li>
+          <li>Growing review and social media presence</li>
+          <li>An investor pipeline that runs on autopilot</li>
+          <li>Weekly business intelligence dashboard</li>
+          <li>A team trained and confident with AI tools</li>
+          <li>A business that works while you are not in it</li>
+        </ul>
+      </div>
+      <div class="partner-col">
+        <h4>My Commitment to You</h4>
+        <ul>
+          <li>Plain English. No jargon, ever.</li>
+          <li>Your price is locked until the contract ends</li>
+          <li>Even if I deliver double the value, the fee stays the same</li>
+          <li>Monthly review so you always know exactly what has been built</li>
+          <li>If it does not deliver ROI, we talk about it</li>
+          <li>I am invested in your growth, not just your payment</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── PRICING ─── -->
+<div class="wrap">
+  <div class="sec-title">Investment</div>
+  <div class="sec-heading">Simple, transparent <span>pricing</span></div>
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <div class="price-tier">Tier 1</div>
+      <div class="price-name">AI Partner</div>
+      <div class="price-amount">
+        <span class="price-sym">£</span>
+        <span class="price-num">2,500</span>
+      </div>
+      <div class="price-period">per month</div>
+      <div class="price-desc">For growing businesses ready to start automating. Focused on the highest-impact quick wins first.</div>
+      <ul class="price-features">
+        <li>AI chatbot + viewing scheduler</li>
+        <li>Review generation engine</li>
+        <li>Social media content pipeline</li>
+        <li>Basic lead nurture sequences</li>
+        <li>Monthly strategy review</li>
+        <li>Team training included</li>
+      </ul>
+      <div class="price-lock">Your price is locked for the full contract term, even as the value delivered grows.</div>
+    </div>
+
+    <div class="price-card featured">
+      <div class="featured-badge">Recommended</div>
+      <div class="price-tier">Tier 2</div>
+      <div class="price-name">AI Architect</div>
+      <div class="price-amount">
+        <span class="price-sym">£</span>
+        <span class="price-num">4,000</span>
+      </div>
+      <div class="price-period">per month</div>
+      <div class="price-desc">The full suite. Every tool built, every automation running, full strategic oversight. For Eastway Homes, this is the right level.</div>
+      <ul class="price-features">
+        <li>Everything in Tier 1</li>
+        <li>Full CRM implementation</li>
+        <li>Investor pipeline automation</li>
+        <li>Site valuation assistant</li>
+        <li>Weekly intelligence dashboard</li>
+        <li>Buyer relationship programme</li>
+        <li>LinkedIn B2B channel setup</li>
+        <li>Priority access. I am your partner.</li>
+      </ul>
+      <div class="price-lock">Your price is locked for the full contract term, even as the value delivered grows.</div>
+    </div>
+
+    <div class="price-card">
+      <div class="price-tier">One-Off</div>
+      <div class="price-name">Full AI OS Build</div>
+      <div class="price-amount">
+        <span class="price-sym">£</span>
+        <span class="price-num">10,000</span>
+      </div>
+      <div class="price-period">one-time fee</div>
+      <div class="price-desc">Everything built, installed, and your team fully trained. You take ownership and run it yourselves with no ongoing retainer required.</div>
+      <ul class="price-features">
+        <li>Complete AI system build</li>
+        <li>All tools designed for your business</li>
+        <li>Full team training programme</li>
+        <li>Documentation and handover</li>
+        <li>30-day post-launch support</li>
+      </ul>
+      <div class="price-lock">One-time investment. Your systems, your ownership, forever.</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:20px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px 28px; display:flex; align-items:flex-start; gap:14px;">
+    <span style="font-size:22px; flex-shrink:0;">💡</span>
+    <div>
+      <strong style="font-size:14px; color:var(--navy);">How to think about this investment:</strong>
+      <p style="font-size:13.5px; color:var(--mid); margin-top:4px; line-height:1.7;">
+        The Tier 2 AI Architect retainer at £4,000/month costs £48,000 per year. This scan, using only public data, identified <strong>£96,000+ of annual value</strong>. That is a 2:1 return before we have even looked inside your systems. A full audit will reveal significantly more. And your price stays fixed for the entire contract, no matter how much value is delivered.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── FREE AUDIT CTA ─── -->
+<div class="wrap">
+  <div class="cta-wrap">
+    <div class="cta-chip">🎯 Limited Free Offer</div>
+    <h2>Book Your Free AI Audit</h2>
+    <p>This report was built using only what is publicly visible, and it already identified <strong style="color:#fff;">£96,000+ of annual value</strong>. A proper audit goes inside your systems, your pipeline, your processes, and your team's day-to-day. In our experience, that is where the real numbers live. Once we sit with you and map everything properly, the figure we are looking at could be well beyond £96,000. We are talking <strong style="color:#fff;">£200,000 or more saved every single year</strong>. I will come to you, spend time understanding the business properly, and deliver a clear, jargon-free plan for exactly where AI saves you time and money. No obligation. Just a real conversation that could change the way your business operates.</p>
+    <div class="cta-features">
+      <div class="cta-feat">No cost, no obligation</div>
+      <div class="cta-feat">In-person or online</div>
+      <div class="cta-feat">Plain English throughout</div>
+      <div class="cta-feat">Clear ROI estimate delivered</div>
+    </div>
+    <a href="mailto:team@makemeai.tech?subject=Free AI Audit for Eastway Homes&body=Hi Olusegun,%0A%0AI've had a look at the AI Business Report for Eastway Homes and I'd like to book a free audit.%0A%0APlease get in touch to arrange a time.%0A%0AThank you" class="cta-btn">Book My Free Audit →</a>
+    <div class="cta-note">team@makemeai.tech &nbsp;·&nbsp; www.makemeai.tech &nbsp;·&nbsp; Essex, United Kingdom</div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="ft-logo">MakeMe<span>AI</span> Consulting Ltd</div>
+  Essex, United Kingdom &nbsp;·&nbsp; team@makemeai.tech &nbsp;·&nbsp; www.makemeai.tech<br>
+  This report was prepared using publicly available information only. Estimates are conservative and indicative. &copy; 2026 MakeMeAI Consulting Ltd. All rights reserved.
+</footer>
+
+</body>
+</html>

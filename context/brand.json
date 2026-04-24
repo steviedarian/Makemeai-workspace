@@ -1,0 +1,19 @@
+{
+  "business_name": "MakeMeAI Consulting Ltd",
+  "strapline": null,
+  "email": "team@makemeai.tech",
+  "website": "https://www.makemeai.tech",
+  "location": {
+    "city": "Essex",
+    "country": "United Kingdom"
+  },
+  "colours": {
+    "primary": "blue",
+    "secondary": "white"
+  },
+  "currency": {
+    "code": "USD",
+    "symbol": "$",
+    "name": "US Dollars"
+  }
+}
