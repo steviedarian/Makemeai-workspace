@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Readiness Report — Abi Daré | MakeMeAI Consulting Ltd</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #080F1E;
+      --blue:   #0F2552;
+      --accent: #1D57D8;
+      --accent2:#3B70E8;
+      --white:  #FFFFFF;
+      --green:  #059669;
+      --red:    #DC2626;
+      --amber:  #D97706;
+      --surface:#F7F9FF;
+      --border: #E2E8F4;
+      --text:   #1E293B;
+      --muted:  #64748B;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ── MASTHEAD ────────────────────────────────────────── */
+    .masthead {
+      background: linear-gradient(140deg, var(--navy) 0%, var(--blue) 55%, #1a3a7a 100%);
+      padding: 52px 0 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .masthead::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(29,87,216,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .masthead::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 20%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(59,112,232,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px;
+      position: relative;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .brand-dot {
+      width: 9px; height: 9px;
+      background: var(--accent2);
+      border-radius: 50%;
+    }
+
+    .brand-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .report-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 10px;
+    }
+
+    .client-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 44px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .client-url {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 44px;
+      letter-spacing: 0.02em;
+    }
+
+    .score-layout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .score-digits {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .score-label-top {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 8px;
+    }
+
+    .score-big {
+      font-family: 'Poppins', sans-serif;
+      font-size: 86px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .score-denom {
+      font-family: 'Poppins', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .score-right {
+      padding-bottom: 10px;
+    }
+
+    .score-bar-track {
+      height: 7px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      width: 58%;
+      background: linear-gradient(90deg, var(--accent2), #7BAEFF);
+      border-radius: 4px;
+    }
+
+    .score-verdict {
+      font-size: 15px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      max-width: 440px;
+    }
+
+    .score-verdict strong {
+      color: #fff;
+    }
+
+    .masthead-date {
+      margin-top: 36px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── IMPACT STRIP ────────────────────────────────────── */
+    .impact-strip {
+      background: var(--accent);
+    }
+
+    .impact-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .impact-item {
+      padding: 28px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .impact-item + .impact-item {
+      border-left: 1px solid rgba(255,255,255,0.2);
+      padding-left: 36px;
+    }
+
+    .impact-val {
+      font-family: 'Poppins', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .impact-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.72);
+    }
+
+    /* ── BODY CONTENT ────────────────────────────────────── */
+    .body-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px 72px;
+    }
+
+    /* ── SECTION HEADERS ─────────────────────────────────── */
+    .sec-hdr {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 52px 0 24px;
+    }
+
+    .sec-hdr h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .sec-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── THE GAP CALLOUT ─────────────────────────────────── */
+    .gap-callout {
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 40px 44px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .gap-left .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .gap-left h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .gap-left p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    .gap-numbers {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .gap-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .gap-num-val {
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1;
+      min-width: 130px;
+      text-align: right;
+    }
+
+    .gap-num-val.big { color: var(--accent2); }
+    .gap-num-val.small { color: rgba(255,255,255,0.5); }
+
+    .gap-num-desc {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .gap-num-desc.big { color: rgba(255,255,255,0.85); }
+    .gap-num-desc.small { color: rgba(255,255,255,0.4); }
+
+    .gap-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ── ROI CARDS ───────────────────────────────────────── */
+    .roi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .roi-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px;
+    }
+
+    .roi-icon {
+      width: 44px; height: 44px;
+      background: #EBF0FD;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .roi-number {
+      font-family: 'Poppins', sans-serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .roi-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .roi-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .roi-breakdown {
+      margin-top: 14px;
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    .roi-breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .roi-breakdown-row:last-child { border-bottom: none; }
+    .roi-breakdown-row strong { color: var(--text); }
+
+    /* ── AREA SCORES ─────────────────────────────────────── */
+    .area-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .area-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 26px;
+    }
+
+    .area-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .area-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .area-score {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .score-h { color: var(--green); }
+    .score-m { color: var(--amber); }
+    .score-l { color: var(--red); }
+
+    .area-bar-track {
+      height: 6px;
+      background: #EBF0FD;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+
+    .area-bar-fill { height: 100%; border-radius: 3px; }
+    .bar-h { background: var(--green); }
+    .bar-m { background: var(--amber); }
+    .bar-l { background: var(--red); }
+
+    .area-note {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .area-data-tag {
+      margin-top: 10px;
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: #EBF0FD;
+      color: var(--accent);
+    }
+
+    /* ── TOOLS ───────────────────────────────────────────── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tool-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .tool-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tool-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .tool-tag {
+      display: inline-block;
+      margin-top: 6px;
+      background: #EBF0FD;
+      color: var(--accent);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: 20px;
+      align-self: flex-start;
+    }
+
+    /* ── SOCIAL DATA PANEL ───────────────────────────────── */
+    .social-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .social-panel-header {
+      background: var(--navy);
+      padding: 18px 28px;
+    }
+
+    .social-panel-header h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .social-rows {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .social-cell {
+      padding: 24px 20px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .social-cell:nth-child(4n) { border-right: none; }
+    .social-cell:nth-last-child(-n+4) { border-bottom: none; }
+
+    .social-platform {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .social-stat-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .social-stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .social-verdict {
+      font-size: 11.5px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ── SPEAKING PROFILE ────────────────────────────────── */
+    .speaking-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+    }
+
+    .speaking-intro {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .client-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .speaking-insight {
+      background: #EBF0FD;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 13.5px;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ── GAPS AND OPPS ───────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .list-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px;
+    }
+
+    .list-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid;
+    }
+
+    .list-card.gaps h3 { color: var(--red); border-color: var(--red); }
+    .list-card.opps h3 { color: var(--green); border-color: var(--green); }
+
+    .list-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .list-card ul li {
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .bdot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .bdot-r { background: var(--red); }
+    .bdot-g { background: var(--green); }
+
+    /* ── AUDIT TABLE ─────────────────────────────────────── */
+    .audit-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+    }
+
+    .audit-table th {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 22px;
+      text-align: left;
+    }
+
+    .audit-table td {
+      padding: 13px 22px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .audit-table tr:last-child td { border-bottom: none; }
+    .audit-table tbody tr:nth-child(even) td { background: #FAFBFF; }
+
+    .audit-area { font-weight: 600; color: var(--navy); font-size: 13px; }
+    .audit-note { color: var(--muted); font-size: 12.5px; }
+
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pill-g { background: #D1FAE5; color: #065F46; }
+    .pill-a { background: #FEF3C7; color: #92400E; }
+    .pill-r { background: #FEE2E2; color: #991B1B; }
+
+    /* ── PARTNERSHIP ─────────────────────────────────────── */
+    .partner-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px;
+    }
+
+    .partner-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    .partner-col h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .partner-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .partner-col ul li {
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .tick {
+      color: var(--green);
+      font-size: 15px;
+      margin-top: 0px;
+      flex-shrink: 0;
+    }
+
+    .commit-strip {
+      margin-top: 30px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 28px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .commit-item { display: flex; flex-direction: column; gap: 4px; }
+
+    .commit-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .commit-val {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ── PRICING ─────────────────────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-tier {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .pricing-card:not(.featured) .pricing-tier { color: var(--muted); }
+    .pricing-card.featured .pricing-tier { color: rgba(255,255,255,0.65); }
+
+    .pricing-amount {
+      font-family: 'Poppins', sans-serif;
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .pricing-card:not(.featured) .pricing-amount { color: var(--navy); }
+    .pricing-card.featured .pricing-amount { color: #fff; }
+
+    .pricing-period {
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .pricing-card:not(.featured) .pricing-period { color: var(--muted); }
+    .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.6); }
+
+    .pricing-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      padding-bottom: 14px;
+      border-bottom: 1px solid;
+    }
+
+    .pricing-card:not(.featured) .pricing-desc { color: var(--text); border-color: var(--border); }
+    .pricing-card.featured .pricing-desc { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      flex: 1;
+    }
+
+    .pricing-features li {
+      font-size: 13px;
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .pricing-card:not(.featured) .pricing-features li { color: var(--text); }
+    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.88); }
+
+    .ptick { flex-shrink: 0; margin-top: 1px; }
+    .pricing-card:not(.featured) .ptick { color: var(--green); }
+    .pricing-card.featured .ptick { color: rgba(255,255,255,0.7); }
+
+    .roi-callout {
+      margin-top: 22px;
+      background: #EBF0FD;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .roi-callout p {
+      font-size: 14px;
+      color: var(--navy);
+      line-height: 1.65;
+    }
+
+    .roi-callout strong { color: var(--accent); }
+
+    /* ── TIME SAVINGS VISUAL ─────────────────────────────── */
+    .time-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+    }
+
+    .time-intro {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .time-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 60px;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .time-task {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .time-bar-track {
+      height: 8px;
+      background: #EBF0FD;
+      border-radius: 4px;
+    }
+
+    .time-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 4px;
+    }
+
+    .time-hrs {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: right;
+    }
+
+    .time-total {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 2px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .time-total-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .time-total-val {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    /* ── REVENUE VISUAL ──────────────────────────────────── */
+    .revenue-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+    }
+
+    .rev-intro {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .rev-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .rev-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rev-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .rev-source {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .rev-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .rev-amount {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .rev-total-row {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 2px solid var(--navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .rev-total-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .rev-total-val {
+      font-family: 'Poppins', sans-serif;
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    /* ── CTA ─────────────────────────────────────────────── */
+    .cta-block {
+      background: linear-gradient(140deg, var(--navy), var(--blue));
+      border-radius: 16px;
+      padding: 56px 48px;
+      text-align: center;
+    }
+
+    .cta-block h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .cta-block p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 17px 40px;
+      border-radius: 9px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .cta-sub {
+      margin-top: 18px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      padding: 30px 48px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer strong { color: rgba(255,255,255,0.55); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .wrap, .impact-inner, .body-wrap, .footer { padding-left: 22px; padding-right: 22px; }
+      .impact-inner, .score-layout, .roi-grid, .area-grid, .tools-grid, .two-col,
+      .partner-grid, .pricing-grid, .gap-callout, .clients-grid, .social-rows, .time-row
+      { grid-template-columns: 1fr; }
+      .client-name { font-size: 32px; }
+      .score-big { font-size: 60px; }
+      .impact-item + .impact-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.2); padding-left: 0; padding-top: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     MASTHEAD
+═══════════════════════════════════════════════════════ -->
+<div class="masthead">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand-dot"></div>
+      <span class="brand-name">MakeMeAI Consulting Ltd</span>
+    </div>
+
+    <div class="report-eyebrow">AI Readiness Report</div>
+    <div class="client-name">Abi Dar&#233;</div>
+    <div class="client-url">abidareauthor.com &nbsp;|&nbsp; Author, Speaker, Educator, Philanthropist</div>
+
+    <div class="score-layout">
+      <div class="score-block">
+        <div class="score-label-top">AI Readiness Score</div>
+        <div class="score-digits">
+          <span class="score-big">58</span>
+          <span class="score-denom">/100</span>
+        </div>
+      </div>
+      <div class="score-right">
+        <div class="score-bar-track">
+          <div class="score-bar-fill"></div>
+        </div>
+        <div class="score-verdict">
+          <strong>World-class credentials. Underperforming infrastructure.</strong> Abi Dar&#233; has 184,000 readers and speaks at Harvard. The systems running her business are not keeping pace with her reach.
+        </div>
+      </div>
+    </div>
+
+    <div class="masthead-date">Generated 27 April 2026 &nbsp;|&nbsp; Prepared by MakeMeAI Consulting Ltd &nbsp;|&nbsp; team@makemeai.tech</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     IMPACT STRIP
+═══════════════════════════════════════════════════════ -->
+<div class="impact-strip">
+  <div class="impact-inner">
+    <div class="impact-item">
+      <span class="impact-val">£48,000+</span>
+      <span class="impact-desc">Estimated annual value from AI improvements</span>
+    </div>
+    <div class="impact-item">
+      <span class="impact-val">18 hrs/month</span>
+      <span class="impact-desc">Time reclaimed from admin, bookings and manual content</span>
+    </div>
+    <div class="impact-item">
+      <span class="impact-val">7 tools</span>
+      <span class="impact-desc">Ready to build with no disruption to current work</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     BODY
+═══════════════════════════════════════════════════════ -->
+<div class="body-wrap">
+
+  <!-- THE GAP -->
+  <div class="sec-hdr" style="margin-top:44px;">
+    <h2>The gap that matters</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="gap-callout">
+    <div class="gap-left">
+      <div class="eyebrow">Key Insight</div>
+      <h3>The audience already exists. The pipeline to reach them does not.</h3>
+      <p>Abi Dar&#233; has 184,000 people who cared enough about her work to leave a rating on Goodreads. Only 12,000 follow her on Instagram. That gap represents readers who have no direct relationship with her beyond the book. No newsletter. No Academy. No speaking inquiry. No way back in. Every one of those readers is a missed conversation.</p>
+    </div>
+    <div class="gap-numbers">
+      <div class="gap-row">
+        <span class="gap-num-val big">184,251</span>
+        <span class="gap-num-desc big">Goodreads ratings at 4.4/5.0. These are active, engaged readers who loved the work.</span>
+      </div>
+      <div class="gap-divider"></div>
+      <div class="gap-row">
+        <span class="gap-num-val small">12,000</span>
+        <span class="gap-num-desc small">Instagram followers. The conversion from reader to follower to community member is almost non-existent.</span>
+      </div>
+      <div class="gap-divider"></div>
+      <div class="gap-row">
+        <span class="gap-num-val small">1,945</span>
+        <span class="gap-num-desc small">Goodreads followers. A fraction of her raters are even following her on the platform where they found her.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROI -->
+  <div class="sec-hdr">
+    <h2>Where the value comes from</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="roi-grid">
+    <div class="roi-card">
+      <div class="roi-icon">&#128197;</div>
+      <div class="roi-number">£32,000</div>
+      <div class="roi-title">Additional speaking revenue per year</div>
+      <div class="roi-body">An AI inquiry system captures inbound interest 24/7, qualifies event fit instantly, and books intro calls without email back-and-forth. At her current profile and speaking history, four additional engagements per year is conservative.</div>
+      <div class="roi-breakdown">
+        <div class="roi-breakdown-row"><span>Additional engagements captured</span><strong>4 per year</strong></div>
+        <div class="roi-breakdown-row"><span>Average keynote fee</span><strong>£8,000</strong></div>
+        <div class="roi-breakdown-row"><span>Annual uplift</span><strong>£32,000</strong></div>
+      </div>
+    </div>
+    <div class="roi-card">
+      <div class="roi-icon">&#127891;</div>
+      <div class="roi-number">£13,000</div>
+      <div class="roi-title">Academy enrollment uplift per year</div>
+      <div class="roi-body">Smart email sequences that move newsletter readers toward The Louding Voice Academy. A 20% enrollment uplift is achievable with a proper funnel connecting the newsletter, the website, and the Academy offer.</div>
+      <div class="roi-breakdown">
+        <div class="roi-breakdown-row"><span>Funnel conversion improvement</span><strong>20%</strong></div>
+        <div class="roi-breakdown-row"><span>Estimated audience reachable</span><strong>Existing list</strong></div>
+        <div class="roi-breakdown-row"><span>Annual uplift</span><strong>£13,000+</strong></div>
+      </div>
+    </div>
+    <div class="roi-card">
+      <div class="roi-icon">&#128241;</div>
+      <div class="roi-number">10x</div>
+      <div class="roi-title">Social content output with no extra time</div>
+      <div class="roi-body">An AI content pipeline turns book excerpts, press coverage, event appearances, and Foundation updates into ready-to-post LinkedIn, Instagram, and X content. Five posts per week, every week, in her exact voice. Zero manual writing.</div>
+      <div class="roi-breakdown">
+        <div class="roi-breakdown-row"><span>Current posting effort</span><strong>Manual, irregular</strong></div>
+        <div class="roi-breakdown-row"><span>With AI pipeline</span><strong>5 posts/week</strong></div>
+        <div class="roi-breakdown-row"><span>Time saved on content</span><strong>5 hrs/month</strong></div>
+      </div>
+    </div>
+    <div class="roi-card">
+      <div class="roi-icon">&#128336;</div>
+      <div class="roi-number">18 hrs</div>
+      <div class="roi-title">Reclaimed every month from manual admin</div>
+      <div class="roi-body">Speaking coordination, booking emails, school visit admin, social content creation, and media monitoring are all currently done by hand. Every hour reclaimed is an hour back on writing, the Foundation, or the Academy.</div>
+      <div class="roi-breakdown">
+        <div class="roi-breakdown-row"><span>Speaking admin saved</span><strong>6 hrs/month</strong></div>
+        <div class="roi-breakdown-row"><span>Content creation saved</span><strong>5 hrs/month</strong></div>
+        <div class="roi-breakdown-row"><span>Visit coordination + monitoring</span><strong>7 hrs/month</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIME SAVINGS VISUAL -->
+  <div class="sec-hdr">
+    <h2>Time savings breakdown</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="time-card">
+    <div class="time-intro">This is where 18 hours per month actually comes from. Each figure is based on typical time spent by an author-speaker managing these tasks manually without automation.</div>
+    <div class="time-rows">
+      <div class="time-row">
+        <span class="time-task">Speaking inquiry management</span>
+        <div class="time-bar-track"><div class="time-bar-fill" style="width:100%"></div></div>
+        <span class="time-hrs">6 hrs</span>
+      </div>
+      <div class="time-row">
+        <span class="time-task">Social content creation</span>
+        <div class="time-bar-track"><div class="time-bar-fill" style="width:83%"></div></div>
+        <span class="time-hrs">5 hrs</span>
+      </div>
+      <div class="time-row">
+        <span class="time-task">School and org visit admin</span>
+        <div class="time-bar-track"><div class="time-bar-fill" style="width:67%"></div></div>
+        <span class="time-hrs">4 hrs</span>
+      </div>
+      <div class="time-row">
+        <span class="time-task">Media and review monitoring</span>
+        <div class="time-bar-track"><div class="time-bar-fill" style="width:50%"></div></div>
+        <span class="time-hrs">3 hrs</span>
+      </div>
+    </div>
+    <div class="time-total">
+      <span class="time-total-label">Total saved per month</span>
+      <span class="time-total-val">18 hours</span>
+    </div>
+  </div>
+
+  <!-- REVENUE VISUAL -->
+  <div class="sec-hdr">
+    <h2>Revenue opportunity breakdown</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="revenue-card">
+    <div class="rev-intro">These are the three clearest commercial opportunities based on publicly available information. With full access to her systems and audience data, the actual figure is likely higher.</div>
+    <div class="rev-rows">
+      <div class="rev-row">
+        <div>
+          <div class="rev-source">Additional speaking engagements</div>
+          <div class="rev-note">4 engagements captured via automated inquiry system, at £8,000 average. Harvard, House of Lords, and Women's Prize Trust calibre events do not come cheap.</div>
+        </div>
+        <span class="rev-amount">£32,000</span>
+      </div>
+      <div class="rev-row">
+        <div>
+          <div class="rev-source">Louding Voice Academy enrollment uplift</div>
+          <div class="rev-note">20% increase in course conversions from newsletter audience with a properly automated email funnel and website-to-Academy pathway.</div>
+        </div>
+        <span class="rev-amount">£13,000</span>
+      </div>
+      <div class="rev-row">
+        <div>
+          <div class="rev-source">Foundation supporter and donor growth</div>
+          <div class="rev-note">An automated donor nurture pipeline for The Louding Voice Foundation. Supporters acquired at events and online converted into long-term backers.</div>
+        </div>
+        <span class="rev-amount">£3,000+</span>
+      </div>
+    </div>
+    <div class="rev-total-row">
+      <span class="rev-total-label">Estimated total annual uplift</span>
+      <span class="rev-total-val">£48,000+</span>
+    </div>
+  </div>
+
+  <!-- AREA SCORES -->
+  <div class="sec-hdr">
+    <h2>Area scores</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="area-grid">
+    <div class="area-card">
+      <div class="area-top">
+        <span class="area-name">Website Quality</span>
+        <span class="area-score score-h">8/10</span>
+      </div>
+      <div class="area-bar-track"><div class="area-bar-fill bar-h" style="width:80%"></div></div>
+      <div class="area-note">Professional, well-structured, and clearly branded. Four pillars defined. Newsletter signup and CTAs in place. Missing a live chat, FAQ system, and automated booking path.</div>
+      <span class="area-data-tag">Verified via website fetch</span>
+    </div>
+    <div class="area-card">
+      <div class="area-top">
+        <span class="area-name">Social Media Presence</span>
+        <span class="area-score score-l">4/10</span>
+      </div>
+      <div class="area-bar-track"><div class="area-bar-fill bar-l" style="width:40%"></div></div>
+      <div class="area-note">12K Instagram followers and an X/Twitter account. No LinkedIn author profile. No YouTube or TikTok. For an author with 184K Goodreads raters, the social footprint is severely underscaled.</div>
+      <span class="area-data-tag">12K Instagram confirmed</span>
+    </div>
+    <div class="area-card">
+      <div class="area-top">
+        <span class="area-name">Online Reputation and Reviews</span>
+        <span class="area-score score-h">9/10</span>
+      </div>
+      <div class="area-bar-track"><div class="area-bar-fill bar-h" style="width:90%"></div></div>
+      <div class="area-note">Exceptional. 184,251 Goodreads ratings at 4.4/5.0. 20,018 written reviews. Published in 24 languages. Reader sentiment is overwhelmingly positive across all platforms checked.</div>
+      <span class="area-data-tag">184,251 ratings verified via Goodreads</span>
+    </div>
+    <div class="area-card">
+      <div class="area-top">
+        <span class="area-name">Content Marketing</span>
+        <span class="area-score score-m">4/10</span>
+      </div>
+      <div class="area-bar-track"><div class="area-bar-fill bar-m" style="width:40%"></div></div>
+      <div class="area-note">The Louding Life newsletter is a good foundation. But no blog, no YouTube channel, no podcast, and no TikTok/BookTok presence identified. A speaker of this calibre should own a much larger content footprint.</div>
+      <span class="area-data-tag">Newsletter confirmed, no video found</span>
+    </div>
+    <div class="area-card">
+      <div class="area-top">
+        <span class="area-name">Automation Readiness</span>
+        <span class="area-score score-l">3/10</span>
+      </div>
+      <div class="area-bar-track"><div class="area-bar-fill bar-l" style="width:30%"></div></div>
+      <div class="area-note">A contact form and newsletter signup are the only automations visible. No chatbot, no online booking calendar, no email nurture sequences, no CRM integration. The biggest gap across all six areas.</div>
+      <span class="area-data-tag">Verified via website and platform review</span>
+    </div>
+    <div class="area-card">
+      <div class="area-top">
+        <span class="area-name">Authority and Positioning</span>
+        <span class="area-score score-h">9/10</span>
+      </div>
+      <div class="area-bar-track"><div class="area-bar-fill bar-h" style="width:90%"></div></div>
+      <div class="area-note">NYT bestseller. Climate Fiction Prize winner. Book Aid International Ambassador 2026. Honorary Doctorate from Glasgow Caledonian University. Harvard and House of Lords keynote speaker. The Independent's Climate 100 Power List.</div>
+      <span class="area-data-tag">Verified via Wikipedia, Champions Speakers, and press</span>
+    </div>
+  </div>
+
+  <!-- SOCIAL DATA -->
+  <div class="sec-hdr">
+    <h2>Social media audit</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="social-panel">
+    <div class="social-panel-header">
+      <h3>Platform-by-platform data collected 27 April 2026</h3>
+    </div>
+    <div class="social-rows">
+      <div class="social-cell">
+        <div class="social-platform">Instagram</div>
+        <div class="social-stat-num">12,000</div>
+        <div class="social-stat-label">Followers @abidare_author</div>
+        <div class="social-verdict">Active account but severely underscaled. A NYT bestselling author who speaks at Harvard should command 100K+ followers on this platform alone.</div>
+      </div>
+      <div class="social-cell">
+        <div class="social-platform">Goodreads</div>
+        <div class="social-stat-num">1,945</div>
+        <div class="social-stat-label">Followers (184K raters)</div>
+        <div class="social-verdict">The contrast is stark. 184,000 people rated her books. Only 1,945 follow her author profile on the platform. The pipeline from reader to community member is missing.</div>
+      </div>
+      <div class="social-cell">
+        <div class="social-platform">X / Twitter</div>
+        <div class="social-stat-num">Active</div>
+        <div class="social-stat-label">@abidare_author</div>
+        <div class="social-verdict">Account exists and is searchable. Platform authentication walls prevented full data pull. Follower count not publicly accessible without login.</div>
+      </div>
+      <div class="social-cell">
+        <div class="social-platform">LinkedIn</div>
+        <div class="social-stat-num">Missing</div>
+        <div class="social-stat-label">No author profile found</div>
+        <div class="social-verdict">No verified personal LinkedIn profile for Abi Dar&#233; the author and speaker. A major gap for B2B speaking enquiries and corporate event organisers who research on LinkedIn first.</div>
+      </div>
+      <div class="social-cell">
+        <div class="social-platform">YouTube / TikTok</div>
+        <div class="social-stat-num">None</div>
+        <div class="social-stat-label">No channel found</div>
+        <div class="social-verdict">No YouTube channel or TikTok presence identified. BookTok has made careers overnight for authors with far smaller existing audiences. This is an untapped channel.</div>
+      </div>
+      <div class="social-cell">
+        <div class="social-platform">Amazon</div>
+        <div class="social-stat-num">Active</div>
+        <div class="social-stat-label">Author page live</div>
+        <div class="social-verdict">Amazon author page active. Positive reader sentiment. The Girl with the Louding Voice leads sales. No automation connecting Amazon readers back into her owned channels.</div>
+      </div>
+      <div class="social-cell">
+        <div class="social-platform">Goodreads Reviews</div>
+        <div class="social-stat-num">20,018</div>
+        <div class="social-stat-label">Written reviews at 4.4/5.0</div>
+        <div class="social-verdict">Outstanding reader loyalty. These 20,000 reviewers are her most engaged fans. None of them are in an automated relationship-building sequence.</div>
+      </div>
+      <div class="social-cell">
+        <div class="social-platform">Languages</div>
+        <div class="social-stat-num">24</div>
+        <div class="social-stat-label">Translation markets</div>
+        <div class="social-verdict">Published in 24 languages across global markets. No multilingual digital strategy or international audience capture system in place.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEAKING PROFILE -->
+  <div class="sec-hdr">
+    <h2>Speaking track record</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="speaking-card">
+    <div class="speaking-intro">Abi Dar&#233; is represented by Champions Speakers and has addressed some of the most prestigious institutions in the world. Her previous career spans BP, Virgin Atlantic, and Pharma Intelligence, giving her credibility in both literary and corporate boardroom settings. The speaking demand is real. The inquiry capture system is not.</div>
+    <div class="clients-grid">
+      <div class="client-chip">Harvard Kennedy School</div>
+      <div class="client-chip">House of Lords</div>
+      <div class="client-chip">Women's Prize Trust</div>
+      <div class="client-chip">International Rescue Committee</div>
+      <div class="client-chip">University of Wolverhampton</div>
+      <div class="client-chip">The Felsted School</div>
+    </div>
+    <div class="speaking-insight">Every one of these organisations went through a manual inquiry process. Every event that slipped through an inbox unmanaged is lost revenue. An automated speaking inquiry system would have captured, qualified, and converted more of those inbound requests from day one.</div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="sec-hdr">
+    <h2>7 tools we would build</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-num">Tool 01</div>
+      <div class="tool-name">Speaking Inquiry AI</div>
+      <div class="tool-body">A website assistant that captures speaking inquiry details around the clock. Event type, audience size, topic preferences, and budget gathered automatically. Intro calls booked without a single email exchange. No more lost enquiries.</div>
+      <span class="tool-tag">Saves 6 hrs/month in admin</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">Tool 02</div>
+      <div class="tool-name">Academy Enrollment Engine</div>
+      <div class="tool-body">Automated email sequences that move newsletter readers toward The Louding Voice Academy. Segmented by reading behaviour. The right offer to the right reader at the right moment. No manual follow-up required.</div>
+      <span class="tool-tag">Target: 20% enrollment uplift</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">Tool 03</div>
+      <div class="tool-name">Social Content Pipeline</div>
+      <div class="tool-body">AI that turns book excerpts, press coverage, award announcements, and Foundation updates into ready-to-post Instagram, X, and LinkedIn content. Five posts per week, consistent voice, zero manual writing required from Abi.</div>
+      <span class="tool-tag">5 posts/week, fully on-brand</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">Tool 04</div>
+      <div class="tool-name">School and Org Visit Scheduler</div>
+      <div class="tool-body">Automated booking system for school visits and corporate author events. Inquiry form, calendar sync, confirmation emails, briefing pack, and pre-visit communications all handled without any manual coordination.</div>
+      <span class="tool-tag">Saves 4 hrs per booking cycle</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">Tool 05</div>
+      <div class="tool-name">Media and Mention Monitor</div>
+      <div class="tool-body">Daily tracking of Goodreads, Amazon, press outlets, and social platforms for new reviews, citations, and media mentions. Every press hit and reader review surfaced automatically before the moment passes.</div>
+      <span class="tool-tag">Never miss a press hit again</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">Tool 06</div>
+      <div class="tool-name">Reader Relationship Manager</div>
+      <div class="tool-body">Newsletter audience segmented by reading behaviour. Goodreads fans get different messages from Academy students or corporate event prospects. Relevance at scale, built around her four pillars: Writer, Speaker, Teacher, Philanthropist.</div>
+      <span class="tool-tag">Higher open rates, more conversions</span>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">Tool 07</div>
+      <div class="tool-name">Foundation Donor Pipeline</div>
+      <div class="tool-body">An automated supporter journey for The Louding Voice Foundation. People who meet Abi at events, buy her books, or sign up online are nurtured into long-term Foundation supporters and donors with no manual outreach needed.</div>
+      <span class="tool-tag">Grows the Foundation passively</span>
+    </div>
+  </div>
+
+  <!-- GAPS AND OPPS -->
+  <div class="sec-hdr">
+    <h2>Gaps and opportunities</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div class="list-card gaps">
+      <h3>What is missing right now</h3>
+      <ul>
+        <li><div class="bdot bdot-r"></div>No chatbot or AI assistant to handle FAQs and capture leads on the website</li>
+        <li><div class="bdot bdot-r"></div>Speaking inquiries go through a general contact form with no structured intake or auto-qualification</li>
+        <li><div class="bdot bdot-r"></div>No automated email sequences for newsletter subscribers</li>
+        <li><div class="bdot bdot-r"></div>12K Instagram followers against 184K Goodreads raters. The reader-to-follower pipeline is broken.</li>
+        <li><div class="bdot bdot-r"></div>No LinkedIn personal author profile. Corporate event organisers research speakers on LinkedIn first.</li>
+        <li><div class="bdot bdot-r"></div>No YouTube or TikTok presence despite being a compelling speaker and educator</li>
+        <li><div class="bdot bdot-r"></div>No visible CRM or pipeline for managing speaking enquiries and corporate follow-ups</li>
+        <li><div class="bdot bdot-r"></div>The Louding Voice Academy has no visible funnel connecting the main website to enrollment</li>
+      </ul>
+    </div>
+    <div class="list-card opps">
+      <h3>What AI could fix</h3>
+      <ul>
+        <li><div class="bdot bdot-g"></div>24/7 speaking inquiry capture with auto-qualification and calendar booking</li>
+        <li><div class="bdot bdot-g"></div>Newsletter-to-Academy funnel generating passive course revenue every month</li>
+        <li><div class="bdot bdot-g"></div>AI content system turning every event, book excerpt, and press mention into social posts</li>
+        <li><div class="bdot bdot-g"></div>BookTok and LinkedIn content strategy to close the gap between 184K raters and 12K followers</li>
+        <li><div class="bdot bdot-g"></div>School visit booking system handling all coordination without admin overhead</li>
+        <li><div class="bdot bdot-g"></div>Automated reader sequences that build loyalty and drive Academy and Foundation conversions</li>
+        <li><div class="bdot bdot-g"></div>Media monitoring so every press hit and review opportunity is captured and acted on</li>
+        <li><div class="bdot bdot-g"></div>Foundation donor pipeline that grows supporter base with no ongoing manual outreach</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AUDIT TABLE -->
+  <div class="sec-hdr">
+    <h2>Full digital audit</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="audit-wrap">
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th style="width:36%">Area</th>
+          <th style="width:44%">Current State</th>
+          <th style="width:20%">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="audit-area">Author website (abidareauthor.com)</td>
+          <td class="audit-note">Professional, four-pillar structure, strong CTAs. Clean visual identity. No chatbot or booking system.</td>
+          <td><span class="pill pill-g">Strong</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Website AI assistant or chatbot</td>
+          <td class="audit-note">Not present. Visitors have no guided experience and no 24/7 inquiry channel.</td>
+          <td><span class="pill pill-r">Missing</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Speaking inquiry process</td>
+          <td class="audit-note">General contact form only. No structured intake, no auto-qualification, no calendar booking.</td>
+          <td><span class="pill pill-r">Manual</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Speaking agency representation</td>
+          <td class="audit-note">Listed with Champions Speakers. Harvard, House of Lords, and Women's Prize Trust clients confirmed.</td>
+          <td><span class="pill pill-g">Active</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Newsletter (The Louding Life)</td>
+          <td class="audit-note">Signup form on website. Exists as a channel. No automated sequences or segmentation visible.</td>
+          <td><span class="pill pill-a">Basic</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Email automation and nurture sequences</td>
+          <td class="audit-note">No visible email automation from the public-facing site. All subscriber communication appears manual.</td>
+          <td><span class="pill pill-r">Missing</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Academy enrollment funnel</td>
+          <td class="audit-note">The Louding Voice Academy exists. No visible funnel connecting website visitors or newsletter readers to enrollment.</td>
+          <td><span class="pill pill-r">Gap</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Instagram (@abidare_author)</td>
+          <td class="audit-note">12,000 followers. Active but underscaled for an author with 184K Goodreads raters and global media coverage.</td>
+          <td><span class="pill pill-a">Underscaled</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">X / Twitter (@abidare_author)</td>
+          <td class="audit-note">Account active and searchable. Follower data not accessible without login. Presence confirmed.</td>
+          <td><span class="pill pill-a">Active</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">LinkedIn author profile</td>
+          <td class="audit-note">No verified personal LinkedIn profile found for Abi Dar&#233; the author and speaker. Corporate bookers check LinkedIn.</td>
+          <td><span class="pill pill-r">Missing</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">YouTube or TikTok (BookTok)</td>
+          <td class="audit-note">No channel found. A speaker and educator with her profile should own video. BookTok is a major missed channel.</td>
+          <td><span class="pill pill-r">Missing</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Goodreads author presence</td>
+          <td class="audit-note">184,251 ratings, 4.4/5.0, 20,018 reviews, 1,945 followers. Exceptional reader reception.</td>
+          <td><span class="pill pill-g">Exceptional</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Amazon author page</td>
+          <td class="audit-note">Active. Both novels listed. Positive reader sentiment. No automation connecting Amazon buyers back into owned channels.</td>
+          <td><span class="pill pill-g">Active</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">School and org visit booking</td>
+          <td class="audit-note">Via general contact form only. No automated intake, scheduling, or briefing pack system in place.</td>
+          <td><span class="pill pill-r">Manual</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Foundation digital presence</td>
+          <td class="audit-note">The Louding Voice Foundation referenced on the website. No separate digital donor or supporter funnel visible.</td>
+          <td><span class="pill pill-a">Basic</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Media and press monitoring</td>
+          <td class="audit-note">No automated monitoring visible. Reviews and press mentions tracked manually based on public information.</td>
+          <td><span class="pill pill-r">Manual</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">International markets (24 languages)</td>
+          <td class="audit-note">Published in 24 languages across global markets. No multilingual digital strategy or international audience capture visible.</td>
+          <td><span class="pill pill-a">Untapped</span></td>
+        </tr>
+        <tr>
+          <td class="audit-area">Global authority and positioning</td>
+          <td class="audit-note">NYT bestseller, Climate Fiction Prize, Book Aid Ambassador 2026, Harvard keynote, House of Lords, Independent Climate 100.</td>
+          <td><span class="pill pill-g">World-class</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PARTNERSHIP -->
+  <div class="sec-hdr">
+    <h2>What a partnership looks like</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="partner-card">
+    <div class="partner-grid">
+      <div class="partner-col">
+        <h3>What we do every month</h3>
+        <ul>
+          <li><span class="tick">&#10003;</span>Build and maintain all seven AI systems running across the business</li>
+          <li><span class="tick">&#10003;</span>Run the social content pipeline so no week is ever blank</li>
+          <li><span class="tick">&#10003;</span>Monitor and tune the speaking inquiry and Academy enrollment flows</li>
+          <li><span class="tick">&#10003;</span>Track all media mentions, reviews, and press hits across platforms</li>
+          <li><span class="tick">&#10003;</span>Monthly review: what the data shows, what to adjust, what to build next</li>
+          <li><span class="tick">&#10003;</span>On-call support for anything that needs a fast turnaround</li>
+        </ul>
+      </div>
+      <div class="partner-col">
+        <h3>What you walk away with</h3>
+        <ul>
+          <li><span class="tick">&#10003;</span>18 hours per month back to focus on writing, speaking, and the Foundation</li>
+          <li><span class="tick">&#10003;</span>Speaking inquiries captured and qualified automatically, nothing dropped</li>
+          <li><span class="tick">&#10003;</span>Academy revenue growing without more hours invested</li>
+          <li><span class="tick">&#10003;</span>Social presence that reflects the actual scale of your global reach</li>
+          <li><span class="tick">&#10003;</span>A clear reader-to-community pipeline that monetises your existing 184K audience</li>
+          <li><span class="tick">&#10003;</span>Price lock promise: your retainer rate stays fixed until you choose to renegotiate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="commit-strip">
+      <div class="commit-item">
+        <span class="commit-label">Minimum term</span>
+        <span class="commit-val">3 months</span>
+      </div>
+      <div class="commit-item">
+        <span class="commit-label">Onboarding time</span>
+        <span class="commit-val">2 weeks</span>
+      </div>
+      <div class="commit-item">
+        <span class="commit-label">First tools live</span>
+        <span class="commit-val">Week 1</span>
+      </div>
+      <div class="commit-item">
+        <span class="commit-label">Your time required</span>
+        <span class="commit-val">2 hrs/month</span>
+      </div>
+      <div class="commit-item">
+        <span class="commit-label">Price lock</span>
+        <span class="commit-val">Full contract</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="sec-hdr">
+    <h2>Investment options</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Foundation</div>
+      <div class="pricing-amount">£2,500</div>
+      <div class="pricing-period">per month</div>
+      <div class="pricing-desc">The core systems. Speaking inquiry AI, social content pipeline, and newsletter automation running from month one.</div>
+      <ul class="pricing-features">
+        <li><span class="ptick tick">&#10003;</span>Speaking Inquiry AI</li>
+        <li><span class="ptick tick">&#10003;</span>Social Content Pipeline</li>
+        <li><span class="ptick tick">&#10003;</span>Newsletter Automation</li>
+        <li><span class="ptick tick">&#10003;</span>Monthly review call</li>
+        <li><span class="ptick tick">&#10003;</span>On-call support</li>
+      </ul>
+    </div>
+    <div class="pricing-card featured">
+      <div class="popular-badge">Most Popular</div>
+      <div class="pricing-tier">Growth</div>
+      <div class="pricing-amount">£4,000</div>
+      <div class="pricing-period">per month</div>
+      <div class="pricing-desc">Everything in Foundation plus the Academy enrollment engine, media monitoring, visit scheduling, and reader relationship manager.</div>
+      <ul class="pricing-features">
+        <li><span class="ptick">&#10003;</span>Everything in Foundation</li>
+        <li><span class="ptick">&#10003;</span>Academy Enrollment Engine</li>
+        <li><span class="ptick">&#10003;</span>School Visit Scheduler</li>
+        <li><span class="ptick">&#10003;</span>Media and Mention Monitor</li>
+        <li><span class="ptick">&#10003;</span>Reader Relationship Manager</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Full Build</div>
+      <div class="pricing-amount">£7,500</div>
+      <div class="pricing-period">per month</div>
+      <div class="pricing-desc">The complete AIOS. All seven tools built and maintained. Foundation donor pipeline, CRM, international audience capture, and priority support.</div>
+      <ul class="pricing-features">
+        <li><span class="ptick tick">&#10003;</span>Everything in Growth</li>
+        <li><span class="ptick tick">&#10003;</span>Foundation donor pipeline</li>
+        <li><span class="ptick tick">&#10003;</span>Full CRM and speaker pipeline</li>
+        <li><span class="ptick tick">&#10003;</span>International audience capture</li>
+        <li><span class="ptick tick">&#10003;</span>Priority on-call support</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="roi-callout">
+    <p>This report was built from publicly available information alone: her website, Goodreads profile, Champions Speakers listing, Wikipedia, press coverage, and social media searches. The <strong>£48,000+ annual value estimate is conservative</strong>. With full access to her newsletter list, Academy numbers, speaking fee structure, and Foundation data, the actual figure is almost certainly higher. The free audit finds the rest.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="sec-hdr">
+    <h2>Next step</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <h2>Book your free AI audit</h2>
+    <p>This used only public information. Imagine what we could do with full access to your systems. The free audit goes deeper: your newsletter data, your Academy conversion rates, your speaking pipeline, your Foundation donor list. We find every gap and show you exactly what to automate first.</p>
+
+    <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:12px; padding:28px 32px; margin:28px auto; max-width:620px; text-align:left;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:10px;">When we sit down together</div>
+      <div style="font-family:'Poppins',sans-serif; font-size:38px; font-weight:900; color:#fff; line-height:1; margin-bottom:10px;">£100,000+</div>
+      <div style="font-size:14px; font-weight:600; color:rgba(255,255,255,0.8); margin-bottom:12px;">estimated value identified per year</div>
+      <div style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.7;">The £48,000 figure in this report came from public data alone. When we sit with you properly and map every task, every revenue stream, every audience touchpoint, and every operational bottleneck, the number almost always doubles. Clients who go through a full audit with us typically see £100,000 or more in identifiable value every single year. That is time saved, revenue unlocked, and cost removed. The audit is free. What it reveals is not.</div>
+    </div>
+
+    <a href="mailto:team@makemeai.tech" class="cta-btn">Book the Free Audit</a>
+    <div class="cta-sub">team@makemeai.tech &nbsp;|&nbsp; www.makemeai.tech &nbsp;|&nbsp; No obligation. No pressure. Just clarity.</div>
+  </div>
+
+</div>
+<!-- end body-wrap -->
+
+<div class="footer">
+  <p>Prepared by <strong>MakeMeAI Consulting Ltd</strong> &nbsp;|&nbsp; team@makemeai.tech &nbsp;|&nbsp; www.makemeai.tech<br />
+  This report was generated using publicly available information as of 27 April 2026. All financial figures are estimates based on industry benchmarks and publicly available data. Actual results will vary.</p>
+</div>
+
+</body>
+</html>

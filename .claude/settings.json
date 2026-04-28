@@ -27,7 +27,26 @@
       "Bash(py -3 -c ' *)",
       "Bash(powershell.exe -Command \"Start-Process 'outputs\\\\2026-04-24-audit-questionnaires.html'\")",
       "Bash(powershell.exe -Command \"Start-Process 'outputs\\\\2026-04-24-makemeai-audit-agent-guide.html'\")",
-      "Bash(powershell.exe -Command \"Start-Process 'outputs\\\\eastway-dashboard-demo.html'\")"
+      "Bash(powershell.exe -Command \"Start-Process 'outputs\\\\eastway-dashboard-demo.html'\")",
+      "WebFetch(domain:www.makemeai.tech)",
+      "WebFetch(domain:makemeai.tech)",
+      "Bash(start \"\" \"c:\\\\Users\\\\forex\\\\Downloads\\\\MakemeAi-starter-kit\\\\MakemeAi-starter-kit\\\\outputs\\\\2026-04-27-video-scripts.html\")",
+      "WebFetch(domain:www.abidareauthor.com)",
+      "WebFetch(domain:abidareauthor.com)",
+      "Bash(start \"c:/Users/forex/Downloads/MakemeAi-starter-kit/MakemeAi-starter-kit/outputs/demos/2026-04-27-scanner-abi-dare-branded.html\")",
+      "WebFetch(domain:www.instagram.com)",
+      "WebFetch(domain:twitter.com)",
+      "WebFetch(domain:www.goodreads.com)",
+      "WebFetch(domain:x.com)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:champions-speakers.co.uk)",
+      "Bash(start \"\" \"c:\\\\Users\\\\forex\\\\Downloads\\\\MakemeAi-starter-kit\\\\MakemeAi-starter-kit\\\\outputs\\\\demos\\\\2026-04-27-scanner-abi-dare-branded.html\")",
+      "Bash(.venv/Scripts/python -m pip list)",
+      "Bash(where msedge *)",
+      "Bash(where \"C:\\\\Program Files \\(x86\\)\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\")",
+      "Read(//c/Program Files \\(x86\\)/Microsoft/Edge/Application/**)",
+      "Read(//c/Program Files/Microsoft/Edge/**)",
+      "Bash('C:/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe' --headless --disable-gpu --print-to-pdf=c:/Users/forex/Downloads/MakemeAi-starter-kit/MakemeAi-starter-kit/outputs/demos/2026-04-27-scanner-abi-dare-branded.pdf --print-to-pdf-no-header --no-pdf-header-footer file:///c:/Users/forex/Downloads/MakemeAi-starter-kit/MakemeAi-starter-kit/outputs/demos/2026-04-27-scanner-abi-dare-branded.html)"
     ]
   }
 }

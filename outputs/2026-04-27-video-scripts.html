@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MakeMeAI Video Scripts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f6fb;
+      color: #0F2552;
+      padding: 40px 20px 80px;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, #080F1E 0%, #0F2552 100%);
+      color: white;
+      border-radius: 16px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .brand-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1D57D8;
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .script-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 16px rgba(15,37,82,0.08);
+    }
+
+    .script-card .card-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1D57D8;
+      margin-bottom: 8px;
+    }
+
+    .script-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #080F1E;
+      margin-bottom: 8px;
+    }
+
+    .script-card .duration {
+      display: inline-block;
+      background: #f0f4ff;
+      color: #1D57D8;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .script-block {
+      border-left: 4px solid #1D57D8;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      background: #f8faff;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .script-block .timing {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1D57D8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .script-block .stage {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F2552;
+      margin-bottom: 10px;
+    }
+
+    .script-block .words {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #080F1E;
+      font-style: italic;
+    }
+
+    .tips-card {
+      background: #080F1E;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 32px;
+      color: white;
+    }
+
+    .tips-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: white;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .tip {
+      background: rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    .tip .tip-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #1D57D8;
+      margin-bottom: 6px;
+    }
+
+    .tip p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+
+    .service-scripts-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 16px rgba(15,37,82,0.08);
+    }
+
+    .service-scripts-card .card-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1D57D8;
+      margin-bottom: 8px;
+    }
+
+    .service-scripts-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #080F1E;
+      margin-bottom: 6px;
+    }
+
+    .service-scripts-card .intro {
+      font-size: 15px;
+      color: #5a6a8a;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .service-block {
+      border-top: 1px solid #e8edf5;
+      padding-top: 28px;
+      margin-top: 28px;
+    }
+
+    .service-block:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .service-block h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #0F2552;
+      margin-bottom: 16px;
+    }
+
+    .option-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .option-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: #1D57D8;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .option-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #080F1E;
+    }
+
+    .recommended-badge {
+      display: inline-block;
+      background: #059669;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-left: 10px;
+      vertical-align: middle;
+      letter-spacing: 0.5px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #8a9ab5;
+      margin-top: 48px;
+    }
+
+    .footer strong {
+      color: #1D57D8;
+    }
+
+    @media print {
+      body { background: white; padding: 20px; }
+      .page-header, .script-card, .tips-card, .service-scripts-card { box-shadow: none; border: 1px solid #ddd; }
+      .tips-card { background: #080F1E !important; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 600px) {
+      .tips-grid { grid-template-columns: 1fr; }
+      .page-header h1 { font-size: 26px; }
+      .script-card, .tips-card, .service-scripts-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div class="brand-label">MakeMeAI Consulting Ltd</div>
+    <h1>Video Scripts</h1>
+    <p>Ready-to-record scripts for your landing page and service videos. Use these word for word or adapt them in your own voice.</p>
+  </div>
+
+  <div class="container">
+
+    <!-- HERO VIDEO SCRIPT -->
+    <div class="script-card">
+      <div class="card-label">Script 01</div>
+      <h2>Landing Page Hero Video</h2>
+      <div class="duration">60 to 90 seconds</div>
+
+      <div class="script-block">
+        <div class="timing">0 to 10 seconds</div>
+        <div class="stage">The Hook. Acknowledge their world.</div>
+        <div class="words">"If you're running a business and it feels like you're always behind, always firefighting, always the one holding everything together... this page is for you."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="timing">10 to 25 seconds</div>
+        <div class="stage">Who you are.</div>
+        <div class="words">"I'm Olusegun Dare, founder of MakeMeAI. I'm an AI consultant based in the UK and I work exclusively with business owners like you."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="timing">25 to 50 seconds</div>
+        <div class="stage">What you actually do.</div>
+        <div class="words">"What I do is simple. I come into your business, I look at everything you and your team do on repeat, and I find the tasks that AI can take off your plate. Then I build the tools, I get them running, and I train your team so no one is left confused. And I don't disappear after that. I stay as your AI partner."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="timing">50 to 70 seconds</div>
+        <div class="stage">The outcome. Make it real.</div>
+        <div class="words">"My clients typically save 20 or more hours every single week within the first 90 days. That is time back for you. Time for strategy, growth, or just switching off before midnight."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="timing">70 to 90 seconds</div>
+        <div class="stage">The CTA. Direct and low friction.</div>
+        <div class="words">"The first step is a free 30-minute discovery call. No pitch, no pressure. You just leave with a clear picture of what AI can do for your specific business. Book it right here on this page."</div>
+      </div>
+    </div>
+
+    <!-- PRODUCTION TIPS -->
+    <div class="tips-card">
+      <h2>Production Tips</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <div class="tip-number">Setup</div>
+          <p>Shoot at home with a clean background. Good natural light from a window in front of you is all you need.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-number">Camera</div>
+          <p>Look directly at the lens. Your phone propped up at eye level works perfectly. No fancy equipment needed.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-number">Captions</div>
+          <p>Always add captions. Most people watch on mobile with the sound off. CapCut auto-generates them for free.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-number">Autoplay</div>
+          <p>Set the video to autoplay muted with captions on. Visitors press play if they want sound.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-number">Length</div>
+          <p>Stay under 90 seconds. Attention drops fast. Every sentence should earn its place.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-number">Appearance</div>
+          <p>Dress how you would meet a business owner. Smart but not stiff. Be yourself.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE DESCRIPTION OPTIONS -->
+    <div class="service-scripts-card">
+      <div class="card-label">Script 02</div>
+      <h2>Service Descriptions for the Website</h2>
+      <p class="intro">Use these on your services section or as the basis for short individual service videos. Recommended options are highlighted in green.</p>
+
+      <div class="service-block">
+        <h3>AI Audit</h3>
+
+        <div class="option-row">
+          <div class="option-num">1</div>
+          <div class="option-text">"We map every task in your business and show you exactly where AI can take over."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">2</div>
+          <div class="option-text">"A deep look at how your business runs, and where it's leaking time and money."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">3</div>
+          <div class="option-text">"We audit your business top to bottom and hand you a clear AI action plan."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">4</div>
+          <div class="option-text">"Find out which parts of your business AI can automate, in a single focused session."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">5</div>
+          <div class="option-text">"A full review of your operations. You leave knowing exactly what to automate and how."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">6</div>
+          <div class="option-text">"We sit with you, study how your business works, and build your AI roadmap from scratch."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">7</div>
+          <div class="option-text">"No guesswork. We find the gaps, score the opportunities, and tell you what to build first."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">8</div>
+          <div class="option-text">"One session. A complete picture of where AI fits in your business and what it's worth."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">9</div>
+          <div class="option-text">"We look at your business the way a consultant would. Then we show you the AI version."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">10</div>
+          <div class="option-text">"Your business has hidden hours. We find them, and we build the tools to get them back." <span class="recommended-badge">Recommended</span></div>
+        </div>
+      </div>
+
+      <div class="service-block">
+        <h3>Development and Implementation</h3>
+
+        <div class="option-row">
+          <div class="option-num">1</div>
+          <div class="option-text">"We build the AI tools your business needs and get them running from day one."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">2</div>
+          <div class="option-text">"From idea to live system. We build, test, and deploy your AI tools end to end."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">3</div>
+          <div class="option-text">"We take the audit findings and turn them into real, working AI systems for your business."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">4</div>
+          <div class="option-text">"Your AI tools, built and installed. We handle everything from design to deployment to handover."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">5</div>
+          <div class="option-text">"We build the automation, connect it to your existing tools, and make sure it actually works."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">6</div>
+          <div class="option-text">"No half-built prototypes. We deliver complete AI systems that run inside your real business operations."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">7</div>
+          <div class="option-text">"Every tool we recommend, we also build. Designed for your business, not a generic template."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">8</div>
+          <div class="option-text">"We turn your biggest time drains into automated systems that run without you lifting a finger." <span class="recommended-badge">Recommended</span></div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">9</div>
+          <div class="option-text">"Custom AI tools built around how your business actually works. Tested, installed, and ready to go."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">10</div>
+          <div class="option-text">"We design, build, and launch the AI systems your audit identified. Start to finish, nothing left out."</div>
+        </div>
+      </div>
+
+      <div class="service-block">
+        <h3>Staff Training</h3>
+
+        <div class="option-row">
+          <div class="option-num">1</div>
+          <div class="option-text">"We train your whole team to use their new AI tools with confidence, from day one."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">2</div>
+          <div class="option-text">"No one gets left behind. We make sure every person on your team knows exactly what to do."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">3</div>
+          <div class="option-text">"Hands-on training for your team so the tools we build actually get used, every single day."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">4</div>
+          <div class="option-text">"We sit with your team, walk through every tool, and make AI feel like second nature."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">5</div>
+          <div class="option-text">"Your team trained, confident, and ready. We do not leave until everyone knows how to use it."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">6</div>
+          <div class="option-text">"AI only works if your team uses it. We make sure they do, and they love it."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">7</div>
+          <div class="option-text">"From confused to confident. We train your staff to use AI as naturally as they use email." <span class="recommended-badge">Recommended</span></div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">8</div>
+          <div class="option-text">"Practical, plain-English training for real people. No jargon, no overwhelm, just results from day one."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">9</div>
+          <div class="option-text">"We built the tools. Now we teach your team to get the most out of every single one."</div>
+        </div>
+        <div class="option-row">
+          <div class="option-num">10</div>
+          <div class="option-text">"Your staff trained hands-on, in plain English, until using AI feels as simple as switching on a light."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>MakeMeAI Consulting Ltd &nbsp;|&nbsp; <strong>team@makemeai.tech</strong> &nbsp;|&nbsp; www.makemeai.tech</p>
+    </div>
+
+  </div>
+</body>
+</html>
