@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abi Daré — Discovery Audit Questions | MakeMeAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #080F1E;
+      --blue: #0F2552;
+      --accent: #1D57D8;
+      --accent2: #3B70E8;
+      --white: #FFFFFF;
+      --green: #059669;
+      --red: #DC2626;
+      --amber: #D97706;
+      --surface: #F7F9FF;
+      --border: #E2E8F4;
+      --text: #1E293B;
+      --muted: #64748B;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .masthead {
+      background: linear-gradient(140deg, var(--navy) 0%, var(--blue) 55%, #1a3a7a 100%);
+      padding: 44px 0 36px;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+    .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+    .brand-dot { width: 9px; height: 9px; background: var(--accent2); border-radius: 50%; }
+    .brand-name { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .report-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .client-name { font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 6px; }
+    .client-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    .masthead-meta { margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.28); }
+
+    .how-to-use {
+      background: var(--accent);
+      padding: 20px 0;
+    }
+    .how-to-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .htu-item { padding: 4px 0; display: flex; flex-direction: column; gap: 4px; }
+    .htu-item + .htu-item { border-left: 1px solid rgba(255,255,255,0.2); padding-left: 28px; }
+    .htu-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    .htu-val { font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    .body-wrap { max-width: 900px; margin: 0 auto; padding: 0 48px 72px; }
+
+    .sec-hdr { display: flex; align-items: center; gap: 16px; margin: 48px 0 20px; }
+    .sec-hdr h2 { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+    .context-banner {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 24px 30px;
+      margin-bottom: 32px;
+    }
+    .context-banner p { font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .context-banner strong { color: #fff; }
+
+    .section-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .section-icon {
+      width: 38px; height: 38px;
+      background: #EBF0FD;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .section-title { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); }
+    .section-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .question-list { padding: 0; }
+    .question-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .question-item:last-child { border-bottom: none; }
+    .q-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      padding-top: 2px;
+    }
+    .q-body {}
+    .q-text { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 5px; line-height: 1.45; }
+    .q-why { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+    .q-listen { margin-top: 7px; font-size: 12px; color: var(--accent); font-weight: 600; }
+    .q-listen span { font-weight: 400; color: var(--muted); }
+
+    .note-block {
+      background: #EBF0FD;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 20px;
+      margin: 0 28px 20px;
+      font-size: 13px;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    .closing-card {
+      background: linear-gradient(140deg, var(--navy), var(--blue));
+      border-radius: 14px;
+      padding: 40px 44px;
+      margin-top: 40px;
+    }
+    .closing-card h3 { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+    .closing-card p { font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 16px; }
+    .closing-card p:last-child { margin-bottom: 0; }
+    .closing-card strong { color: #fff; }
+
+    .footer { background: var(--navy); padding: 28px 48px; text-align: center; }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer strong { color: rgba(255,255,255,0.55); }
+
+    @media print {
+      .masthead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section-block { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand-dot"></div>
+      <span class="brand-name">MakeMeAI Consulting Ltd</span>
+    </div>
+    <div class="report-eyebrow">Discovery Audit</div>
+    <div class="client-name">Abi Dar&#233;</div>
+    <div class="client-sub">Author &nbsp;|&nbsp; Speaker &nbsp;|&nbsp; Educator &nbsp;|&nbsp; Philanthropist</div>
+    <div class="masthead-meta">Prepared 28 April 2026 &nbsp;|&nbsp; For internal use by Olusegun Dare &nbsp;|&nbsp; MakeMeAI Consulting Ltd</div>
+  </div>
+</div>
+
+<div class="how-to-use">
+  <div class="how-to-inner">
+    <div class="htu-item">
+      <span class="htu-label">Format</span>
+      <span class="htu-val">Conversational. One area at a time.</span>
+    </div>
+    <div class="htu-item">
+      <span class="htu-label">Time needed</span>
+      <span class="htu-val">45 to 60 minutes</span>
+    </div>
+    <div class="htu-item">
+      <span class="htu-label">Goal</span>
+      <span class="htu-val">Surface pain, confirm value, close the audit</span>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="sec-hdr" style="margin-top:36px;">
+    <h2>What you already know going in</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="context-banner">
+    <p>
+      The scanner report gives you a head start. Abi has <strong>world-class authority</strong> (NYT bestselling author, Harvard keynote speaker, Book Aid Ambassador 2026, published in 24 languages) but <strong>severely underbuilt infrastructure</strong>. 184,000 Goodreads readers. 12,000 Instagram followers. The gap between her reach and her systems is the whole story.<br><br>
+      Her business has four arms: the books, the speaking, The Louding Voice Academy, and The Louding Voice Foundation. Each one is a revenue stream or a cause that matters to her. The admin behind all four is almost certainly being done by hand.<br><br>
+      <strong>Your job in this session is to get her to say the pain out loud.</strong> You already know where it is. You want her to feel it, name it, and own it. Then the solution is obvious.
+    </p>
+  </div>
+
+  <!-- SECTION 1: SPEAKING -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#127908;</div>
+      <div>
+        <div class="section-title">The Speaking Business</div>
+        <div class="section-sub">Inquiry management, admin overhead, revenue gaps, lost opportunities</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q1</span>
+        <div class="q-body">
+          <div class="q-text">Walk me through what happens when someone wants to book you to speak. From the moment they reach out to the day you step on stage. What does that process look like?</div>
+          <div class="q-why">This is your opener. Let her describe the full flow without steering her. You are listening for every manual step, every back-and-forth email, every thing she has to chase or repeat herself on.</div>
+          <div class="q-listen">Listen for: <span>the number of touch points, who manages the inbox, how long it takes, what falls through</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q2</span>
+        <div class="q-body">
+          <div class="q-text">In the last 12 months, do you feel like you missed any speaking opportunities because they came in and did not get responded to quickly enough, or because the back-and-forth just took too long?</div>
+          <div class="q-why">This unlocks the pain of lost revenue. Most high-profile speakers can name at least one. You want her to put a number on it, or feel the weight of it.</div>
+          <div class="q-listen">Listen for: <span>hesitation, frustration, "I think there was one...", or "yes, quite a few actually"</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q3</span>
+        <div class="q-body">
+          <div class="q-text">On average, how many hours per week does speaking coordination take up? This includes emails, contracts, briefs, logistics, prep calls, all of it.</div>
+          <div class="q-why">You need a real number for the ROI build. Do not let her say "not that much." Probe. Even one hour per week is 52 hours per year that could be automated.</div>
+          <div class="q-listen">Listen for: <span>any number. Then ask who handles it. If she does it herself, the cost is her time. If she has an assistant, what are they paid?</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q4</span>
+        <div class="q-body">
+          <div class="q-text">You are represented by Champions Speakers. How much of your speaking comes through them versus direct inquiries to your website or email? And what happens to the direct ones?</div>
+          <div class="q-why">Champions Speakers takes a commission on every booking they manage. Direct inquiries are full-fee. If those direct inquiries are being dropped or handled slowly, that is real money walking out.</div>
+          <div class="q-listen">Listen for: <span>how she handles direct inquiries, whether she has a structured intake process, or whether it is just "I reply when I see it"</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q5</span>
+        <div class="q-body">
+          <div class="q-text">What does a typical keynote fee look like for you? Just a ballpark. I want to understand the value of a single booking so I can show you what missing even two per year costs.</div>
+          <div class="q-why">You need this number to make the ROI concrete. The scanner estimated £8,000 per engagement. If she corrects you upward, the case gets stronger. If it is lower, adjust.</div>
+          <div class="q-listen">Listen for: <span>any figure. Then say "So missing two in a year is £X. That is what we fix."</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note-block">
+      After this section you should know: how inquiries come in, how long they take, whether opportunities are slipping, and what a single booking is worth. That is the foundation for your speaking ROI number.
+    </div>
+  </div>
+
+  <!-- SECTION 2: THE ACADEMY -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#127891;</div>
+      <div>
+        <div class="section-title">The Louding Voice Academy</div>
+        <div class="section-sub">Enrollment funnel, email sequences, conversion, course operations</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q6</span>
+        <div class="q-body">
+          <div class="q-text">Tell me about The Louding Voice Academy. Who is it for, what does it teach, and how do people typically find their way to it?</div>
+          <div class="q-why">You need to understand the product before you can talk about automating the funnel. Let her explain it in her own words. This also tells you how proud she is of it, which matters for the sale.</div>
+          <div class="q-listen">Listen for: <span>what the course costs, how people enroll, whether there is a sales page or just a word-of-mouth path</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q7</span>
+        <div class="q-body">
+          <div class="q-text">You have a newsletter called The Louding Life. How many subscribers are on that list? And are you actively trying to move those readers toward the Academy?</div>
+          <div class="q-why">The newsletter list is a warm audience. If there is no automated path from subscriber to Academy student, money is being left on the table every single month. Her answer will tell you how big the gap is.</div>
+          <div class="q-listen">Listen for: <span>the list size (even a rough number), and whether she sends dedicated Academy emails or just hopes people find it</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q8</span>
+        <div class="q-body">
+          <div class="q-text">When someone signs up to your newsletter, what happens next? Do they get a welcome sequence, a series of emails, an introduction to the Academy? Or do they just go straight onto the general list?</div>
+          <div class="q-why">Most founders do not have a proper welcome sequence. If her answer is "they just get the newsletter," that is a massive quick win you can demo immediately.</div>
+          <div class="q-listen">Listen for: <span>"they just get the newsletter" or "I've been meaning to set that up" — both are green lights</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q9</span>
+        <div class="q-body">
+          <div class="q-text">How much time do you personally put into Academy admin each month? Enrollment processing, student communications, course updates. Is any of it automated?</div>
+          <div class="q-why">Academy admin is a common time drain. If she is running this herself, those hours are hours away from writing or speaking. Put a number on it.</div>
+          <div class="q-listen">Listen for: <span>manual enrollment, manual student emails, manual Zoom scheduling. Each one is an automation opportunity.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note-block">
+      After this section you should know: the Academy's price point and audience, the size of the newsletter list, whether there is any funnel from list to course, and how much manual admin the Academy creates. That feeds directly into the enrollment uplift ROI.
+    </div>
+  </div>
+
+  <!-- SECTION 3: CONTENT AND SOCIAL -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#128241;</div>
+      <div>
+        <div class="section-title">Content and Social Media</div>
+        <div class="section-sub">Time spent, inconsistency, the 184K vs 12K gap, missed platforms</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q10</span>
+        <div class="q-body">
+          <div class="q-text">How much time do you currently spend creating content for Instagram, Twitter, and your newsletter combined? Be honest. I want to understand the real cost.</div>
+          <div class="q-why">You already know from the scanner that social output is irregular. This question gets her to admit the time drain out loud or acknowledge it is being neglected. Both are useful.</div>
+          <div class="q-listen">Listen for: <span>"I don't post as much as I should," "it takes me hours to write one post," or "my team handles it" — all different solutions</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q11</span>
+        <div class="q-body">
+          <div class="q-text">You have 184,000 people who rated your book on Goodreads. You have 12,000 Instagram followers. That is a 15 to 1 ratio. In your view, why is that gap so wide and does it bother you?</div>
+          <div class="q-why">This is a deliberate provocative question. You want her to feel the scale of what she is sitting on. The answer will tell you how aware she is and how motivated she is to fix it.</div>
+          <div class="q-listen">Listen for: <span>frustration, awareness, "I know I need to do more," or surprise if she has not thought about it this way before</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q12</span>
+        <div class="q-body">
+          <div class="q-text">Have you ever considered video content, YouTube, or TikTok? You are a compelling speaker. BookTok has made careers for authors with far smaller audiences than yours. What has held you back?</div>
+          <div class="q-why">The scanner flagged zero video presence as a major gap. Her answer will tell you whether video is on the table or a genuine blocker. If it is time, that is your in. AI content pipelines solve time.</div>
+          <div class="q-listen">Listen for: <span>"I don't have time," "I wouldn't know where to start," or "I've thought about it but..." — all mean the door is open</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q13</span>
+        <div class="q-body">
+          <div class="q-text">You are published in 24 languages. Do you have any content strategy for international audiences, particularly in markets like Nigeria, where your story resonates most? Or is it purely through the publisher?</div>
+          <div class="q-why">This is a long-term opportunity conversation. It also connects to her personal identity and the West Africa angle. If she has no international digital strategy, that is a significant gap worth naming.</div>
+          <div class="q-listen">Listen for: <span>how much she thinks about international readers, whether there is any direct relationship with non-English audiences</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note-block">
+      After this section you should know: how much time content creation costs her, whether she feels the 184K to 12K gap, what her view on video is, and whether international audiences are on her radar. This feeds the content pipeline ROI and unlocks the biggest scale conversation.
+    </div>
+  </div>
+
+  <!-- SECTION 4: THE FOUNDATION -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#10084;&#65039;</div>
+      <div>
+        <div class="section-title">The Louding Voice Foundation</div>
+        <div class="section-sub">Donor pipeline, supporter nurture, admin, school visits</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q14</span>
+        <div class="q-body">
+          <div class="q-text">Tell me about The Louding Voice Foundation. How does it currently acquire supporters and donors? Is there an active pipeline or is it mainly word of mouth from your events and speaking appearances?</div>
+          <div class="q-why">Foundations live or die by their donor pipeline. If hers is manual and event-dependent, supporters acquired at one event never hear from her again unless she personally follows up. That is unsustainable at scale.</div>
+          <div class="q-listen">Listen for: <span>any CRM or donor management system, whether there is a donation follow-up sequence, how she tracks supporters</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q15</span>
+        <div class="q-body">
+          <div class="q-text">School and organisation visits are part of the Foundation's work. How are those currently booked and coordinated? What does the admin look like from an inquiry to a confirmed visit?</div>
+          <div class="q-why">The scanner flagged this as fully manual with no booking system. School visit admin can eat 4 to 6 hours per booking cycle. If she is doing multiple visits per term, that is significant time.</div>
+          <div class="q-listen">Listen for: <span>email threads, phone calls, calendar back-and-forth, briefing packs sent manually, confirmations chased by hand</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q16</span>
+        <div class="q-body">
+          <div class="q-text">If the Foundation had a system that automatically nurtured every person who engaged with it online or at an event into an active supporter, what would that change for the Foundation's impact?</div>
+          <div class="q-why">This is a vision question. You are not selling a tool. You are selling what the tool enables. Let her paint the picture of a well-funded, growing Foundation. Then connect it back to automation.</div>
+          <div class="q-listen">Listen for: <span>emotional connection to the cause. The Foundation matters to her. When she talks about what it could become, that is where the buying decision is made.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note-block">
+      After this section you should know: how the Foundation acquires and retains supporters, what school visit admin looks like, and how emotionally invested she is in the Foundation's growth. This is often the most personally motivating section for the prospect.
+    </div>
+  </div>
+
+  <!-- SECTION 5: OPERATIONS AND TIME -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#9200;</div>
+      <div>
+        <div class="section-title">Time, Operations and Admin</div>
+        <div class="section-sub">What her days actually look like, where the time goes, what she can not get to</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q17</span>
+        <div class="q-body">
+          <div class="q-text">If I asked you to describe a typical week, what does it look like? Where does the time actually go across writing, speaking, Academy, Foundation, and everything else?</div>
+          <div class="q-why">This is the big picture question. Most high-achievers are surprised when they articulate their week out loud. They realise how much is admin versus the work that actually matters to them.</div>
+          <div class="q-listen">Listen for: <span>admin eating creative time, anything she says she "never has time to get to," the things she does out of necessity rather than choice</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q18</span>
+        <div class="q-body">
+          <div class="q-text">Do you have a personal assistant or a team? If yes, what do they handle? If no, what would you hire for first if you had the budget?</div>
+          <div class="q-why">If she has no PA, she is doing everything herself. That makes the time saving argument very direct. If she has a PA, AI augments the PA rather than replacing them, and you need to frame it that way.</div>
+          <div class="q-listen">Listen for: <span>what tasks she wishes were off her plate. Those are your automation targets.</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q19</span>
+        <div class="q-body">
+          <div class="q-text">What would you do with 20 extra hours every month? If admin were not taking up those hours, where would they go?</div>
+          <div class="q-why">This is a closing question for this section. You are not asking about tools or systems. You are asking about her life and her ambitions. The answer reminds her what is actually at stake. It also personalises the ROI.</div>
+          <div class="q-listen">Listen for: <span>"I'd write more," "I'd focus on the Foundation," "I'd grow the Academy properly" — these become your closing proof points</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q20</span>
+        <div class="q-body">
+          <div class="q-text">When you think about press coverage, new reviews, award nominations, or media mentions, how do you currently find out about them? Is it a system or is it when someone tags you or sends you a message?</div>
+          <div class="q-why">Media monitoring is almost always manual for authors. She likely misses a significant percentage of press hits and reader reviews. Every missed mention is a missed chance to amplify it.</div>
+          <div class="q-listen">Listen for: <span>"someone usually sends it to me," "I check Google every now and then," or "I have a Google Alert" — the last one is the most sophisticated she is likely to have</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note-block">
+      After this section you should have a complete picture of her week, who is helping her, and what 20 freed hours would mean to her personally. This is your closing material. The numbers close the deal but this section is what makes her want to say yes.
+    </div>
+  </div>
+
+  <!-- SECTION 6: TECHNOLOGY AND READINESS -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#128187;</div>
+      <div>
+        <div class="section-title">Technology and Current Setup</div>
+        <div class="section-sub">What she already uses, what she knows, where the gaps are</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q21</span>
+        <div class="q-body">
+          <div class="q-text">What email marketing tool are you using for The Louding Life newsletter? Mailchimp, ConvertKit, something else? And are you actively using any of the automation features in it?</div>
+          <div class="q-why">The tool she is already on shapes the build. Most newsletter tools (Mailchimp, ConvertKit, Klaviyo) have powerful automation built in that most users never touch. If she is already paying for it, you are turning it on rather than introducing something new.</div>
+          <div class="q-listen">Listen for: <span>the tool name, and whether she uses segments, sequences, or automations. "I just write the newsletter and send it" is the most common answer.</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q22</span>
+        <div class="q-body">
+          <div class="q-text">Do you use any CRM or pipeline tool to track speaking inquiries, corporate contacts, or Academy prospects? Anything to manage relationships and follow-ups?</div>
+          <div class="q-why">The scanner found no visible CRM. If the answer is no, that is one of your first builds. If it is a basic spreadsheet, the same. A proper CRM + speaking pipeline is a quick win that shows immediate value.</div>
+          <div class="q-listen">Listen for: <span>"I have a spreadsheet," "my PA tracks it," or "I need to sort this out" — all mean the same thing</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q23</span>
+        <div class="q-body">
+          <div class="q-text">How do you feel about AI generally? Are you using it at all in your work currently, even informally?</div>
+          <div class="q-why">This tells you how much education is needed. If she is already using ChatGPT or similar, your sell is about systematising it. If she is new to it, you are also the guide. Match your language to where she is.</div>
+          <div class="q-listen">Listen for: <span>any tools she already uses. "I use ChatGPT sometimes" or "I've heard about it but haven't really tried it" — both are fine starting points</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note-block">
+      After this section you know exactly what infrastructure already exists and what needs to be built from scratch. This shapes your proposal — you are either augmenting or replacing, and both have different narratives.
+    </div>
+  </div>
+
+  <!-- SECTION 7: TAX AND FINANCIAL ADMIN -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#128196;</div>
+      <div>
+        <div class="section-title">Tax and Financial Administration</div>
+        <div class="section-sub">Income tracking, expenses, Self Assessment prep, accountant relationship</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q24</span>
+        <div class="q-body">
+          <div class="q-text">How many separate income streams do you have right now? Walk me through them. Book royalties, speaking fees, Academy income, Foundation, anything else.</div>
+          <div class="q-why">Abi likely has at least four distinct income types, each arriving differently: royalties via her publisher, speaking fees via invoice, Academy via an online platform, and potentially Foundation-related income. The more streams, the more painful tax prep is. You need to map all of them.</div>
+          <div class="q-listen">Listen for: <span>international royalties (she publishes in 24 languages, so money may arrive in multiple currencies), whether she invoices for speaking, how Academy income is received</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q25</span>
+        <div class="q-body">
+          <div class="q-text">Do you file a Self Assessment tax return with HMRC? And do you do it yourself or does an accountant handle it?</div>
+          <div class="q-why">As a self-employed author and speaker in the UK, she almost certainly files Self Assessment. If she has an accountant, the question becomes how she gets information to them. If she does it herself, the pain is even more direct.</div>
+          <div class="q-listen">Listen for: <span>"my accountant does it" is not the end of the conversation. Ask how she gets the information to the accountant. That process is what you are automating.</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q26</span>
+        <div class="q-body">
+          <div class="q-text">How do you currently track your business expenses? Receipts in a folder, a spreadsheet, an app, or does it all come out at the end of the year in a panic?</div>
+          <div class="q-why">Most self-employed people at her level are either using a spreadsheet or doing an annual scramble. Both represent the same problem: no real-time system. Her honest answer here will tell you exactly how much pain this causes her at tax time.</div>
+          <div class="q-listen">Listen for: <span>any mention of "end of year chaos," "I send everything to my accountant and they sort it," or "I have a shoebox" — all are green lights</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q27</span>
+        <div class="q-body">
+          <div class="q-text">What kinds of expenses run through your business? Travel, home office, equipment, subscriptions, professional fees, event costs, anything related to the Foundation?</div>
+          <div class="q-why">You need to understand the volume and variety of her expenses before you can design an automation system. The more categories she mentions, the more complex her current tracking problem is. Each category is a classification rule in your automated system.</div>
+          <div class="q-listen">Listen for: <span>international travel (speaking abroad), home office costs (she likely works from home), publishing-related costs, research, professional development, Foundation expenses that may sit separately</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q28</span>
+        <div class="q-body">
+          <div class="q-text">Do you have a business bank account that is fully separate from your personal account? Or does business income and spending mix with personal at any point?</div>
+          <div class="q-why">Mixed accounts are an extremely common problem for sole traders and small business owners. If income and expenses are mixed, categorisation is ten times harder. A separate business account is the foundation of a clean automated system.</div>
+          <div class="q-listen">Listen for: <span>"it all goes into the same account," "I keep meaning to separate them," or "yes I have a business account" — the first two mean you solve a real structural problem for her</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q29</span>
+        <div class="q-body">
+          <div class="q-text">You are published in 24 languages. Do you receive royalties from publishers in different countries? And if so, how does that get handled when it comes to tax? Is your accountant managing the international side?</div>
+          <div class="q-why">International income is the most complex part of her tax picture. Foreign royalties may arrive in different currencies, at irregular intervals, and may have tax withheld at source in some countries. This is not something you automate fully, but you can automate the tracking and conversion so her accountant has everything in one place.</div>
+          <div class="q-listen">Listen for: <span>whether she even knows which countries withhold tax, whether her accountant handles it or it gets ignored, currency conversion — any confusion here is a service opportunity</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q30</span>
+        <div class="q-body">
+          <div class="q-text">How long does tax preparation actually take you each year? From start to finish, how many hours would you say go into getting everything together for your return?</div>
+          <div class="q-why">This is the ROI question for the tax section. Even if she says "my accountant handles it," ask how long it takes her to gather what the accountant needs. That number, multiplied by her hourly value, is the annual cost of not having an automated system.</div>
+          <div class="q-listen">Listen for: <span>anything above 5 hours is significant. Most self-employed people with multiple income streams spend 15 to 30 hours per year on tax prep. Some say days.</span></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q31</span>
+        <div class="q-body">
+          <div class="q-text">Are you VAT registered, or are any of your income streams subject to VAT? And if so, are you managing VAT returns separately?</div>
+          <div class="q-why">If she is VAT registered, that is quarterly returns on top of the annual Self Assessment. More admin, more deadlines, more pain. A VAT-aware system would handle all of it automatically.</div>
+          <div class="q-listen">Listen for: <span>whether she knows her own VAT status. Many self-employed people at this level hit the VAT threshold without realising it and get caught out.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note-block">
+      After this section you should know: how many income streams she has and how they arrive, whether she has an accountant, how she tracks expenses, whether accounts are mixed, how much pain international royalties cause, and how many hours tax prep costs her per year. Bring those answers back and we build the automation system around exactly what she described.
+    </div>
+  </div>
+
+  <!-- WHAT WE CAN BUILD NOTE -->
+  <div style="background:#EBF0FD; border-left:4px solid var(--accent); border-radius:8px; padding:20px 24px; margin-bottom:32px;">
+    <div style="font-family:'Poppins',sans-serif; font-size:13px; font-weight:700; color:var(--navy); margin-bottom:8px;">For Olusegun: what we can actually build once you have the answers</div>
+    <div style="font-size:13px; color:var(--text); line-height:1.7;">
+      <strong>Receipt and expense capture:</strong> AI reads photos of receipts (via WhatsApp or email forward) and logs them automatically into the correct category.<br>
+      <strong>Income tracker:</strong> A dashboard that pulls in income across all streams, converted to GBP, updated monthly.<br>
+      <strong>Quarterly P&amp;L report:</strong> Auto-generated every quarter so there are no year-end surprises.<br>
+      <strong>Accountant pack:</strong> A clean, categorised year-end summary ready to hand to her accountant. Cuts their prep time in half.<br>
+      <strong>Deadline reminders:</strong> Automated alerts for Self Assessment deadlines, payment on account dates, and VAT returns if applicable.<br><br>
+      <strong>What we cannot fully automate:</strong> The actual HMRC submission (she or her accountant still reviews and submits). International tax treaty handling (needs a specialist accountant). Tax planning advice. But we eliminate everything before that point.
+    </div>
+  </div>
+
+  <!-- CLOSING MOVE -->
+  <div class="closing-card">
+    <h3>How to close the session</h3>
+    <p>
+      By the time you get here, you will have enough to paint the picture. Do not pitch. Summarise what she said back to her in three or four sentences, then show her the number.
+    </p>
+    <p>
+      Something like: <strong>"So what I'm hearing is: speaking inquiries come through a contact form with no structured intake. Your newsletter has a list you've never sent an Academy sequence to. You are writing social content manually and posting inconsistently. The Foundation has no digital donor pipeline. And at tax time you are spending days pulling everything together. Across those areas, our initial scan showed £48,000 of value being left on the table every year. A full audit will show us what that number actually is when we get into your real data."</strong>
+    </p>
+    <p>
+      Then book the paid audit. Do not leave without a next step agreed.
+    </p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Prepared by <strong>MakeMeAI Consulting Ltd</strong> &nbsp;|&nbsp; team@makemeai.tech &nbsp;|&nbsp; www.makemeai.tech<br/>
+  Internal use only &mdash; Discovery Audit for Abi Dar&#233; &nbsp;|&nbsp; 28 April 2026</p>
+</div>
+
+</body>
+</html>

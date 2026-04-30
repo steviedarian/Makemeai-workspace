@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abi Daré — Discovery Audit Questions | MakeMeAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #080F1E;
+      --blue: #0F2552;
+      --accent: #1D57D8;
+      --accent2: #3B70E8;
+      --white: #FFFFFF;
+      --surface: #F7F9FF;
+      --border: #E2E8F4;
+      --text: #1E293B;
+      --muted: #64748B;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .masthead {
+      background: linear-gradient(140deg, var(--navy) 0%, var(--blue) 55%, #1a3a7a 100%);
+      padding: 44px 0 36px;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+    .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+    .brand-dot { width: 9px; height: 9px; background: var(--accent2); border-radius: 50%; }
+    .brand-name { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .report-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .client-name { font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 6px; }
+    .client-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    .masthead-meta { margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.28); }
+
+    .body-wrap { max-width: 900px; margin: 0 auto; padding: 0 48px 72px; }
+
+    .sec-hdr { display: flex; align-items: center; gap: 16px; margin: 48px 0 20px; }
+    .sec-hdr h2 { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+    .intro-banner {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 24px 30px;
+      margin-bottom: 32px;
+    }
+    .intro-banner p { font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .intro-banner strong { color: #fff; }
+
+    .section-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .section-icon {
+      width: 38px; height: 38px;
+      background: #EBF0FD;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .section-title { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); }
+    .section-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .question-list { padding: 0; }
+    .question-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .question-item:last-child { border-bottom: none; }
+    .q-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      padding-top: 2px;
+    }
+    .q-text { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.55; }
+
+    .answer-box {
+      margin-top: 10px;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      height: 52px;
+      background: var(--surface);
+    }
+
+    .footer { background: var(--navy); padding: 28px 48px; text-align: center; }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer strong { color: rgba(255,255,255,0.55); }
+
+    @media print {
+      .masthead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section-block { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand-dot"></div>
+      <span class="brand-name">MakeMeAI Consulting Ltd</span>
+    </div>
+    <div class="report-eyebrow">Discovery Audit</div>
+    <div class="client-name">Abi Dar&#233;</div>
+    <div class="client-sub">Author &nbsp;|&nbsp; Speaker &nbsp;|&nbsp; Educator &nbsp;|&nbsp; Philanthropist</div>
+    <div class="masthead-meta">Prepared 28 April 2026 &nbsp;|&nbsp; MakeMeAI Consulting Ltd &nbsp;|&nbsp; team@makemeai.tech</div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="sec-hdr" style="margin-top:36px;">
+    <h2>About this session</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="intro-banner">
+    <p>
+      This is a structured discovery session. The goal is to understand how your business currently operates across seven key areas: speaking, the Academy, content and social media, the Foundation, your time and operations, your technology setup, and your financial admin.<br><br>
+      There are no right or wrong answers. The more honest you are, the more useful the output. By the end of this session, we will have a clear picture of where AI and automation can save you the most time and generate the most value.
+    </p>
+  </div>
+
+  <!-- SECTION 1: SPEAKING -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#127908;</div>
+      <div>
+        <div class="section-title">The Speaking Business</div>
+        <div class="section-sub">Inquiry management, admin overhead, revenue, lost opportunities</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q1</span>
+        <div>
+          <div class="q-text">Walk me through what happens when someone wants to book you to speak. From the moment they reach out to the day you step on stage. What does that process look like?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q2</span>
+        <div>
+          <div class="q-text">In the last 12 months, do you feel like you missed any speaking opportunities because they came in and did not get responded to quickly enough, or because the back-and-forth just took too long?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q3</span>
+        <div>
+          <div class="q-text">On average, how many hours per week does speaking coordination take up? This includes emails, contracts, briefs, logistics, prep calls, all of it.</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q4</span>
+        <div>
+          <div class="q-text">You are represented by Champions Speakers. How much of your speaking comes through them versus direct inquiries to your website or email? And what happens to the direct ones?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q5</span>
+        <div>
+          <div class="q-text">What does a typical keynote fee look like for you? Just a ballpark. I want to understand the value of a single booking so I can show you what missing even two per year costs.</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: THE ACADEMY -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#127891;</div>
+      <div>
+        <div class="section-title">The Louding Voice Academy</div>
+        <div class="section-sub">Enrollment funnel, email sequences, conversion, course operations</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q6</span>
+        <div>
+          <div class="q-text">Tell me about The Louding Voice Academy. Who is it for, what does it teach, and how do people typically find their way to it?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q7</span>
+        <div>
+          <div class="q-text">You have a newsletter called The Louding Life. How many subscribers are on that list? And are you actively trying to move those readers toward the Academy?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q8</span>
+        <div>
+          <div class="q-text">When someone signs up to your newsletter, what happens next? Do they get a welcome sequence, a series of emails, an introduction to the Academy? Or do they just go straight onto the general list?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q9</span>
+        <div>
+          <div class="q-text">How much time do you personally put into Academy admin each month? Enrollment processing, student communications, course updates. Is any of it automated?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: CONTENT AND SOCIAL -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#128241;</div>
+      <div>
+        <div class="section-title">Content and Social Media</div>
+        <div class="section-sub">Time spent, consistency, platforms, audience growth</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q10</span>
+        <div>
+          <div class="q-text">How much time do you currently spend creating content for Instagram, Twitter, and your newsletter combined? Be honest. I want to understand the real cost.</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q11</span>
+        <div>
+          <div class="q-text">You have 184,000 people who rated your book on Goodreads. You have 12,000 Instagram followers. That is a 15 to 1 ratio. In your view, why is that gap so wide and does it bother you?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q12</span>
+        <div>
+          <div class="q-text">Have you ever considered video content, YouTube, or TikTok? You are a compelling speaker. BookTok has made careers for authors with far smaller audiences than yours. What has held you back?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q13</span>
+        <div>
+          <div class="q-text">You are published in 24 languages. Do you have any content strategy for international audiences, particularly in markets like Nigeria, where your story resonates most? Or is it purely through the publisher?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: THE FOUNDATION -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#10084;&#65039;</div>
+      <div>
+        <div class="section-title">The Louding Voice Foundation</div>
+        <div class="section-sub">Donor pipeline, supporter nurture, admin, school visits</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q14</span>
+        <div>
+          <div class="q-text">Tell me about The Louding Voice Foundation. How does it currently acquire supporters and donors? Is there an active pipeline or is it mainly word of mouth from your events and speaking appearances?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q15</span>
+        <div>
+          <div class="q-text">School and organisation visits are part of the Foundation's work. How are those currently booked and coordinated? What does the admin look like from an inquiry to a confirmed visit?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q16</span>
+        <div>
+          <div class="q-text">If the Foundation had a system that automatically nurtured every person who engaged with it online or at an event into an active supporter, what would that change for the Foundation's impact?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: OPERATIONS AND TIME -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#9200;</div>
+      <div>
+        <div class="section-title">Time, Operations and Admin</div>
+        <div class="section-sub">What your days actually look like, where the time goes</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q17</span>
+        <div>
+          <div class="q-text">If I asked you to describe a typical week, what does it look like? Where does the time actually go across writing, speaking, Academy, Foundation, and everything else?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q18</span>
+        <div>
+          <div class="q-text">Do you have a personal assistant or a team? If yes, what do they handle? If no, what would you hire for first if you had the budget?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q19</span>
+        <div>
+          <div class="q-text">What would you do with 20 extra hours every month? If admin were not taking up those hours, where would they go?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q20</span>
+        <div>
+          <div class="q-text">When you think about press coverage, new reviews, award nominations, or media mentions, how do you currently find out about them? Is it a system or is it when someone tags you or sends you a message?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: TECHNOLOGY AND READINESS -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#128187;</div>
+      <div>
+        <div class="section-title">Technology and Current Setup</div>
+        <div class="section-sub">What you already use, what you know, where the gaps are</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q21</span>
+        <div>
+          <div class="q-text">What email marketing tool are you using for The Louding Life newsletter? Mailchimp, ConvertKit, something else? And are you actively using any of the automation features in it?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q22</span>
+        <div>
+          <div class="q-text">Do you use any CRM or pipeline tool to track speaking inquiries, corporate contacts, or Academy prospects? Anything to manage relationships and follow-ups?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q23</span>
+        <div>
+          <div class="q-text">How do you feel about AI generally? Are you using it at all in your work currently, even informally?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: TAX AND FINANCIAL ADMIN -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-icon">&#128196;</div>
+      <div>
+        <div class="section-title">Tax and Financial Administration</div>
+        <div class="section-sub">Income tracking, expenses, Self Assessment prep, accountant relationship</div>
+      </div>
+    </div>
+    <div class="question-list">
+      <div class="question-item">
+        <span class="q-num">Q24</span>
+        <div>
+          <div class="q-text">How many separate income streams do you have right now? Walk me through them. Book royalties, speaking fees, Academy income, Foundation, anything else.</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q25</span>
+        <div>
+          <div class="q-text">Do you file a Self Assessment tax return with HMRC? And do you do it yourself or does an accountant handle it?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q26</span>
+        <div>
+          <div class="q-text">How do you currently track your business expenses? Receipts in a folder, a spreadsheet, an app, or does it all come out at the end of the year in a panic?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q27</span>
+        <div>
+          <div class="q-text">What kinds of expenses run through your business? Travel, home office, equipment, subscriptions, professional fees, event costs, anything related to the Foundation?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q28</span>
+        <div>
+          <div class="q-text">Do you have a business bank account that is fully separate from your personal account? Or does business income and spending mix with personal at any point?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q29</span>
+        <div>
+          <div class="q-text">You are published in 24 languages. Do you receive royalties from publishers in different countries? And if so, how does that get handled when it comes to tax? Is your accountant managing the international side?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q30</span>
+        <div>
+          <div class="q-text">How long does tax preparation actually take you each year? From start to finish, how many hours would you say go into getting everything together for your return?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-num">Q31</span>
+        <div>
+          <div class="q-text">Are you VAT registered, or are any of your income streams subject to VAT? And if so, are you managing VAT returns separately?</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Prepared by <strong>MakeMeAI Consulting Ltd</strong> &nbsp;|&nbsp; team@makemeai.tech &nbsp;|&nbsp; www.makemeai.tech<br/>
+  Discovery Audit for Abi Dar&#233; &nbsp;|&nbsp; 28 April 2026</p>
+</div>
+
+</body>
+</html>
