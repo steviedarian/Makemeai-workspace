@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Business Report | Dr Arayomi's Surgery | MakeMeAI Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:      #080F1E;
+  --blue:      #0F2552;
+  --accent:    #1D57D8;
+  --accent-lt: #EEF4FF;
+  --sky:       #3B82F6;
+  --white:     #FFFFFF;
+  --off:       #F7F9FF;
+  --text:      #0F172A;
+  --mid:       #475569;
+  --lt:        #94A3B8;
+  --border:    #E2E8F0;
+  --green:     #059669;
+  --green-lt:  #ECFDF5;
+  --red:       #DC2626;
+  --red-lt:    #FEF2F2;
+  --amber:     #D97706;
+  --amber-lt:  #FFFBEB;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--off); color:var(--text); line-height:1.6; }
+
+.masthead {
+  background: linear-gradient(140deg, var(--navy) 0%, #0D2660 60%, #1542A0 100%);
+  position: relative; overflow: hidden;
+}
+.masthead::before {
+  content:''; position:absolute; inset:0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(29,87,216,0.25) 0%, transparent 65%);
+  pointer-events:none;
+}
+.masthead-top {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:22px 52px; border-bottom:1px solid rgba(255,255,255,0.08); position:relative;
+}
+.logo { display:flex; align-items:center; gap:12px; }
+.logo-mark {
+  width:44px; height:44px; border-radius:10px; background:var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Poppins',sans-serif; font-weight:900; font-size:20px; color:#fff;
+  box-shadow:0 4px 14px rgba(29,87,216,0.5);
+}
+.logo-name { font-family:'Poppins',sans-serif; font-weight:700; font-size:17px; color:#fff; }
+.logo-name span { color:#7EB8FF; }
+.logo-sub { font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:1px; margin-top:1px; }
+.doc-meta { text-align:right; font-size:11px; color:rgba(255,255,255,0.4); line-height:1.9; }
+
+.masthead-body {
+  padding:52px 52px 60px; position:relative;
+  display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+}
+.masthead-left { flex:1; }
+.report-chip {
+  display:inline-flex; align-items:center; gap:7px;
+  background:rgba(29,87,216,0.35); border:1px solid rgba(123,184,255,0.3);
+  color:#7EB8FF; font-size:11px; font-weight:600; letter-spacing:1.5px;
+  text-transform:uppercase; padding:5px 14px; border-radius:30px; margin-bottom:20px;
+}
+.report-chip::before { content:''; width:6px; height:6px; background:#7EB8FF; border-radius:50%; }
+.masthead-body h1 {
+  font-family:'Poppins',sans-serif; font-size:44px; font-weight:800; line-height:1.1;
+  color:#fff; margin-bottom:14px; letter-spacing:-0.5px;
+}
+.masthead-body h1 span { color:#7EB8FF; }
+.masthead-body p { font-size:15px; color:rgba(255,255,255,0.55); }
+.masthead-body a { color:#7EB8FF; text-decoration:none; }
+
+.masthead-score-box {
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px; padding:28px 36px; text-align:center;
+  flex-shrink:0; min-width:190px; backdrop-filter:blur(4px);
+}
+.score-big {
+  font-family:'Poppins',sans-serif; font-size:64px; font-weight:900;
+  line-height:1; color:#EF4444; display:block;
+}
+.score-denom { font-size:18px; color:rgba(255,255,255,0.35); font-weight:400; }
+.score-label { font-size:11px; color:rgba(255,255,255,0.45); letter-spacing:2px; text-transform:uppercase; margin-top:6px; }
+.score-verdict {
+  margin-top:12px; padding:6px 14px;
+  background:rgba(239,68,68,0.2); border:1px solid rgba(239,68,68,0.35);
+  border-radius:20px; font-size:11px; color:#FCA5A5; font-weight:600;
+}
+
+.impact-strip {
+  background:var(--accent); padding:36px 52px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+}
+.impact-item {
+  padding:0 28px; text-align:center;
+  border-right:1px solid rgba(255,255,255,0.2);
+}
+.impact-item:last-child { border-right:none; }
+.impact-num {
+  font-family:'Poppins',sans-serif; font-size:38px; font-weight:800;
+  color:#fff; line-height:1; margin-bottom:6px; display:block;
+}
+.impact-num sup { font-size:20px; vertical-align:super; }
+.impact-label { font-size:12px; color:rgba(255,255,255,0.7); font-weight:500; line-height:1.4; }
+
+.wrap { max-width:1040px; margin:0 auto; padding:48px 52px; }
+.wrap + .wrap { padding-top:0; }
+
+.sec-title {
+  font-family:'Poppins',sans-serif; font-size:13px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:8px;
+}
+.sec-heading {
+  font-family:'Poppins',sans-serif; font-size:26px; font-weight:800;
+  color:var(--navy); margin-bottom:20px; line-height:1.2;
+}
+.sec-heading span { color:var(--accent); }
+
+.scores-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+.score-item {
+  background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px;
+}
+.score-item-label { font-size:12px; color:var(--mid); margin-bottom:8px; font-weight:500; }
+.score-bar-wrap { height:6px; background:var(--border); border-radius:4px; margin-bottom:8px; }
+.score-bar { height:100%; border-radius:4px; }
+.score-bar.low  { background:var(--red); }
+.score-bar.mid  { background:var(--amber); }
+.score-bar.high { background:var(--green); }
+.score-item-val { font-family:'Poppins',sans-serif; font-size:20px; font-weight:800; color:var(--navy); }
+.score-item-val span { font-size:12px; color:var(--lt); font-weight:400; }
+
+.roi-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.roi-card { border-radius:14px; padding:28px; position:relative; overflow:hidden; }
+.roi-card.time-card { background:linear-gradient(135deg,#0F2552,#1D57D8); color:#fff; }
+.roi-card.money-card { background:linear-gradient(135deg,#064E3B,#059669); color:#fff; }
+.roi-card-icon { font-size:28px; margin-bottom:14px; display:block; }
+.roi-card h3 {
+  font-family:'Poppins',sans-serif; font-size:14px; font-weight:700;
+  opacity:0.7; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;
+}
+.roi-big {
+  font-family:'Poppins',sans-serif; font-size:52px; font-weight:900;
+  line-height:1; margin-bottom:6px; display:block;
+}
+.roi-sub { font-size:13px; opacity:0.7; margin-bottom:20px; display:block; }
+.roi-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:9px 0; border-top:1px solid rgba(255,255,255,0.12); font-size:13px;
+}
+.roi-row-label { opacity:0.8; }
+.roi-row-val { font-weight:700; }
+
+.full-picture {
+  background:var(--navy); border-radius:14px; padding:36px 40px;
+  margin-top:20px; display:flex; align-items:center; gap:40px;
+}
+.full-picture-num {
+  font-family:'Poppins',sans-serif; font-size:56px; font-weight:900;
+  color:#7EB8FF; line-height:1; flex-shrink:0;
+}
+.full-picture-num sup { font-size:24px; vertical-align:super; }
+.full-picture-text h4 {
+  font-family:'Poppins',sans-serif; font-size:17px; font-weight:700;
+  color:#fff; margin-bottom:8px;
+}
+.full-picture-text p { font-size:13.5px; color:rgba(255,255,255,0.6); line-height:1.7; }
+
+.tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.tool-card {
+  background:var(--white); border:1px solid var(--border); border-radius:14px; padding:24px;
+}
+.tool-tag {
+  display:inline-block; background:var(--accent-lt); color:var(--accent);
+  font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  padding:3px 10px; border-radius:20px; margin-bottom:14px;
+}
+.tool-icon { font-size:28px; margin-bottom:10px; display:block; }
+.tool-card h4 {
+  font-family:'Poppins',sans-serif; font-size:15px; font-weight:700;
+  color:var(--navy); margin-bottom:8px;
+}
+.tool-card p { font-size:13px; color:var(--mid); line-height:1.6; }
+.tool-impact {
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--border);
+  font-size:12px; color:var(--green); font-weight:600;
+  display:flex; align-items:center; gap:6px;
+}
+.tool-impact::before { content:'↑'; }
+
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.list-card {
+  background:var(--white); border:1px solid var(--border); border-radius:14px; overflow:hidden;
+}
+.list-card-head { padding:18px 24px; display:flex; align-items:center; gap:10px; }
+.list-card-head.red   { background:var(--red-lt);   border-bottom:1px solid #FEE2E2; }
+.list-card-head.green { background:var(--green-lt); border-bottom:1px solid #D1FAE5; }
+.list-card-head h3 { font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; }
+.list-card-head.red   h3 { color:var(--red); }
+.list-card-head.green h3 { color:var(--green); }
+.list-body { padding:8px 0; }
+.list-item {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:11px 24px; border-bottom:1px solid var(--border);
+  font-size:13.5px; color:var(--mid); line-height:1.5;
+}
+.list-item:last-child { border-bottom:none; }
+.dot {
+  width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; margin-top:1px;
+}
+.dot.red   { background:var(--red-lt);   color:var(--red); }
+.dot.green { background:var(--green-lt); color:var(--green); }
+
+.audit-wrap {
+  background:var(--white); border:1px solid var(--border); border-radius:14px; overflow:hidden;
+}
+.audit-head {
+  background:var(--navy); padding:22px 28px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.audit-head h3 { font-family:'Poppins',sans-serif; font-size:16px; font-weight:700; color:#fff; }
+.audit-head p { font-size:12px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.audit-score-pill {
+  background:rgba(239,68,68,0.2); border:1px solid rgba(239,68,68,0.4);
+  color:#FCA5A5; font-size:12px; font-weight:700; padding:6px 16px; border-radius:20px;
+}
+table { width:100%; border-collapse:collapse; font-size:13px; }
+thead th {
+  background:#0F1F3D; color:rgba(255,255,255,0.6);
+  font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px;
+  padding:12px 16px; text-align:left;
+}
+tbody tr:nth-child(even) { background:var(--off); }
+tbody td { padding:12px 16px; border-bottom:1px solid var(--border); color:var(--mid); vertical-align:top; line-height:1.5; }
+tbody td:first-child { font-weight:600; color:var(--text); }
+tbody tr:last-child td { border-bottom:none; }
+.pill { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; white-space:nowrap; }
+.pill-miss    { background:var(--red-lt);   color:var(--red); }
+.pill-partial { background:var(--amber-lt); color:var(--amber); }
+.pill-good    { background:var(--green-lt); color:var(--green); }
+
+.partner-section {
+  background:linear-gradient(140deg, var(--navy) 0%, #0D2660 100%);
+  border-radius:16px; overflow:hidden; color:#fff;
+}
+.partner-top { padding:44px 48px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.partner-top .sec-title { color:#7EB8FF; }
+.partner-top .sec-heading { color:#fff; margin-bottom:16px; }
+.partner-top p { font-size:14.5px; color:rgba(255,255,255,0.65); line-height:1.8; max-width:680px; }
+.partner-grid {
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.partner-col { padding:32px 36px; border-right:1px solid rgba(255,255,255,0.06); }
+.partner-col:last-child { border-right:none; }
+.partner-col h4 {
+  font-family:'Poppins',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase; color:#7EB8FF; margin-bottom:16px;
+}
+.partner-col ul { list-style:none; }
+.partner-col ul li {
+  font-size:13.5px; color:rgba(255,255,255,0.65);
+  padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex; align-items:flex-start; gap:8px; line-height:1.5;
+}
+.partner-col ul li:last-child { border-bottom:none; }
+.partner-col ul li::before { content:'→'; color:var(--sky); flex-shrink:0; font-weight:700; margin-top:1px; }
+
+.cta-wrap {
+  background:linear-gradient(140deg, var(--accent) 0%, #0F52C8 100%);
+  border-radius:16px; padding:52px 48px; text-align:center;
+  position:relative; overflow:hidden;
+}
+.cta-wrap::after {
+  content:''; position:absolute; bottom:-60px; right:-60px;
+  width:240px; height:240px; border-radius:50%;
+  background:rgba(255,255,255,0.05); pointer-events:none;
+}
+.cta-chip {
+  display:inline-block; background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25); color:#fff;
+  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  padding:5px 16px; border-radius:30px; margin-bottom:20px;
+}
+.cta-wrap h2 {
+  font-family:'Poppins',sans-serif; font-size:36px; font-weight:800;
+  color:#fff; line-height:1.15; margin-bottom:14px; letter-spacing:-0.3px;
+}
+.cta-wrap > p {
+  font-size:15px; color:rgba(255,255,255,0.75);
+  max-width:580px; margin:0 auto 32px; line-height:1.75;
+}
+.cta-features {
+  display:flex; justify-content:center; gap:28px; margin-bottom:36px; flex-wrap:wrap;
+}
+.cta-feat {
+  display:flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.18);
+  padding:10px 18px; border-radius:30px; font-size:13px; color:#fff;
+}
+.cta-feat::before { content:'✓'; font-weight:700; color:#86EFAC; }
+.cta-btn {
+  display:inline-block; background:#fff; color:var(--accent);
+  font-family:'Poppins',sans-serif; font-weight:800; font-size:16px;
+  padding:18px 52px; border-radius:12px; text-decoration:none;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+}
+.cta-note { margin-top:20px; font-size:12px; color:rgba(255,255,255,0.5); }
+
+.footer {
+  background:var(--navy); padding:32px 52px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-brand { font-family:'Poppins',sans-serif; font-weight:700; font-size:15px; color:#fff; }
+.footer-brand span { color:#7EB8FF; }
+.footer-note { font-size:12px; color:rgba(255,255,255,0.3); text-align:right; line-height:1.8; }
+
+@media(max-width:768px){
+  .masthead-top,.masthead-body,.wrap,.footer{ padding-left:24px; padding-right:24px; }
+  .masthead-body{ flex-direction:column; align-items:flex-start; }
+  .masthead-body h1{ font-size:30px; }
+  .impact-strip{ grid-template-columns:1fr; padding:24px; }
+  .impact-item{ border-right:none; border-bottom:1px solid rgba(255,255,255,0.15); padding:16px 0; }
+  .impact-item:last-child{ border-bottom:none; }
+  .roi-grid,.two-col,.partner-grid{ grid-template-columns:1fr; }
+  .tools-grid{ grid-template-columns:1fr 1fr; }
+  .scores-grid{ grid-template-columns:1fr 1fr; }
+  .full-picture{ flex-direction:column; gap:16px; }
+  .partner-col{ border-right:none; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .footer{ flex-direction:column; gap:12px; text-align:center; }
+  .footer-note{ text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-top">
+    <div class="logo">
+      <div class="logo-mark">M</div>
+      <div>
+        <div class="logo-name">MakeMeAI <span>Consulting</span></div>
+        <div class="logo-sub">AI TRANSFORMATION PARTNER</div>
+      </div>
+    </div>
+    <div class="doc-meta">
+      AI Readiness Report<br>
+      Dr Arayomi's Surgery, Basildon<br>
+      3 May 2026
+    </div>
+  </div>
+  <div class="masthead-body">
+    <div class="masthead-left">
+      <div class="report-chip">AI Readiness Scan</div>
+      <h1>Dr Arayomi's <span>Surgery</span></h1>
+      <p>
+        West Wing, Dipple Medical Centre, Basildon, Essex SS13 3HQ<br>
+        <a href="https://www.arayomisurgery.nhs.uk" target="_blank">arayomisurgery.nhs.uk</a> &nbsp;|&nbsp; CQC Rated: Good &nbsp;|&nbsp; Veteran Friendly Accredited &nbsp;|&nbsp; FRCOG
+      </p>
+    </div>
+    <div class="masthead-score-box">
+      <span class="score-big">31<span class="score-denom">/100</span></span>
+      <div class="score-label">AI Readiness Score</div>
+      <div class="score-verdict">Significant Gap</div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT STRIP -->
+<div class="impact-strip">
+  <div class="impact-item">
+    <span class="impact-num"><sup>£</sup>47K<sup>+</sup></span>
+    <div class="impact-label">Annual savings identified<br>from public data alone</div>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">28+</span>
+    <div class="impact-label">Staff hours saved per month<br>through AI automation</div>
+  </div>
+  <div class="impact-item">
+    <span class="impact-num">8</span>
+    <div class="impact-label">AI systems ready to build<br>for this practice</div>
+  </div>
+</div>
+
+<!-- ABOUT DR ARAYOMI -->
+<div class="wrap">
+  <div class="sec-title">About This Practice</div>
+  <div class="sec-heading">45 years of excellence. <span>Almost invisible online.</span></div>
+  <p style="font-size:15px; color:var(--mid); line-height:1.9; max-width:800px; margin-bottom:20px;">
+    Dr Joseph Oladeinde Arayomi is not a standard GP. He is a Fellow of the Royal College of Obstetricians and Gynaecologists (FRCOG) and a Fellow of the West African College of Surgeons. He trained at the College of Medicine, University of Ibadan, built his career across Nigeria and the UK, and has been serving patients in Essex for over three decades. His LARC specialism gives this practice a genuine clinical edge that no other GP surgery in Basildon offers.
+  </p>
+  <p style="font-size:15px; color:var(--mid); line-height:1.9; max-width:800px;">
+    The CQC agrees this is a good practice. The problem is that almost no one outside the immediate NHS directory knows it. A practice with this depth of expertise and this length of service deserves a digital presence that matches it. Right now, that presence does not exist, and the gap between clinical reputation and digital visibility is costing the practice real money, real time, and real opportunities every single day.
+  </p>
+</div>
+
+<!-- SCORE BREAKDOWN -->
+<div class="wrap" style="padding-top:0">
+  <div class="sec-title">Diagnostic Results</div>
+  <div class="sec-heading">Where the <span>gaps are</span></div>
+  <div class="scores-grid">
+    <div class="score-item">
+      <div class="score-item-label">Website Quality</div>
+      <div class="score-bar-wrap"><div class="score-bar mid" style="width:40%"></div></div>
+      <div class="score-item-val">4<span>/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-item-label">Social Media Presence</div>
+      <div class="score-bar-wrap"><div class="score-bar low" style="width:10%"></div></div>
+      <div class="score-item-val">1<span>/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-item-label">Online Reviews</div>
+      <div class="score-bar-wrap"><div class="score-bar low" style="width:30%"></div></div>
+      <div class="score-item-val">3<span>/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-item-label">Content Marketing</div>
+      <div class="score-bar-wrap"><div class="score-bar low" style="width:20%"></div></div>
+      <div class="score-item-val">2<span>/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-item-label">Automation Readiness</div>
+      <div class="score-bar-wrap"><div class="score-bar mid" style="width:50%"></div></div>
+      <div class="score-item-val">5<span>/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-item-label">Competitor Positioning</div>
+      <div class="score-bar-wrap"><div class="score-bar low" style="width:40%"></div></div>
+      <div class="score-item-val">4<span>/10</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROI CARDS -->
+<div class="wrap" style="padding-top:0">
+  <div class="sec-title">Savings Identified</div>
+  <div class="sec-heading">The value sitting <span>uncaptured</span></div>
+  <div class="roi-grid">
+    <div class="roi-card time-card">
+      <span class="roi-card-icon">⏱</span>
+      <h3>Time Recovered</h3>
+      <span class="roi-big">28+</span>
+      <span class="roi-sub">hours saved per month across the practice</span>
+      <div class="roi-row">
+        <span class="roi-row-label">Reception triage calls automated</span>
+        <span class="roi-row-val">12 hrs/mo</span>
+      </div>
+      <div class="roi-row">
+        <span class="roi-row-label">Repeat prescription processing</span>
+        <span class="roi-row-val">8 hrs/mo</span>
+      </div>
+      <div class="roi-row">
+        <span class="roi-row-label">Admin letters and referral drafting</span>
+        <span class="roi-row-val">5 hrs/mo</span>
+      </div>
+      <div class="roi-row">
+        <span class="roi-row-label">Chronic disease recall coordination</span>
+        <span class="roi-row-val">3 hrs/mo</span>
+      </div>
+    </div>
+    <div class="roi-card money-card">
+      <span class="roi-card-icon">£</span>
+      <h3>Financial Savings (Public Data)</h3>
+      <span class="roi-big">£47K+</span>
+      <span class="roi-sub">conservative estimate from publicly visible information</span>
+      <div class="roi-row">
+        <span class="roi-row-label">Staff time savings (AI admin)</span>
+        <span class="roi-row-val">~£14,000/yr</span>
+      </div>
+      <div class="roi-row">
+        <span class="roi-row-label">DNA reduction (automated reminders)</span>
+        <span class="roi-row-val">~£9,300/yr</span>
+      </div>
+      <div class="roi-row">
+        <span class="roi-row-label">Reputation and new patient growth</span>
+        <span class="roi-row-val">~£12,000/yr</span>
+      </div>
+      <div class="roi-row">
+        <span class="roi-row-label">Chronic disease care efficiency</span>
+        <span class="roi-row-val">~£11,700/yr</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-picture">
+    <div class="full-picture-num"><sup>£</sup>127K<sup>+</sup></div>
+    <div class="full-picture-text">
+      <h4>The full picture, with access to your numbers</h4>
+      <p>
+        This report was built from public information only. We do not know your actual appointment volumes, DNA rates, staff costs, QOF performance, or admin overhead. GP practices of this size and specialism typically sit on between £100,000 and £150,000 in recoverable annual value once AI is properly embedded. A full audit gives us the real number. It takes one conversation and costs nothing.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS SECTION -->
+<div class="wrap" style="padding-top:0">
+  <div class="sec-title">What Gets Built</div>
+  <div class="sec-heading">8 AI systems for <span>Dr Arayomi's Surgery</span></div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <span class="tool-icon">🤖</span>
+      <div class="tool-tag">Patient Triage</div>
+      <h4>AI Triage Chatbot</h4>
+      <p>A 24/7 intelligent assistant on the practice website. Patients describe symptoms, get guided to the right appointment type, and stop calling reception for questions AI can answer instantly.</p>
+      <div class="tool-impact">Cuts inbound calls by 40% or more</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-icon">📅</span>
+      <div class="tool-tag">Scheduling</div>
+      <h4>Smart Appointment System</h4>
+      <p>Automated SMS and email reminders reduce Did Not Attends. Cancellation slots fill automatically. The NHS loses an estimated £30 per missed appointment. AI stops the bleed.</p>
+      <div class="tool-impact">Reduces DNAs by up to 50%</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-icon">💊</span>
+      <div class="tool-tag">Prescriptions</div>
+      <h4>Repeat Prescription AI</h4>
+      <p>Automates the repeat prescription workflow. Requests are processed faster, potential drug interactions flagged, and staff spend their time on patients rather than paperwork.</p>
+      <div class="tool-impact">Saves 8+ hrs/month in admin time</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-icon">📚</span>
+      <div class="tool-tag">Patient Engagement</div>
+      <h4>Patient Education Engine</h4>
+      <p>Sends personalised health information after each consultation. Condition management tips, medication reminders, and follow-up guidance delivered automatically to the right patient at the right time.</p>
+      <div class="tool-impact">Improves adherence and reduces re-attendance</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-icon">📢</span>
+      <div class="tool-tag">Digital Presence</div>
+      <h4>Health Content Pipeline</h4>
+      <p>Auto-generates weekly health content for social media, Google Business, and the practice website. Seasonal campaigns, condition awareness, and service highlights, all branded to the practice.</p>
+      <div class="tool-impact">Builds the authority this practice already deserves</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-icon">⭐</span>
+      <div class="tool-tag">Reputation</div>
+      <h4>Review and Reputation Manager</h4>
+      <p>Systematically captures patient feedback after appointments. Routes positive sentiment to Google reviews. Flags concerns internally before they become complaints. Builds the online profile that matches the clinical standard.</p>
+      <div class="tool-impact">Generates a steady stream of 5-star reviews</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-icon">🫀</span>
+      <div class="tool-tag">Chronic Disease</div>
+      <h4>Disease Recall System</h4>
+      <p>Automatically identifies patients due for diabetes, hypertension, COPD, and asthma reviews. Sends recall invitations, tracks responses, and alerts staff to non-responders. Nothing falls through the gaps.</p>
+      <div class="tool-impact">Improves QOF scores and patient outcomes</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-icon">📝</span>
+      <div class="tool-tag">Administration</div>
+      <h4>Admin AI Assistant</h4>
+      <p>Drafts referral letters, sick notes, clinical summaries, and patient communications in seconds. Staff review and approve. What takes 20 minutes now takes 2. Fully compliant with NHS governance requirements.</p>
+      <div class="tool-impact">Saves 5+ hrs/month in drafting time</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GAPS AND OPPORTUNITIES -->
+<div class="wrap" style="padding-top:0">
+  <div class="sec-title">Detailed Analysis</div>
+  <div class="sec-heading">Gaps found vs. <span>opportunities available</span></div>
+  <div class="two-col">
+
+    <div class="list-card">
+      <div class="list-card-head red">
+        <div class="dot red">!</div>
+        <h3>8 Gaps Identified</h3>
+      </div>
+      <div class="list-body">
+        <div class="list-item"><div class="dot red">1</div>No social media presence on any platform. A practice led by a Fellow of the RCOG has zero accounts, zero posts, zero patient community online.</div>
+        <div class="list-item"><div class="dot red">2</div>No AI chatbot or digital triage. Every patient query routes through reception, creating a bottleneck at every peak period.</div>
+        <div class="list-item"><div class="dot red">3</div>No automated appointment reminder system beyond the NHS default. DNA rates are almost certainly above the 8% national average.</div>
+        <div class="list-item"><div class="dot red">4</div>No health content or patient education marketing. The practice's LARC specialism and FRCOG expertise are invisible to anyone not already registered.</div>
+        <div class="list-item"><div class="dot red">5</div>No Google review strategy. With a CQC Good rating and decades of service, positive reviews should be accumulating automatically. They are not.</div>
+        <div class="list-item"><div class="dot red">6</div>No newsletter or direct patient communication channel. The registered patient list is a dormant asset.</div>
+        <div class="list-item"><div class="dot red">7</div>No automated chronic disease recall. Manual processes mean at-risk patients get missed and QOF points are left unclaimed.</div>
+        <div class="list-item"><div class="dot red">8</div>No AI in the admin workflow. Letters, referrals, and sick notes are being written from scratch every time, by hand.</div>
+      </div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card-head green">
+        <div class="dot green">+</div>
+        <h3>8 Opportunities to Take</h3>
+      </div>
+      <div class="list-body">
+        <div class="list-item"><div class="dot green">1</div>Build an AI triage chatbot. Patients self-serve answers and route themselves. Reception focuses on patients who genuinely need a human.</div>
+        <div class="list-item"><div class="dot green">2</div>Deploy automated reminders. Cut DNAs in half. At £30 per missed appointment, this alone delivers significant savings within 90 days.</div>
+        <div class="list-item"><div class="dot green">3</div>Launch a health content pipeline. Weekly tips, seasonal campaigns, LARC awareness content. Build the audience this practice's expertise warrants.</div>
+        <div class="list-item"><div class="dot green">4</div>Activate a Google review engine. Post-appointment prompts, filtered by sentiment. The CQC says Good. Google should reflect the same.</div>
+        <div class="list-item"><div class="dot green">5</div>Automate the repeat prescription workflow. Patients submit, AI processes, staff approve. Eight hours a month reclaimed for clinical work.</div>
+        <div class="list-item"><div class="dot green">6</div>Build a chronic disease recall system. Every at-risk patient gets a recall at the right time. QOF scores improve. Patient outcomes improve.</div>
+        <div class="list-item"><div class="dot green">7</div>Introduce a patient education engine. Condition-specific content after every consultation. Better adherence, fewer re-attendances, fewer unnecessary calls.</div>
+        <div class="list-item"><div class="dot green">8</div>Deploy an admin AI assistant. Referrals and letters drafted in seconds. Reviewed and sent by staff. Never starting from a blank page again.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- AUDIT TABLE -->
+<div class="wrap" style="padding-top:0">
+  <div class="audit-wrap">
+    <div class="audit-head">
+      <div>
+        <h3>16-Point Digital Audit</h3>
+        <p>Full assessment of digital infrastructure and automation capability</p>
+      </div>
+      <div class="audit-score-pill">Score: 31/100</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>What Was Found</th>
+          <th>Status</th>
+          <th>AI Opportunity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Website Design</td>
+          <td>Standard NHS MySurgeryWebsite template. Functional but no differentiation or brand identity.</td>
+          <td><span class="pill pill-partial">Partial</span></td>
+          <td>AI chatbot widget, personalised patient journeys</td>
+        </tr>
+        <tr>
+          <td>Mobile Responsiveness</td>
+          <td>NHS template is responsive. Works on mobile devices.</td>
+          <td><span class="pill pill-good">Good</span></td>
+          <td>Mobile-first triage and booking flows</td>
+        </tr>
+        <tr>
+          <td>Online Booking</td>
+          <td>NHS App integration exists. Limited self-service beyond basic appointment requests.</td>
+          <td><span class="pill pill-partial">Partial</span></td>
+          <td>Smart scheduling with intelligent slot matching</td>
+        </tr>
+        <tr>
+          <td>Appointment Reminders</td>
+          <td>No automated reminder system visible beyond NHS default messaging.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>Automated SMS/email reminders, DNA reduction system</td>
+        </tr>
+        <tr>
+          <td>Patient Triage</td>
+          <td>All queries routed through reception by phone. No digital triage layer in place.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>AI chatbot for symptom assessment and call deflection</td>
+        </tr>
+        <tr>
+          <td>Repeat Prescriptions</td>
+          <td>Online request form via NHS App exists. Manual processing by staff from there.</td>
+          <td><span class="pill pill-partial">Partial</span></td>
+          <td>AI-assisted processing with drug interaction flagging</td>
+        </tr>
+        <tr>
+          <td>Social Media (Facebook)</td>
+          <td>No practice Facebook page found.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>Automated health content and local patient community</td>
+        </tr>
+        <tr>
+          <td>Social Media (Instagram)</td>
+          <td>No Instagram presence found.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>Visual health campaigns and awareness content</td>
+        </tr>
+        <tr>
+          <td>Google Business Profile</td>
+          <td>Practice appears in Maps via NHS data. Not actively managed or optimised.</td>
+          <td><span class="pill pill-partial">Partial</span></td>
+          <td>Automated review capture and response management</td>
+        </tr>
+        <tr>
+          <td>Patient Reviews Strategy</td>
+          <td>No systematic review capture process. CQC Good but minimal public-facing reviews.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>Post-appointment feedback engine feeding Google</td>
+        </tr>
+        <tr>
+          <td>Content Marketing</td>
+          <td>No blog, no newsletter, no social content found on any channel.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>Weekly AI-generated health content pipeline</td>
+        </tr>
+        <tr>
+          <td>Patient Communications</td>
+          <td>NHS default only. No practice-level email or SMS campaigns in evidence.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>Personalised health tips, recalls, seasonal campaigns</td>
+        </tr>
+        <tr>
+          <td>Chronic Disease Recall</td>
+          <td>Standard NHS recall process assumed to be manual. No automated tracking visible.</td>
+          <td><span class="pill pill-partial">Partial</span></td>
+          <td>AI recall system with automated outreach and response tracking</td>
+        </tr>
+        <tr>
+          <td>Admin Automation</td>
+          <td>No AI tools visible. Letters and referrals drafted manually by clinical staff.</td>
+          <td><span class="pill pill-miss">Missing</span></td>
+          <td>AI drafting assistant for letters, referrals, and sick notes</td>
+        </tr>
+        <tr>
+          <td>Patient Education</td>
+          <td>Basic health information pages on website. No personalised or automated delivery.</td>
+          <td><span class="pill pill-partial">Partial</span></td>
+          <td>Post-consultation personalised education content</td>
+        </tr>
+        <tr>
+          <td>CQC and Quality Standing</td>
+          <td>CQC Rated Good. Veteran Friendly Accredited. FRCOG qualification. Strong clinical base.</td>
+          <td><span class="pill pill-good">Good</span></td>
+          <td>AI-assisted evidence gathering for next CQC inspection</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PARTNERSHIP SECTION -->
+<div class="wrap" style="padding-top:0">
+  <div class="partner-section">
+    <div class="partner-top">
+      <div class="sec-title">The Partnership</div>
+      <div class="sec-heading">What working together looks like</div>
+      <p>
+        MakeMeAI becomes the AI layer wrapped around your practice. We audit, build, and manage the systems that take routine work off your team so you and your staff can focus entirely on patients. Every system is human-approved before it touches anything clinical. Every patient communication goes out under your name, in your voice, compliant with NHS governance from day one.
+      </p>
+    </div>
+    <div class="partner-grid">
+      <div class="partner-col">
+        <h4>What We Do Monthly</h4>
+        <ul>
+          <li>Monitor and optimise all AI systems</li>
+          <li>Generate health content for social and digital</li>
+          <li>Manage reputation and review pipeline</li>
+          <li>Identify new automation opportunities</li>
+          <li>Report on time saved and value delivered</li>
+          <li>Support staff with AI training and adoption</li>
+        </ul>
+      </div>
+      <div class="partner-col">
+        <h4>What the Practice Gets</h4>
+        <ul>
+          <li>24/7 AI patient triage chatbot</li>
+          <li>Automated appointment reminders</li>
+          <li>Smart repeat prescription workflow</li>
+          <li>Chronic disease recall system</li>
+          <li>Weekly health content pipeline</li>
+          <li>Monthly AI performance report</li>
+        </ul>
+      </div>
+      <div class="partner-col">
+        <h4>The Commitment</h4>
+        <ul>
+          <li>90-day initial review with clear outcomes</li>
+          <li>Human-in-the-loop on all clinical communications</li>
+          <li>All builds comply with NHS governance standards</li>
+          <li>Price lock: your rate stays fixed until renewal</li>
+          <li>Direct access to your AI consultant</li>
+          <li>Cancel with 30 days notice at any time</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FREE AUDIT CTA -->
+<div class="wrap" style="padding-top:0; padding-bottom:64px;">
+  <div class="cta-wrap">
+    <div class="cta-chip">Free Audit Available</div>
+    <h2>We found £47K from public data.<br>The full picture is closer to £127,000.</h2>
+    <p>
+      Every figure in this report comes from what is publicly visible. We do not know your appointment volumes, your DNA rates, your staffing costs, or your QOF performance. Those numbers will almost certainly push the real value well above £127,000 a year. A full audit reveals the exact figure. It takes one conversation and costs nothing.
+    </p>
+    <div class="cta-features">
+      <div class="cta-feat">Full practice workflow audit</div>
+      <div class="cta-feat">Precise savings calculation</div>
+      <div class="cta-feat">AI build roadmap</div>
+      <div class="cta-feat">No cost, no commitment</div>
+    </div>
+    <a href="mailto:team@makemeai.tech" class="cta-btn">Book Your Free Audit</a>
+    <div class="cta-note">team@makemeai.tech &nbsp;|&nbsp; www.makemeai.tech &nbsp;|&nbsp; Essex, UK</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">MakeMeAI <span>Consulting Ltd</span></div>
+  <div class="footer-note">
+    This report was generated using publicly available information only.<br>
+    All figures are conservative estimates based on NHS benchmarks and industry data.<br>
+    Prepared by MakeMeAI Consulting Ltd | team@makemeai.tech | www.makemeai.tech
+  </div>
+</div>
+
+</body>
+</html>

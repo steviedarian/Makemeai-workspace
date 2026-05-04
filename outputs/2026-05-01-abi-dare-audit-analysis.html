@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abi Daré — Audit Analysis & Automation Plan | MakeMeAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #080F1E; --blue: #0F2552; --accent: #1D57D8; --accent2: #3B70E8;
+      --white: #FFFFFF; --green: #059669; --red: #DC2626; --amber: #D97706;
+      --surface: #F7F9FF; --border: #E2E8F4; --text: #1E293B; --muted: #64748B;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); font-size: 15px; line-height: 1.65; }
+    .masthead { background: linear-gradient(140deg, var(--navy) 0%, var(--blue) 55%, #1a3a7a 100%); padding: 44px 0 36px; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+    .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .brand-dot { width: 9px; height: 9px; background: var(--accent2); border-radius: 50%; }
+    .brand-name { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .report-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .client-name { font-family: 'Poppins', sans-serif; font-size: 38px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 6px; }
+    .client-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .masthead-meta { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.28); }
+
+    .alert-strip { background: var(--amber); padding: 16px 0; }
+    .alert-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; font-size: 13.5px; font-weight: 600; color: #fff; }
+
+    .body-wrap { max-width: 960px; margin: 0 auto; padding: 0 48px 72px; }
+    .sec-hdr { display: flex; align-items: center; gap: 16px; margin: 48px 0 20px; }
+    .sec-hdr h2 { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+    .headline-card {
+      background: var(--navy); border-radius: 14px; padding: 32px 36px; margin-bottom: 24px;
+    }
+    .headline-card p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.8; }
+    .headline-card strong { color: #fff; }
+
+    .money-strip {
+      background: var(--accent); border-radius: 14px; padding: 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .money-item { padding: 28px 28px; border-right: 1px solid rgba(255,255,255,0.15); }
+    .money-item:last-child { border-right: none; }
+    .money-val { font-family: 'Poppins', sans-serif; font-size: 34px; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 6px; }
+    .money-label { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+    .finding-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; margin-bottom: 16px;
+    }
+    .finding-header {
+      display: flex; align-items: center; gap: 14px; padding: 18px 24px;
+      border-bottom: 1px solid var(--border); background: var(--surface);
+    }
+    .finding-icon { width: 36px; height: 36px; background: #EBF0FD; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+    .finding-title { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
+    .finding-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .finding-body { padding: 20px 24px; }
+    .finding-body p { font-size: 13.5px; color: var(--text); line-height: 1.7; margin-bottom: 10px; }
+    .finding-body p:last-child { margin-bottom: 0; }
+    .finding-body strong { color: var(--navy); }
+    .quote-block {
+      background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
+      padding: 12px 16px; margin: 12px 0; font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.6;
+    }
+    .quote-block strong { font-style: normal; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+
+    .urgency-pill {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 20px; margin-left: 8px;
+    }
+    .pill-urgent { background: #FEE2E2; color: var(--red); }
+    .pill-high { background: #FEF3C7; color: var(--amber); }
+    .pill-quick { background: #D1FAE5; color: var(--green); }
+
+    .build-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .build-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 22px;
+    }
+    .build-num { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .build-name { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .build-body { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+    .build-tag { display: inline-block; background: #EBF0FD; color: var(--accent); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+
+    .roi-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .roi-table th { background: var(--navy); color: rgba(255,255,255,0.6); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 12px 16px; text-align: left; }
+    .roi-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+    .roi-table tr:last-child td { border-bottom: none; }
+    .roi-table tbody tr:nth-child(even) td { background: var(--surface); }
+    .roi-total td { font-weight: 700; color: var(--navy); background: #EBF0FD !important; font-size: 14px; }
+
+    .next-steps {
+      background: linear-gradient(140deg, var(--navy), var(--blue));
+      border-radius: 14px; padding: 40px 44px; margin-top: 40px;
+    }
+    .next-steps h3 { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .step-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .step-item { display: flex; gap: 16px; align-items: flex-start; }
+    .step-num { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 900; color: var(--accent2); flex-shrink: 0; width: 28px; }
+    .step-text { font-size: 13.5px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+    .step-text strong { color: #fff; }
+
+    .footer { background: var(--navy); padding: 28px 48px; text-align: center; }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer strong { color: rgba(255,255,255,0.55); }
+  </style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="brand-row"><div class="brand-dot"></div><span class="brand-name">MakeMeAI Consulting Ltd</span></div>
+    <div class="report-eyebrow">Post-Audit Analysis — Internal</div>
+    <div class="client-name">Abi Dar&#233;</div>
+    <div class="client-sub">Full Discovery Audit — Findings, Opportunities, Automation Plan</div>
+    <div class="masthead-meta">Analysed 1 May 2026 &nbsp;|&nbsp; Based on 50-minute audio recording &nbsp;|&nbsp; For Olusegun Dare, MakeMeAI Consulting Ltd</div>
+  </div>
+</div>
+
+<div class="alert-strip">
+  <div class="alert-inner">IMMEDIATE ACTION: Abi has uninvoiced fees, unsigned contracts, and 2 years of blocked international royalties sitting right now. These are not future opportunities. This is money that exists today.</div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="sec-hdr" style="margin-top:36px;">
+    <h2>The one-line summary</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="headline-card">
+    <p>Abi Dar&#233; is a world-class author running a deeply disorganised one-woman operation. She is <strong>scatterbrained by her own admission</strong>, driven by emotion rather than priority, and surrounded by money she cannot reach because there is no system holding anything together. She has <strong>1,000 newsletter subscribers she has never emailed</strong>, an Academy with <strong>400 people abandoning checkout</strong>, unsigned contracts sitting in her inbox, an invoice overdue since 21 April, and <strong>international royalties blocked for 2 years</strong> because of a HMRC certificate nobody has chased. The single biggest thing you can do for Abi is not build her a complicated AI system. It is give her a brain. A system that tells her what to do next, reminds her what exists, and handles everything she keeps dropping. Everything else follows from that.</p>
+  </div>
+
+  <div class="money-strip">
+    <div class="money-item">
+      <div class="money-val">£100K+</div>
+      <div class="money-label">Estimated annual value across all opportunities</div>
+    </div>
+    <div class="money-item">
+      <div class="money-val">5</div>
+      <div class="money-label">Income streams, none properly tracked or optimised</div>
+    </div>
+    <div class="money-item">
+      <div class="money-val">2 yrs</div>
+      <div class="money-label">International royalties blocked by an unresolved HMRC issue</div>
+    </div>
+  </div>
+
+  <div class="sec-hdr">
+    <h2>Key findings from the audit</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <!-- FINDING 1 -->
+  <div class="finding-card">
+    <div class="finding-header">
+      <div class="finding-icon">&#127908;</div>
+      <div>
+        <div class="finding-title">Speaking: 15% commission on everything, no one going after opportunities <span class="urgency-pill pill-high">High Value</span></div>
+        <div class="finding-sub">Q1, Q2, Q3, Q4, Q5</div>
+      </div>
+    </div>
+    <div class="finding-body">
+      <p>Her literary agent (not a dedicated speaking agent) handles ALL speaking coordination and takes <strong>15% commission on every booking</strong>, including direct enquiries that come straight to her. She gets speaking opportunities roughly once a quarter. Nobody is proactively going after speaking opportunities for her.</p>
+      <div class="quote-block"><strong>Her words</strong> "Champions Speakers had one since they represented me. They don't. Nobody actively goes after speaking opportunities for me. They all come to me directly."</div>
+      <p>Her biggest keynote to date was £7,000. She is heading to Frankfurt in two weeks. She has been told by a new prospective agent she should not charge less than £5,000 per keynote. Her current fees are well below that.</p>
+      <div class="quote-block"><strong>On missed opportunities</strong> "There was one that would have been in Vogue or something, 'Women Making Ways' or something. My agent sent it to me too late. By the time I got it the deadline was gone. And I've had people say they sent a message to my agent and never got a reply."</div>
+      <p><strong>The opportunity:</strong> A dedicated speaking inquiry system that captures direct enquiries 24/7, qualifies them, and gets them to her inbox instantly — bypassing the agent for direct bookings. Over a year, capturing 2 extra bookings at £5,000 each is £10,000. That is also £1,500 saved in agent commission on those two alone.</p>
+    </div>
+  </div>
+
+  <!-- FINDING 2 -->
+  <div class="finding-card">
+    <div class="finding-header">
+      <div class="finding-icon">&#127891;</div>
+      <div>
+        <div class="finding-title">Academy: 400 people abandoning at checkout. 1,000 subscribers who have never heard from her. <span class="urgency-pill pill-urgent">Urgent</span></div>
+        <div class="finding-sub">Q6, Q7, Q8, Q9</div>
+      </div>
+    </div>
+    <div class="finding-body">
+      <p>The Louding Voice Academy course costs £495. She runs paid adverts. <strong>400 people per campaign click through to the website and stop at the checkout page.</strong> Nothing follows them up. No email sequence. No reminder. No objection handling. They just leave.</p>
+      <div class="quote-block"><strong>Her words</strong> "I paid for advertising. I didn't sell. I got tired of wasting money. It wasn't bringing in people. I gave up."</div>
+      <p>She has <strong>1,000 newsletter subscribers</strong> who signed up via a free download. She has not emailed them in months. They got one welcome email and silence. She said it feels overwhelming to manage.</p>
+      <div class="quote-block"><strong>On the newsletter</strong> "I don't do anything with them. It's too overwhelming for me. I don't do anything with the shortest day. I wish I could send them regular newsletters but I don't have the bandwidth. I'm just really exhausted."</div>
+      <p>Also important: she wants to <strong>pivot the Academy entirely</strong> away from the £495 course toward high-ticket coaching. Her vision is: one-off strategy sessions at £300-500, and 6-month coaching packages at a premium. This is a completely different product that needs a completely different funnel.</p>
+      <p><strong>The opportunity:</strong> Set up an automated email nurture sequence on GoHighLevel (which she already uses and pays for) to follow up with the 400 checkout abandoners and the 1,000 silent subscribers. Even a 5% conversion on 400 abandoners is £9,900 in course sales. Plus build the infrastructure for the high-ticket pivot.</p>
+    </div>
+  </div>
+
+  <!-- FINDING 3 -->
+  <div class="finding-card">
+    <div class="finding-header">
+      <div class="finding-icon">&#9201;</div>
+      <div>
+        <div class="finding-title">The scattered brain problem: contracts unsigned, invoices unsent, everything dropping <span class="urgency-pill pill-urgent">Urgent</span></div>
+        <div class="finding-sub">Q17, Q18, Q19</div>
+      </div>
+    </div>
+    <div class="finding-body">
+      <p>This is the most important finding in the entire audit. Abi is losing money right now not because of a lack of opportunity but because <strong>nothing reminds her and nothing catches what falls</strong>. She described herself as "scatterbrained", driven by emotion and boredom rather than priority, moving from one thing to the next mid-task.</p>
+      <div class="quote-block"><strong>Her words</strong> "I have contracts sitting waiting for me. Contracts that will bring money. They are just sitting there. I have not signed them. And my invoice was due on the 21st of April. I have not invoiced them. And I can't even read my handwriting on my to-do list."</div>
+      <div class="quote-block"><strong>On what she needs most</strong> "I would need someone just for organising my brain. Just the organisation. I could be quite scatterbrained. I want something that can just look at everything, my emails, whatever, and just say you need to do this, you need to respond, you need to sign this contract."</div>
+      <p><strong>The opportunity:</strong> This is the highest-value, most personal thing you can deliver. A daily AI brief that reviews her task list, flags unsigned contracts, overdue invoices, and unanswered messages. Delivered to her phone every morning. She does not need a complex system. She needs a system that says: "Abi, here is what needs doing today."</p>
+    </div>
+  </div>
+
+  <!-- FINDING 4 -->
+  <div class="finding-card">
+    <div class="finding-header">
+      <div class="finding-icon">&#128196;</div>
+      <div>
+        <div class="finding-title">Tax and finance: tracking nothing, guessing at everything, 2 years of blocked international royalties <span class="urgency-pill pill-urgent">Urgent</span></div>
+        <div class="finding-sub">Q24, Q25, Q26, Q27, Q29, Q30, Q31</div>
+      </div>
+    </div>
+    <div class="finding-body">
+      <p>She has an accountant at £125/month who files her Self Assessment, VAT (quarterly), and corporation tax. She pays for the service but the relationship is chaotic. She emails bank statements and invoices manually every quarter and guesses at her expenses when asked.</p>
+      <div class="quote-block"><strong>On expense tracking</strong> "I don't track anything. I don't track anymore. When my accountant asks me, I just guess. I don't go back and look."</div>
+      <p>She has <strong>5 income streams</strong> (royalties, speaking, appearance fees, coaching/teaching, Academy) plus a rental property. She is VAT registered. Her accountant was recently about to file corporation tax for a dormant company that has not been active since 2022 — she only caught it because she used AI to review the bill.</p>
+      <p>The most urgent issue: <strong>international royalties have been blocked for 2 years</strong> because she cannot obtain a Certificate of Residence from HMRC. Italy and Brazil are owed. She said she was going to call HMRC the day of the audit.</p>
+      <div class="quote-block"><strong>Her words</strong> "I have royalties that are pending international royalties that are pending like crazy because I've not been able to get a certificate of residency. I've been waiting for one for 2 years. I cannot be bothered to chase them."</div>
+      <div class="quote-block"><strong>On the accountant</strong> "If I could find a way to get rid of that and the accountant in general I'll be very happy. Very very happy."</div>
+      <p><strong>The opportunity:</strong> Build a simple expense capture system (photo to WhatsApp, automatically categorised and logged), a quarterly income summary that pulls across all streams, and a year-end accountant pack. She already wants to leave her current accountant. You could be the system that replaces the chaos between her and a better accounting setup.</p>
+    </div>
+  </div>
+
+  <!-- FINDING 5 -->
+  <div class="finding-card">
+    <div class="finding-header">
+      <div class="finding-icon">&#128187;</div>
+      <div>
+        <div class="finding-title">GoHighLevel is already there and completely unused <span class="urgency-pill pill-quick">Quick Win</span></div>
+        <div class="finding-sub">Q21, Q22, Q23</div>
+      </div>
+    </div>
+    <div class="finding-body">
+      <p>Her website and CRM are both built on GoHighLevel. She is paying for it. The email automation features, contact sequences, and pipeline management are all available inside what she already owns. <strong>She is not using a single automation feature.</strong></p>
+      <div class="quote-block"><strong>Her words</strong> "I wish I had something that will drop the newsletter for me. Honestly every week. And I'll just go in and edit it. And then once I edit it, send it to them. You know, click the button."</div>
+      <p>She also already uses AI (she mentioned Claude specifically) for research and slide design. She is not anti-technology. She just has not had anyone turn it on for her.</p>
+      <p><strong>The opportunity:</strong> Unlock GoHighLevel's automation features without buying anything new. Newsletter automation, Academy follow-up sequences, speaking inquiry capture, Foundation donor nurture — all buildable inside what she is already paying for.</p>
+    </div>
+  </div>
+
+  <!-- FINDING 6 -->
+  <div class="finding-card">
+    <div class="finding-header">
+      <div class="finding-icon">&#127775;</div>
+      <div>
+        <div class="finding-title">New high-ticket business in the making and she needs infrastructure fast <span class="urgency-pill pill-high">High Value</span></div>
+        <div class="finding-sub">Q17, Q18, Q19</div>
+      </div>
+    </div>
+    <div class="finding-body">
+      <p>Abi is in the process of starting a new coaching and strategy business she referred to as her "worldwide strategy." She is moving away from £150-200 book festival appearances and low-conversion £495 online courses toward <strong>high-ticket corporate consulting, selective keynotes, and premium coaching</strong>. This is a completely new business arm that has no infrastructure at all.</p>
+      <div class="quote-block"><strong>Her words</strong> "I want to start a business. I want to focus on high-ticket coaching. Very selective appearances. Some of the people I know don't do book festivals for £200 and spend 8 hours of your day for that. I think your services will be able to help us a lot because we're trying to get to high-profile corporate."</div>
+      <p>Her priority order for extra time: 1) Write her novel, 2) Grant applications for the Foundation, 3) The new business/worldwide strategy, 4) Revamp the Academy.</p>
+      <p><strong>The opportunity:</strong> You could be the infrastructure partner for the new business from day one. Landing page, inquiry capture, CRM, onboarding sequence, invoice automation. She is starting from zero and she knows she needs help.</p>
+    </div>
+  </div>
+
+  <div class="sec-hdr">
+    <h2>What to build — in order of priority</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="build-grid">
+    <div class="build-card">
+      <div class="build-num">Build 01 — Start Here</div>
+      <div class="build-name">Daily AI Brain Brief</div>
+      <div class="build-body">A morning message delivered to her phone every day that reads her GoHighLevel inbox, flags unsigned contracts, overdue invoices, and unanswered messages, and tells her the 3 things to do today. This addresses her single biggest stated pain. Deliverable in week one. No new tools needed.</div>
+      <span class="build-tag">Solves the scatterbrain problem</span>
+    </div>
+    <div class="build-card">
+      <div class="build-num">Build 02 — Quick Win</div>
+      <div class="build-name">GoHighLevel Email Sequences</div>
+      <div class="build-body">Turn on the automation inside what she already pays for. Welcome sequence for new subscribers leading to the Academy. Follow-up sequence for checkout abandoners. Three emails. Can be live within days. 1,000 subscribers and 400 abandoners already waiting.</div>
+      <span class="build-tag">Revenue from existing audience</span>
+    </div>
+    <div class="build-card">
+      <div class="build-num">Build 03</div>
+      <div class="build-name">Speaking Inquiry Capture</div>
+      <div class="build-body">A dedicated inquiry form on her website that captures event details, budget, audience size, and topic — and sends her an instant structured summary. Bypasses the literary agent for direct bookings. Integrates with GoHighLevel CRM so nothing is lost.</div>
+      <span class="build-tag">Stops missed bookings</span>
+    </div>
+    <div class="build-card">
+      <div class="build-num">Build 04</div>
+      <div class="build-name">Expense Capture via WhatsApp</div>
+      <div class="build-body">She photographs receipts on her phone. Photos go to a WhatsApp number. AI reads the receipt, categorises the expense, and logs it to a Google Sheet. Monthly summary auto-generated. Quarterly pack ready for the accountant. No chasing, no guessing.</div>
+      <span class="build-tag">Kills the tax chaos</span>
+    </div>
+    <div class="build-card">
+      <div class="build-num">Build 05</div>
+      <div class="build-name">Academy High-Ticket Pivot</div>
+      <div class="build-body">Build the infrastructure for her new Academy model: a booking page for one-off strategy sessions (£300-500), an application funnel for 6-month coaching, and an automated onboarding sequence. Replaces the underperforming £495 course with products that match her actual goals.</div>
+      <span class="build-tag">Supports the pivot she wants</span>
+    </div>
+    <div class="build-card">
+      <div class="build-num">Build 06</div>
+      <div class="build-name">New Business Infrastructure</div>
+      <div class="build-body">Landing page, inquiry form, CRM pipeline, and onboarding sequence for the "worldwide strategy" coaching business she is starting. She needs this built from scratch. Getting in early means you are embedded from day one of what could be her highest-revenue arm.</div>
+      <span class="build-tag">Ground floor of new business</span>
+    </div>
+  </div>
+
+  <div class="sec-hdr">
+    <h2>ROI estimate based on her real numbers</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div style="background:var(--white); border:1px solid var(--border); border-radius:14px; overflow:hidden;">
+    <table class="roi-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Opportunity</th>
+          <th style="width:35%">Based On</th>
+          <th style="width:35%">Conservative Annual Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Academy email sequences</strong></td>
+          <td>400 checkout abandoners at £495. 5% conversion from follow-up sequence.</td>
+          <td><strong>£9,900</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Speaking inquiry capture</strong></td>
+          <td>2 extra bookings per year captured via direct inquiry system. £5,000 each. £750 agent commission saved per booking.</td>
+          <td><strong>£11,500</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Uninvoiced and uncollected fees</strong></td>
+          <td>Overdue invoice from Hay/Brown teaching. Unsigned contracts. Conservative estimate of what is currently sitting idle.</td>
+          <td><strong>£3,000+ this month alone</strong></td>
+        </tr>
+        <tr>
+          <td><strong>High-ticket Academy pivot</strong></td>
+          <td>5 one-off strategy sessions per month at £400 each. 2 coaching clients at £3,000 for 6 months.</td>
+          <td><strong>£30,000</strong></td>
+        </tr>
+        <tr>
+          <td><strong>International royalties unblocked</strong></td>
+          <td>Italy and Brazil royalties pending. Certificate of Residence issue resolved. Conservative estimate based on territory sales.</td>
+          <td><strong>£5,000+</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Foundation donor pipeline</strong></td>
+          <td>Automated donor nurture converting event attendees and social followers to regular supporters.</td>
+          <td><strong>£3,000+</strong></td>
+        </tr>
+        <tr class="roi-total">
+          <td>Total identified annual value</td>
+          <td>Based on real numbers from the audit</td>
+          <td>£62,400+ (with immediate cash sitting today)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-hdr">
+    <h2>What to say to Abi next</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div style="background:var(--white); border:1px solid var(--border); border-radius:14px; padding:28px 32px; margin-bottom:20px;">
+    <p style="font-size:13.5px; color:var(--text); line-height:1.8;">
+      You do not need to present her with a complex AI system. She told you exactly what she needs. She needs a brain. Start the pitch with this:<br><br>
+      <strong style="color:var(--navy);">"Abi, you told me you have contracts sitting unsigned, an invoice that was due on the 21st, and two years of international royalties blocked because of a certificate nobody has chased. Before we talk about anything else, let me show you how we solve those three things. That is money you already earned. It is just not in your account yet."</strong><br><br>
+      Then show her Build 01 (the daily brain brief) and Build 02 (the GoHighLevel sequences). Two things. Both deliverable in the first week. Both using what she already has. Both solving the pain she described in her own words.<br><br>
+      The rest of the build plan follows from there. But close on the immediate wins first.
+    </p>
+  </div>
+
+  <div class="next-steps">
+    <h3>Your immediate next steps</h3>
+    <ul class="step-list">
+      <li class="step-item"><span class="step-num">1</span><span class="step-text"><strong>Send Abi a follow-up message today.</strong> Thank her for her time. Tell her you have been through everything she shared and you have a clear plan. Book a second session to walk her through it.</span></li>
+      <li class="step-item"><span class="step-num">2</span><span class="step-text"><strong>Remind her about the HMRC Certificate of Residence.</strong> She said she was going to call HMRC the day of the audit. Follow up on whether she did. Offer to help her draft the request letter. This builds immediate goodwill and unlocks real money for her.</span></li>
+      <li class="step-item"><span class="step-num">3</span><span class="step-text"><strong>Ask for GoHighLevel access.</strong> Tell her you want to look inside her GoHighLevel account to understand exactly what is already set up. You are not starting from scratch. You are turning on what is already there.</span></li>
+      <li class="step-item"><span class="step-num">4</span><span class="step-text"><strong>Pitch the retainer with the brain brief as the hook.</strong> She said she wants something that reads her emails and tells her what to do. That is your opening offer. Build 01. Show it works. The rest of the relationship grows from there.</span></li>
+      <li class="step-item"><span class="step-num">5</span><span class="step-text"><strong>Build a bespoke proposal for Abi.</strong> She is not a typical SME client. She is a world-class author with a complex multi-arm operation. Her proposal needs to reflect that. Come back here and we will build it together using her exact numbers from this audit.</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Prepared by <strong>MakeMeAI Consulting Ltd</strong> &nbsp;|&nbsp; team@makemeai.tech &nbsp;|&nbsp; www.makemeai.tech<br/>
+  Internal analysis based on audio recording of discovery audit with Abi Dar&#233; &nbsp;|&nbsp; 1 May 2026</p>
+</div>
+
+</body>
+</html>
