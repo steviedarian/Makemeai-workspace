@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MakeMeAI helps businesses cut wasted hours and reduce costs by identifying automation opportunities, building AI systems, and massively boosting profits and ROI.">
+    <title>MakeMeAI — AI for Growing Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body { font-family: 'Inter', sans-serif; background: #fff; color: #0a0a0a; line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        :root {
+            --blue:    #5067F5;
+            --blue-dk: #3D52D5;
+            --black:   #0a0a0a;
+            --gray:    #666666;
+            --light:   #F5F5F7;
+            --border:  #E8E8E8;
+            --white:   #FFFFFF;
+        }
+
+        .wrap { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        section { padding: 5rem 0; }
+
+        /* ── BUTTONS ── */
+        .btn-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--blue); color: #fff; border: none; border-radius: 100px;
+            padding: 0.85rem 2rem; font-size: 1rem; font-weight: 600;
+            font-family: 'Inter', sans-serif; cursor: pointer;
+            transition: background 0.2s, transform 0.2s; white-space: nowrap; min-height: 52px;
+        }
+        .btn-pill:hover { background: var(--blue-dk); transform: translateY(-1px); }
+
+        .link-btn {
+            display: inline-block; color: var(--gray); font-size: 1.1rem; font-weight: 500;
+            cursor: pointer; background: none; border: none; font-family: 'Inter', sans-serif;
+            transition: color 0.2s; text-align: center; min-width: 240px;
+        }
+        .link-btn:hover { color: var(--black); }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+            height: 64px; display: flex; align-items: center;
+        }
+        .nav-inner {
+            width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { font-size: 1.25rem; font-weight: 600; color: var(--black); letter-spacing: -0.02em; }
+        .logo-dot { color: var(--blue); }
+
+        .nav-links { display: none; align-items: center; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--gray); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--black); }
+
+        .hamburger {
+            display: flex; flex-direction: column; gap: 5px; background: none; border: none;
+            cursor: pointer; padding: 8px; min-width: 44px; min-height: 44px;
+            align-items: center; justify-content: center;
+        }
+        .hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.25s; }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .drawer {
+            display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+            background: white; z-index: 999; flex-direction: column;
+            padding: 1.5rem; overflow-y: auto;
+        }
+        .drawer.open { display: flex; }
+        .drawer a { color: var(--black); font-size: 1.15rem; font-weight: 600; padding: 1rem 0; border-bottom: 1px solid var(--border); display: block; }
+        .drawer .drawer-cta {
+            margin-top: 1.5rem; background: var(--blue); color: white !important;
+            text-align: center; padding: 1rem; border-radius: 100px; font-weight: 700 !important;
+            border: none; min-height: 52px; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* ── HERO ── */
+        .hero { background: var(--white); padding: 8rem 0 4rem; text-align: center; }
+
+        .hero-tag {
+            display: inline-block; color: var(--blue); font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6.5vw, 4.8rem); font-weight: 600; line-height: 1.1;
+            letter-spacing: -0.03em; color: var(--black); margin-bottom: 1.5rem;
+            max-width: 980px; margin-left: auto; margin-right: auto;
+        }
+        .hero h1 .blue { color: var(--blue); }
+
+        .hero-sub {
+            font-size: 1.35rem; color: var(--gray); max-width: 760px;
+            margin: 0 auto 2.5rem; line-height: 1.75;
+        }
+
+        .hero-video {
+            margin: 2.5rem auto 2rem; max-width: 1000px; border-radius: 16px;
+            overflow: hidden; aspect-ratio: 16/9; background: #000;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+        .hero-video iframe { width: 100%; height: 100%; border: none; }
+
+        .hero-video-label { color: var(--gray); font-size: 0.92rem; margin-bottom: 2rem; }
+
+        .hero-btns { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+
+        /* ── WHAT WE DO ── */
+        .what { background: var(--white); text-align: center; }
+
+        .section-tag {
+            font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--black);
+            letter-spacing: -0.01em; margin-bottom: 0.75rem; display: block;
+        }
+        .section-h {
+            font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 600; color: var(--black);
+            line-height: 1.2; letter-spacing: -0.025em; margin-bottom: 1rem;
+        }
+        .section-p { font-size: 1.1rem; color: var(--gray); max-width: 720px; margin: 0 auto 3rem; line-height: 1.75; }
+
+        .cards { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+
+        .card {
+            background: white; border: 1px solid var(--border); border-radius: 16px;
+            padding: 2rem; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card-icon {
+            width: 52px; height: 52px; background: #EEF0FE; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.25rem; font-size: 1.5rem;
+        }
+        .card h3 { font-size: 1.1rem; font-weight: 700; color: var(--black); margin-bottom: 0.65rem; }
+        .card p { color: var(--gray); font-size: 0.93rem; line-height: 1.65; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { background: var(--light); text-align: center; }
+
+        .video-row { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2.5rem; }
+
+        .video-card {
+            background: white; border-radius: 14px; overflow: hidden;
+            border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .video-thumb {
+            aspect-ratio: 16/9; background: #f0f0f5; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; gap: 0.75rem;
+        }
+        .video-thumb iframe { width: 100%; height: 100%; border: none; }
+        .coming-soon-icon {
+            width: 56px; height: 56px; background: #EEF0FE; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+        }
+        .coming-soon-label { font-size: 0.85rem; font-weight: 600; color: var(--gray); letter-spacing: 0.04em; }
+        .video-info { padding: 1.1rem 1.25rem; text-align: left; }
+        .video-info h4 { font-size: 0.97rem; font-weight: 700; color: var(--black); margin-bottom: 0.3rem; }
+        .video-info p { font-size: 0.85rem; color: var(--gray); }
+
+        /* ── CTA BAND ── */
+        .cta-band { background: var(--white); text-align: center; padding: 5rem 0; }
+        .cta-band h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 600; color: var(--black); letter-spacing: -0.025em; margin-bottom: 1rem; }
+        .cta-band p { color: var(--gray); font-size: 1rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
+        .cta-btns { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+
+        /* ── CALENDLY ── */
+        .book { background: var(--white); text-align: center; padding: 4rem 0; }
+        .book h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 600; color: var(--black); letter-spacing: -0.025em; margin-bottom: 0.75rem; }
+        .book p { color: var(--gray); font-size: 1rem; margin-bottom: 2.5rem; }
+        .calendly-wrap {
+            max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+        .calendly-wrap iframe { width: 100%; height: 700px; border: none; display: block; }
+
+        /* ── CONTACT ── */
+        .contact { background: var(--light); text-align: center; padding: 5rem 0; }
+        .contact h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 600; color: var(--black); letter-spacing: -0.025em; margin-bottom: 0.75rem; }
+        .contact > .wrap > p { color: var(--gray); font-size: 1rem; margin-bottom: 2.5rem; }
+
+        .contact-form {
+            background: white; border-radius: 20px; padding: 2.5rem 1.5rem;
+            max-width: 640px; margin: 0 auto; border: 1px solid var(--border);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06); text-align: left;
+        }
+        .fg { margin-bottom: 1.1rem; }
+        .fg label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--black); margin-bottom: 0.4rem; }
+        .fg input, .fg textarea {
+            width: 100%; padding: 0.85rem 1.1rem; border: 1.5px solid var(--border);
+            border-radius: 100px; font-size: 1rem; font-family: 'Inter', sans-serif;
+            background: var(--light); color: var(--black); outline: none;
+            transition: border-color 0.2s; -webkit-appearance: none;
+        }
+        .fg textarea { border-radius: 16px; min-height: 130px; resize: vertical; }
+        .fg input:focus, .fg textarea:focus { border-color: var(--blue); background: white; }
+        .fg input::placeholder, .fg textarea::placeholder { color: #aaa; }
+        .form-submit {
+            width: 100%; padding: 1rem; min-height: 54px; background: var(--blue);
+            color: white; border: none; border-radius: 100px; font-size: 1rem;
+            font-weight: 700; cursor: pointer; transition: background 0.2s;
+            font-family: 'Inter', sans-serif; margin-top: 0.5rem;
+        }
+        .form-submit:hover { background: var(--blue-dk); }
+
+        /* ── FOOTER ── */
+        footer { background: var(--black); padding: 2.5rem 0; }
+        .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; text-align: center; }
+        .foot-logo { font-size: 1.15rem; font-weight: 600; color: white; letter-spacing: -0.02em; }
+        .foot-logo-dot { color: var(--blue); }
+        .foot-links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; list-style: none; justify-content: center; }
+        .foot-links a { color: rgba(255,255,255,0.5); font-size: 0.85rem; transition: color 0.2s; }
+        .foot-links a:hover { color: white; }
+        .foot-copy { color: rgba(255,255,255,0.28); font-size: 0.78rem; }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+
+        /* ── FLOATING CHAT ── */
+        .chat-wrap {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem;
+        }
+        .chat-popup {
+            display: none; flex-direction: column; background: white; border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.15); width: 380px; overflow: hidden;
+            animation: popUp 0.25s ease;
+        }
+        .chat-popup.open { display: flex; }
+        @keyframes popUp {
+            from { opacity: 0; transform: translateY(12px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .chat-header {
+            background: white; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .chat-header-text strong { display: block; font-size: 1rem; font-weight: 700; color: var(--black); margin-bottom: -2px; line-height: 1; }
+        .chat-header-text span { font-size: 0.83rem; color: var(--gray); line-height: 1; }
+        .chat-close { background: none; border: none; cursor: pointer; color: var(--gray); font-size: 1.2rem; padding: 4px; line-height: 1; transition: color 0.2s; }
+        .chat-close:hover { color: var(--black); }
+        .chat-body { padding: 1.25rem; background: #F8F8FA; min-height: 80px; }
+        .chat-bubble {
+            background: white; border-radius: 12px 12px 12px 4px; padding: 0.85rem 1rem;
+            font-size: 0.92rem; color: var(--black); line-height: 1.55;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); max-width: 85%;
+        }
+        .chat-footer { padding: 0.85rem 1rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; background: white; }
+        .chat-input { flex: 1; border: none; outline: none; font-size: 0.92rem; font-family: 'Inter', sans-serif; color: var(--black); background: transparent; }
+        .chat-input::placeholder { color: #aaa; }
+        .chat-send {
+            width: 36px; height: 36px; background: var(--blue); border: none; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background 0.2s;
+        }
+        .chat-send:hover { background: var(--blue-dk); }
+        .chat-send svg { width: 16px; height: 16px; fill: white; }
+        .chat-btn {
+            width: 68px; height: 68px; background: #6B7FE8; border: none; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 24px rgba(107,127,232,0.45); transition: background 0.2s, transform 0.2s; flex-shrink: 0;
+        }
+        .chat-btn:hover { background: #5C70D8; transform: scale(1.05); }
+        .chat-btn svg { width: 30px; height: 30px; fill: white; }
+
+        /* ── MOBILE (max 767px) ── */
+        @media (max-width: 767px) {
+            section { padding: 3.5rem 0; }
+            .cta-band { padding: 3.5rem 0; }
+            .book { padding: 3rem 0; }
+            .contact { padding: 3.5rem 0; }
+            .hero { padding: 6.5rem 0 3rem; }
+            .hero-tag { font-size: 0.82rem; margin-bottom: 1rem; }
+            .hero-sub { font-size: 1.05rem; }
+            .hero-video { border-radius: 10px; margin: 1.75rem auto 1.5rem; }
+            .hero-video-label { font-size: 0.82rem; margin-bottom: 1.5rem; }
+            .btn-pill { width: 100%; max-width: 340px; font-size: 1rem; }
+            .link-btn { min-width: unset; width: 100%; max-width: 340px; font-size: 1rem; }
+            .section-tag { font-size: 1.5rem; }
+            .section-h { font-size: 1.6rem; }
+            .section-p { font-size: 1rem; margin-bottom: 2rem; }
+            .card { padding: 1.5rem; }
+            .cta-band p { font-size: 0.95rem; padding: 0 0.5rem; }
+            .calendly-wrap iframe { height: 580px; }
+            .calendly-wrap { border-radius: 12px; }
+            .contact-form { padding: 1.75rem 1.25rem; border-radius: 14px; }
+            footer { padding: 2rem 0; }
+            .foot-links { gap: 0.75rem 1.25rem; }
+            .chat-popup { width: calc(100vw - 2.5rem); }
+            .chat-wrap { bottom: 1rem; right: 1rem; }
+            .chat-btn { width: 58px; height: 58px; }
+            .chat-btn svg { width: 26px; height: 26px; }
+        }
+
+        /* ── DESKTOP (768px+) ── */
+        @media (min-width: 768px) {
+            .wrap { padding: 0 3rem; }
+            .nav-links { display: flex; }
+            .hamburger { display: none; }
+            .hero { padding: 9rem 0 5rem; }
+            .cards { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+            .video-row { flex-direction: row; }
+            .video-card { flex: 1; }
+            .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+        }
+
+        @media (min-width: 1024px) {
+            .contact-form { padding: 2.5rem 3rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">MakeMeAI<span class="logo-dot">.</span></a>
+        <ul class="nav-links">
+            <li><a href="#what">What We Do</a></li>
+            <li><a href="#training">AI Training</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://calendly.com/makemeai/audit-call" target="_blank" class="btn-pill" style="padding:0.5rem 1.1rem;font-size:0.88rem;min-height:auto;color:#fff;">Book a Free Call</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<div class="drawer" id="drawer">
+    <a href="#what">What We Do</a>
+    <a href="#training">AI Training</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+    <a href="https://calendly.com/makemeai/audit-call" target="_blank" class="drawer-cta">Book a Free Call</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="wrap">
+        <div class="hero-tag">Elevate Your Business.</div>
+        <h1>Is Your Business Still Doing Manually What <span class="blue">AI can do for you in seconds?</span></h1>
+        <p class="hero-sub">We help businesses to cut wasted hours, reduce costs by identifying automation opportunities, build your AI system, train your team to use it, massively boosting your profits and ROI.</p>
+
+        <div class="hero-video">
+            <!-- Replace VIDEO_ID with your actual YouTube video ID -->
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1"
+                title="MakeMeAI — 2-minute overview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+        <p class="hero-video-label">Watch our 2-minute overview to discover what sets us apart.</p>
+
+        <div class="hero-btns">
+            <a href="https://calendly.com/makemeai/audit-call" target="_blank" class="btn-pill">Book a Free Call</a>
+            <a href="#what" class="link-btn">See How It Works</a>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="what" id="what">
+    <div class="wrap">
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-h">We don't just talk AI. We deliver it.</h2>
+        <p class="section-p">We go into your business, find exactly where AI can make the biggest difference, build the tools, get them working, and make sure your team knows how to use them from day one.</p>
+        <p style="font-size:1.1rem;font-weight:600;color:var(--black);margin-bottom:0.5rem;">Everything we do covers three things:</p>
+        <div class="cards">
+            <div class="card reveal">
+                <div class="card-icon">🎯</div>
+                <h3>AI Audit</h3>
+                <p>We map every process in your business to find exactly where AI can make the biggest impact. You get a clear, visual report showing the time saved, money recovered, and tools we recommend.</p>
+            </div>
+            <div class="card reveal">
+                <div class="card-icon">💡</div>
+                <h3>Development &amp; Implementation</h3>
+                <p>We take the audit findings and turn them into real, working AI systems for your business. We don't replace your process. We give it superpowers with AI.</p>
+            </div>
+            <div class="card reveal" id="training">
+                <div class="card-icon">📈</div>
+                <h3>Training</h3>
+                <p>Once the tools are live, we train every member of your team to use them with confidence. We also run AI education sessions across your business so everyone understands how AI works and how it benefits them.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <div class="wrap">
+        <h2 class="section-tag">What our clients say</h2>
+        <div class="video-row">
+            <div class="video-card reveal">
+                <div class="video-thumb">
+                    <div class="coming-soon-icon">🎬</div>
+                    <div class="coming-soon-label">Coming Soon</div>
+                </div>
+                <div class="video-info">
+                    <h4>Client Story 01</h4>
+                    <p>How we helped them scale with AI.</p>
+                </div>
+            </div>
+            <div class="video-card reveal">
+                <div class="video-thumb">
+                    <div class="coming-soon-icon">🎬</div>
+                    <div class="coming-soon-label">Coming Soon</div>
+                </div>
+                <div class="video-info">
+                    <h4>Client Story 02</h4>
+                    <p>Automating workflows end-to-end.</p>
+                </div>
+            </div>
+            <div class="video-card reveal">
+                <div class="video-thumb">
+                    <div class="coming-soon-icon">🎬</div>
+                    <div class="coming-soon-label">Coming Soon</div>
+                </div>
+                <div class="video-info">
+                    <h4>Client Story 03</h4>
+                    <p>Building a custom AI assistant.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+    <div class="wrap">
+        <h2>Ready to get started?</h2>
+        <p>Let's talk about how we can help you achieve your goals. Book a free consultation, no strings attached.</p>
+        <div class="cta-btns">
+            <a href="https://calendly.com/makemeai/audit-call" target="_blank" class="btn-pill">Book a Free Call</a>
+            <a href="#what" class="link-btn">See How It Works</a>
+        </div>
+    </div>
+</section>
+
+<!-- BOOK A CALL -->
+<section class="book" id="book">
+    <div class="wrap">
+        <h2>Book a Free Call</h2>
+        <p>Pick a time that works for you — we'll take it from there.</p>
+        <div class="calendly-wrap">
+            <iframe src="https://calendly.com/makemeai/audit-call?embed_type=Inline&hide_gdpr_banner=1"
+                title="Book a free call with MakeMeAI">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="wrap">
+        <h2>Get in touch</h2>
+        <p>Fill out the form and we'll respond within 24 hours.</p>
+        <div class="contact-form reveal">
+            <!-- Replace YOUR_FORM_ID with your Formspree ID from formspree.io -->
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="fg">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Your name" required autocomplete="name">
+                </div>
+                <div class="fg">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+                </div>
+                <div class="fg">
+                    <label>Message</label>
+                    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="wrap">
+        <div class="footer-inner">
+            <div class="foot-logo">MakeMeAI<span class="foot-logo-dot">.</span></div>
+            <ul class="foot-links">
+                <li><a href="#what">What We Do</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://calendly.com/makemeai/audit-call" target="_blank">Book a Call</a></li>
+            </ul>
+            <div class="foot-copy">© 2026 MakeMeAI Consulting Ltd. Essex, UK.</div>
+        </div>
+    </div>
+</footer>
+
+<!-- FLOATING CHAT -->
+<div class="chat-wrap">
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            <div class="chat-header-text">
+                <strong>MakeMeAI Support</strong>
+                <span>We typically reply instantly</span>
+            </div>
+            <button class="chat-close" id="chatClose" aria-label="Close chat">&#x2715;</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-bubble">Hi there! 👋 How can we help you today?</div>
+        </div>
+        <div class="chat-footer">
+            <input class="chat-input" id="chatInput" type="text" placeholder="Type a message..." autocomplete="off">
+            <button class="chat-send" id="chatSend" aria-label="Send message">
+                <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+            </button>
+        </div>
+    </div>
+    <button class="chat-btn" id="chatBtn" aria-label="Open chat">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+    </button>
+</div>
+
+<script>
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('drawer');
+    hamburger.addEventListener('click', () => {
+        const open = drawer.classList.toggle('open');
+        hamburger.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            drawer.classList.remove('open');
+            hamburger.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Floating chat
+    const chatBtn   = document.getElementById('chatBtn');
+    const chatClose = document.getElementById('chatClose');
+    const chatPopup = document.getElementById('chatPopup');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend  = document.getElementById('chatSend');
+    chatBtn.addEventListener('click', () => chatPopup.classList.toggle('open'));
+    chatClose.addEventListener('click', () => chatPopup.classList.remove('open'));
+    function sendMessage() {
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+        window.location.href = 'mailto:team@makemeai.tech?subject=Website Chat Message&body=' + encodeURIComponent(msg);
+        chatInput.value = '';
+    }
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+
+    // Scroll reveal
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
