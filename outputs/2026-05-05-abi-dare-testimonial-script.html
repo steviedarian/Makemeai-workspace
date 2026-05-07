@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abi Daré — Video Testimonial Script | MakeMeAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #080F1E;
+      --blue: #0F2552;
+      --accent: #1D57D8;
+      --accent2: #3B70E8;
+      --white: #FFFFFF;
+      --green: #059669;
+      --surface: #F7F9FF;
+      --border: #E2E8F4;
+      --text: #1E293B;
+      --muted: #64748B;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      background: linear-gradient(140deg, var(--navy) 0%, var(--blue) 55%, #1a3a7a 100%);
+      padding: 44px 0 36px;
+    }
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+    .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .brand-dot { width: 9px; height: 9px; background: var(--accent2); border-radius: 50%; }
+    .brand-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .eyebrow {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 8px;
+    }
+    .page-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px; font-weight: 900;
+      color: #fff; line-height: 1.1; margin-bottom: 8px;
+    }
+    .page-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .page-meta { margin-top: 18px; font-size: 12px; color: rgba(255,255,255,0.28); }
+
+    /* META STRIP */
+    .meta-strip {
+      background: var(--accent);
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .meta-item {
+      padding: 18px 24px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .meta-item:last-child { border-right: none; }
+    .meta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+    .meta-val { font-size: 13px; font-weight: 600; color: #fff; }
+
+    /* BODY */
+    .body-wrap { max-width: 800px; margin: 0 auto; padding: 0 48px 72px; }
+
+    .sec-hdr {
+      display: flex; align-items: center; gap: 16px;
+      margin: 44px 0 20px;
+    }
+    .sec-hdr h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--navy); white-space: nowrap;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* SCRIPT BLOCK */
+    .script-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .script-header {
+      background: var(--navy);
+      padding: 16px 28px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .script-header-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 700; color: #fff;
+    }
+    .script-header-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-left: auto; }
+
+    .script-body { padding: 32px 36px; }
+
+    /* Each spoken line */
+    .line {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .line:last-child { margin-bottom: 0; }
+
+    /* Stage directions */
+    .direction {
+      display: block;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 14px;
+      letter-spacing: 0.03em;
+    }
+
+    /* Pause callout */
+    .pause-callout {
+      background: #EBF0FD;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 16px;
+      margin: 16px 0;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Director's notes */
+    .notes-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .notes-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 700;
+      color: var(--navy); margin-bottom: 16px;
+    }
+    .notes-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .notes-list li {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 13.5px; color: var(--text); line-height: 1.6;
+    }
+    .note-dot {
+      width: 7px; height: 7px;
+      background: var(--accent); border-radius: 50%;
+      flex-shrink: 0; margin-top: 7px;
+    }
+
+    /* Short version */
+    .short-block {
+      background: linear-gradient(140deg, var(--navy), var(--blue));
+      border-radius: 14px;
+      padding: 36px 40px;
+      margin-bottom: 32px;
+    }
+    .short-block h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px; font-weight: 800;
+      color: #fff; margin-bottom: 6px;
+    }
+    .short-block .short-meta {
+      font-size: 12px; color: rgba(255,255,255,0.4);
+      margin-bottom: 24px;
+    }
+    .short-block .line {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+    }
+    .short-block .direction { color: rgba(255,255,255,0.4); }
+
+    /* Footer */
+    .footer { background: var(--navy); padding: 28px 48px; text-align: center; }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer strong { color: rgba(255,255,255,0.55); }
+
+    @media print {
+      .masthead, .meta-strip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand-dot"></div>
+      <span class="brand-name">MakeMeAI Consulting Ltd</span>
+    </div>
+    <div class="eyebrow">Client Testimonial Script</div>
+    <div class="page-title">Abi Dar&#233;</div>
+    <div class="page-sub">Video Testimonial — Talking Head, Direct to Camera</div>
+    <div class="page-meta">Prepared 5 May 2026 &nbsp;|&nbsp; For Olusegun Dare, MakeMeAI Consulting Ltd</div>
+  </div>
+</div>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <div class="meta-item">
+    <div class="meta-label">Format</div>
+    <div class="meta-val">Talking head</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Full version</div>
+    <div class="meta-val">2.0 to 2.5 min</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Short version</div>
+    <div class="meta-val">60 seconds</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Tone</div>
+    <div class="meta-val">Warm, candid, specific</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <div class="sec-hdr" style="margin-top: 40px;">
+    <h2>Full Version Script</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="script-block">
+    <div class="script-header">
+      <div class="script-header-label">Full Script &mdash; 2.0 to 2.5 Minutes</div>
+      <div class="script-header-sub">Read twice, then speak naturally. This is a guide, not a teleprompter.</div>
+    </div>
+    <div class="script-body">
+
+      <span class="direction">[Settle, smile, direct to camera]</span>
+
+      <p class="line">
+        "Hello. My name is Abi Dare. I am the author of The Girl with the Louding Voice, a New York Times bestseller that has been translated into 24 languages and won the Bath Novel Award. I am also a speaker. I teach a writing course. And I run a global foundation that funds girls' education across the world.
+      </p>
+
+      <p class="line">
+        So as you can imagine, I have a lot going on at the same time.
+      </p>
+
+      <span class="direction">[Small laugh, genuine]</span>
+
+      <p class="line">
+        And with all of that comes a lot of everything else. Emails. Calls. Inquiries. Contracts to review. Invoices to send. Followers to respond to. Students to support. Events to prepare for. Grant applications to write. And on top of all of that, I still need to actually write my next book.
+      </p>
+
+      <p class="line">
+        It is a lot. And for a long time, I just accepted that this was what being busy looked like.
+      </p>
+
+      <span class="direction">[Shift tone, more reflective]</span>
+
+      <p class="line">
+        But when Olusegun sat with me and went through everything, question by question, I realised... it wasn't just busy. It was scattered. He showed me, very clearly, that I had contracts sitting in my inbox unsigned, money I hadn't invoiced, newsletter subscribers I hadn't spoken to in months, and royalties I hadn't chased in two years.
+      </p>
+
+      <div class="pause-callout">[ Pause. Let it land. ]</div>
+
+      <p class="line">
+        Two years. Money that belongs to me. Just sitting there.
+      </p>
+
+      <p class="line">
+        And I'd just... accepted that as life. I didn't realise those things were fixable. Or that there was someone who could come in, look at the whole picture, and say 'here is where you're losing time and money, and here's exactly what we're going to do about it.'
+      </p>
+
+      <p class="line">
+        That's what Olusegun did. He didn't just point it out. He quantified it. He mapped it. He showed me what it was costing me to run my business the way I was running it.
+      </p>
+
+      <p class="line">
+        And now we're building systems together. Proper ones. So that things get caught before they fall. So I wake up knowing what needs doing. So the people who want to work with me actually hear from me.
+      </p>
+
+      <p class="line">
+        I'm really pleased with where this is going. He gets it. He understands what I need, even when I struggle to articulate it. And I genuinely feel for the first time that someone has a proper handle on my business alongside me.
+      </p>
+
+      <span class="direction">[Lean in slightly, direct to camera]</span>
+
+      <p class="line">
+        And my honest recommendation? It doesn't matter how big your organisation is or how small. Whether you're a solo person like me juggling five things at once, or a company with a whole team. You have no idea what MakeMeAI can do for you until you sit down with them. I was completely blown away when I saw, in black and white, the amount I had been throwing away, and how simple, targeted AI tools are now helping me to recover those losses and get my business properly organised.
+      </p>
+
+      <p class="line">
+        Talk to MakeMeAI. Have that conversation. You will see for yourself."
+      </p>
+
+    </div>
+  </div>
+
+  <div class="sec-hdr">
+    <h2>Director's Notes for Abi</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="notes-card">
+    <ul class="notes-list">
+      <li><div class="note-dot"></div><span>Film somewhere with good natural light, ideally near a window. No studio setup needed.</span></li>
+      <li><div class="note-dot"></div><span>The opening introduction should feel proud and warm, not like a CV recitation. She has earned those credentials.</span></li>
+      <li><div class="note-dot"></div><span>The small laugh after listing everything she does should be genuine, not performed. It tells the audience she knows how much it is.</span></li>
+      <li><div class="note-dot"></div><span>The pause after "Two years" is the most important moment in the script. Do not rush past it.</span></li>
+      <li><div class="note-dot"></div><span>On the final recommendation, lean forward slightly or shift energy. That contrast makes the call to action land harder.</span></li>
+      <li><div class="note-dot"></div><span>She can say "Segun" instead of "Olusegun" if that is what she calls him naturally. Authenticity over formality.</span></li>
+      <li><div class="note-dot"></div><span>One take is fine. A real, slightly imperfect delivery will always outperform a polished but stiff one.</span></li>
+    </ul>
+  </div>
+
+  <div class="sec-hdr">
+    <h2>Short Version &mdash; 60 Seconds</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="short-block">
+    <h3>For Instagram, LinkedIn, or as a standalone clip</h3>
+    <div class="short-meta">Use this version for social media or as a shorter standalone asset.</div>
+
+    <span class="direction">[Settle, direct to camera]</span>
+
+    <p class="line" style="margin-bottom:18px;">
+      "I'm Abi Dare, author of The Girl with the Louding Voice, New York Times bestseller, speaker, writing coach, and founder of a global education foundation. Needless to say, I have a lot going on.
+    </p>
+
+    <p class="line" style="margin-bottom:18px;">
+      And I thought I was managing. Until Olusegun sat with me and showed me exactly where the time and money was going. Contracts I hadn't signed. Invoices I hadn't sent. Royalties I hadn't chased in two years.
+    </p>
+
+    <p class="line" style="margin-bottom:18px;">
+      He didn't just point it out. He showed me what it was worth, and what we're going to do about it.
+    </p>
+
+    <p class="line">
+      Whatever size your business is, you have no idea what MakeMeAI can do for you until you talk to them. I was blown away by what I was throwing away, and how quickly that can change. Have the conversation. You will see for yourself."
+    </p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Prepared by <strong>MakeMeAI Consulting Ltd</strong> &nbsp;|&nbsp; team@makemeai.tech &nbsp;|&nbsp; www.makemeai.tech</p>
+</div>
+
+</body>
+</html>

@@ -114,6 +114,34 @@
         }
         .hero-video iframe { width: 100%; height: 100%; border: none; }
 
+        .yt-facade {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .yt-facade img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .yt-play {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px; height: 72px;
+            background: rgba(0,0,0,0.75);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .yt-facade:hover .yt-play {
+            background: #FF0000;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .yt-play svg { width: 28px; height: 28px; fill: white; margin-left: 4px; }
+
         .hero-video-label { color: var(--gray); font-size: 0.92rem; margin-bottom: 2rem; }
 
         .hero-btns { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
@@ -358,12 +386,13 @@
         <h1>Is Your Business Still Doing Manually What <span class="blue">AI can do for you in seconds?</span></h1>
         <p class="hero-sub">We help businesses to cut wasted hours, reduce costs by identifying automation opportunities, build your AI system, train your team to use it, massively boosting your profits and ROI.</p>
 
-        <div class="hero-video">
-            <!-- Replace VIDEO_ID with your actual YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1"
-                title="MakeMeAI — 2-minute overview"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-            </iframe>
+        <div class="hero-video" id="heroVideo">
+            <div class="yt-facade" onclick="loadVideo()">
+                <img src="https://img.youtube.com/vi/hzB6GRo7WyQ/maxresdefault.jpg" alt="MakeMeAI — Watch our overview">
+                <div class="yt-play">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+            </div>
         </div>
         <p class="hero-video-label">Watch our 2-minute overview to discover what sets us apart.</p>
 
@@ -472,7 +501,7 @@
         <p>Fill out the form and we'll respond within 24 hours.</p>
         <div class="contact-form reveal">
             <!-- Replace YOUR_FORM_ID with your Formspree ID from formspree.io -->
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form action="https://formspree.io/f/meenzavk" method="POST">
                 <div class="fg">
                     <label>Name</label>
                     <input type="text" name="name" placeholder="Your name" required autocomplete="name">
@@ -533,6 +562,12 @@
 </div>
 
 <script>
+    // YouTube facade — load video on click
+    function loadVideo() {
+        document.getElementById('heroVideo').innerHTML =
+            '<iframe src="https://www.youtube-nocookie.com/embed/hzB6GRo7WyQ?rel=0&modestbranding=1&autoplay=1" title="MakeMeAI overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
+    }
+
     // Mobile nav
     const hamburger = document.getElementById('hamburger');
     const drawer    = document.getElementById('drawer');
