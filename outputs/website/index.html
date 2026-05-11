@@ -175,8 +175,11 @@
         .card h3 { font-size: 1.1rem; font-weight: 700; color: var(--black); margin-bottom: 0.65rem; }
         .card p { color: var(--gray); font-size: 0.93rem; line-height: 1.65; }
 
+        /* ── AI TRAINING ── */
+        .ai-training { background: var(--light); text-align: center; }
+
         /* ── TESTIMONIALS ── */
-        .testimonials { background: var(--light); text-align: center; }
+        .testimonials { background: var(--white); text-align: center; }
 
         .carousel-wrap { position: relative; margin-top: 2.5rem; }
 
@@ -404,7 +407,7 @@
         <a href="#" class="logo">MakeMeAI<span class="logo-dot">.</span></a>
         <ul class="nav-links">
             <li><a href="#what">What We Do</a></li>
-            <li><a href="#training">AI Training</a></li>
+            <li><a href="#ai-training">AI Training</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="https://calendly.com/makemeai/audit-call" target="_blank" class="btn-pill" style="padding:0.5rem 1.1rem;font-size:0.88rem;min-height:auto;color:#fff;">Book a Free Call</a></li>
@@ -417,7 +420,7 @@
 
 <div class="drawer" id="drawer">
     <a href="#what">What We Do</a>
-    <a href="#training">AI Training</a>
+    <a href="#ai-training">AI Training</a>
     <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
     <a href="https://calendly.com/makemeai/audit-call" target="_blank" class="drawer-cta">Book a Free Call</a>
@@ -455,22 +458,107 @@
         <p class="section-p">We go into your business, find exactly where AI can make the biggest difference, build the tools, get them working, and make sure your team knows how to use them from day one.</p>
         <p style="font-size:1.1rem;font-weight:600;color:var(--black);margin-bottom:0.5rem;">Everything we do covers three things:</p>
         <div class="cards">
-            <div class="card reveal">
+            <div class="card">
                 <div class="card-icon">🎯</div>
                 <h3>AI Audit</h3>
                 <p>We map every process in your business to find exactly where AI can make the biggest impact. You get a clear, visual report showing the time saved, money recovered, and tools we recommend.</p>
             </div>
-            <div class="card reveal">
+            <div class="card">
                 <div class="card-icon">💡</div>
                 <h3>Development &amp; Implementation</h3>
                 <p>We take the audit findings and turn them into real, working AI systems for your business. We don't replace your process. We give it superpowers with AI.</p>
             </div>
-            <div class="card reveal" id="training">
+            <div class="card">
                 <div class="card-icon">📈</div>
                 <h3>Training</h3>
                 <p>Once the tools are live, we train every member of your team to use them with confidence. We also run AI education sessions across your business so everyone understands how AI works and how it benefits them.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- AI TRAINING -->
+<section class="ai-training" id="ai-training">
+    <div class="wrap">
+        <div class="section-tag">AI Training &amp; Education</div>
+        <h2 class="section-h">Learn AI. Use it with confidence.</h2>
+        <p class="section-p">We believe anyone can learn to use AI confidently. These tutorials cover simple, practical AI tools that any business owner or team member can start using today. We also go directly into companies to deliver hands-on AI training and education sessions — tailored to your team, your tools, and your industry.</p>
+        <div class="carousel-wrap">
+            <button class="carousel-btn prev" id="trainingPrev" onclick="moveTraining(-1)">&#8592;</button>
+            <div class="carousel-track-outer" id="trainingOuter">
+                <div class="video-row" id="trainingTrack">
+
+                    <!-- Slot 1 -->
+                    <div class="video-card">
+                        <div class="video-thumb" id="tr1">
+                            <div class="yt-facade" onclick="loadTraining('tr1','GPXudapMOa4')">
+                                <img src="https://img.youtube.com/vi/GPXudapMOa4/maxresdefault.jpg" alt="Tutorial 01">
+                                <div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Tutorial 01</h4>
+                            <p>AI tool walkthrough.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slot 2 -->
+                    <div class="video-card">
+                        <div class="video-thumb" id="tr2">
+                            <div class="yt-facade" onclick="loadTraining('tr2','hzB6GRo7WyQ')">
+                                <img src="https://img.youtube.com/vi/hzB6GRo7WyQ/maxresdefault.jpg" alt="Tutorial 02">
+                                <div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Tutorial 02</h4>
+                            <p>AI tool walkthrough.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slot 3 -->
+                    <div class="video-card">
+                        <div class="video-thumb" id="tr3">
+                            <div class="yt-facade" onclick="loadTraining('tr3','hc28iYWQZck')">
+                                <img src="https://img.youtube.com/vi/hc28iYWQZck/maxresdefault.jpg" alt="Tutorial 03">
+                                <div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Tutorial 03</h4>
+                            <p>AI tool walkthrough.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slot 4 -->
+                    <div class="video-card">
+                        <div class="video-thumb" id="tr4">
+                            <div class="coming-soon-icon">🎬</div>
+                            <div class="coming-soon-label">Coming Soon</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Tutorial 04</h4>
+                            <p>AI tool walkthrough coming soon.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slot 5 -->
+                    <div class="video-card">
+                        <div class="video-thumb" id="tr5">
+                            <div class="coming-soon-icon">🎬</div>
+                            <div class="coming-soon-label">Coming Soon</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Tutorial 05</h4>
+                            <p>AI tool walkthrough coming soon.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button class="carousel-btn next" id="trainingNext" onclick="moveTraining(1)">&#8594;</button>
+        </div>
+        <div class="carousel-dots" id="trainingDots"></div>
     </div>
 </section>
 
@@ -591,7 +679,7 @@
     <div class="wrap">
         <h2>Get in touch</h2>
         <p>Fill out the form and we'll respond within 24 hours.</p>
-        <div class="contact-form reveal">
+        <div class="contact-form">
             <!-- Replace YOUR_FORM_ID with your Formspree ID from formspree.io -->
             <form action="https://formspree.io/f/meenzavk" method="POST">
                 <div class="fg">
@@ -628,30 +716,6 @@
     </div>
 </footer>
 
-<!-- FLOATING CHAT -->
-<div class="chat-wrap">
-    <div class="chat-popup" id="chatPopup">
-        <div class="chat-header">
-            <div class="chat-header-text">
-                <strong>MakeMeAI Support</strong>
-                <span>We typically reply instantly</span>
-            </div>
-            <button class="chat-close" id="chatClose" aria-label="Close chat">&#x2715;</button>
-        </div>
-        <div class="chat-body">
-            <div class="chat-bubble">Hi there! 👋 How can we help you today?</div>
-        </div>
-        <div class="chat-footer">
-            <input class="chat-input" id="chatInput" type="text" placeholder="Type a message..." autocomplete="off">
-            <button class="chat-send" id="chatSend" aria-label="Send message">
-                <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-            </button>
-        </div>
-    </div>
-    <button class="chat-btn" id="chatBtn" aria-label="Open chat">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
-    </button>
-</div>
 
 <script>
     // YouTube facade — load video on click
@@ -660,11 +724,66 @@
             '<iframe src="https://www.youtube-nocookie.com/embed/hzB6GRo7WyQ?rel=0&modestbranding=1&autoplay=1" title="MakeMeAI overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
     }
 
+    // Training video loader
+    function loadTraining(id, videoId) {
+        document.getElementById(id).innerHTML =
+            '<iframe src="https://www.youtube-nocookie.com/embed/' + videoId + '?rel=0&autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
+    }
+
     // Testimonial video loader
     function loadTestimonial(id, videoId) {
         document.getElementById(id).innerHTML =
             '<iframe src="https://www.youtube-nocookie.com/embed/' + videoId + '?rel=0&autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
     }
+
+    // Training carousel
+    window.addEventListener('load', function() {
+        var tPos  = 0;
+        var tTotal = 5;
+        var TGAP  = 20;
+        var tOuter = document.getElementById('trainingOuter');
+        var tTrack = document.getElementById('trainingTrack');
+        var tCards = tTrack.querySelectorAll('.video-card');
+
+        function tPv()     { return window.innerWidth < 768 ? 1 : 3; }
+        function tMax()    { return tTotal - tPv(); }
+
+        function tResize() {
+            var w = Math.floor((tOuter.offsetWidth - (tPv() - 1) * TGAP) / tPv());
+            tCards.forEach(function(c){ c.style.width = w + 'px'; c.style.minWidth = w + 'px'; });
+            return w;
+        }
+
+        function tBuildDots() {
+            var dots = document.getElementById('trainingDots');
+            dots.innerHTML = '';
+            for (var i = 0; i <= tMax(); i++) {
+                var d = document.createElement('button');
+                d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                (function(idx){ d.onclick = function(){ tGoTo(idx); }; })(i);
+                dots.appendChild(d);
+            }
+        }
+
+        function tGoTo(pos) {
+            tPos = Math.max(0, Math.min(pos, tMax()));
+            var w = tResize();
+            tTrack.style.transform = 'translateX(-' + (tPos * (w + TGAP)) + 'px)';
+            document.getElementById('trainingPrev').disabled = tPos === 0;
+            document.getElementById('trainingNext').disabled = tPos === tMax();
+            document.querySelectorAll('#trainingDots .carousel-dot').forEach(function(d,i){ d.classList.toggle('active', i === tPos); });
+        }
+
+        window.moveTraining = function(dir) { tGoTo(tPos + dir); };
+
+        var ttx0 = 0;
+        tTrack.addEventListener('touchstart', function(e){ ttx0 = e.touches[0].clientX; }, { passive: true });
+        tTrack.addEventListener('touchend',   function(e){ var d = ttx0 - e.changedTouches[0].clientX; if (Math.abs(d) > 50) window.moveTraining(d > 0 ? 1 : -1); }, { passive: true });
+
+        window.addEventListener('resize', function(){ tBuildDots(); tGoTo(0); });
+        tBuildDots();
+        tGoTo(0);
+    });
 
     // Carousel — initialise after full page load so widths are correct
     window.addEventListener('load', function() {
@@ -757,5 +876,6 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
+    <script src="//code.tidio.co/kb8dl848oaovjlq7tojadvgqs7ckrjkk.js" async></script>
 </body>
 </html>
